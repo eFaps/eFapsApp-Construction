@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2009 - 2010 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>078b5058-f08e-427d-ad34-e0e6248939e1</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntryPartListTree_Menu_Action_CreateTemplate</name>
+
+        <!-- target definitions -->
+        <target>
+            <form>Construction_EntryPartListCreateTemplateForm</form>
+            <execute method="createTemplateFromEntry" program="net.moxter.eFapsApp.construction.EntryPartList" />
+            <validate method="validateCreateTemplate" program="net.moxter.eFapsApp.construction.EntryPartList" />
+        </target>
+        <!-- properties -->
+        <property name="Target">modal</property>
+        <property name="TargetMode">edit</property>
+        <property name="WindowHeight">460</property>
+        <property name="WindowWidth">515</property>
+    </definition>
+</ui-command>

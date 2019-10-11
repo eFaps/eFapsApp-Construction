@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2015 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter. Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+-->
+<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>bc54ebbe-1f62-4079-ad27-f753a8e357cc</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntryPartListSetEfficiencyOverAllForm</name>
+        <field name="efficiencyOverAll">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Columns">10</property>
+            <property name="Label">Construction_EntryPartListForm.efficiencyOverAll.Label</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.DecimalUI</property>
+        </field>
+    </definition>
+</ui-form>

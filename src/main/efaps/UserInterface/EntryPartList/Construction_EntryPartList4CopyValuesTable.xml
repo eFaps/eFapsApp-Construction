@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+ Copyright 2007 - 2016 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+-->
+<ui-table xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>62f1b7f2-fdb7-46c6-ba4a-304967d60c8d</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntryPartList4CopyValuesTable</name>
+        <field name="name">
+            <property name="Attribute">Name</property>
+            <property name="Label">Construction_EntryPartList/Name.Label</property>
+        </field>
+        <field name="description">
+            <property name="Attribute">Description</property>
+            <property name="Label">Construction_EntryPartList/Description.Label</property>
+        </field>
+        <field name="entrySheet">
+             <property name="Label">Construction_EntrySheet.Label</property>
+             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+             <property name="FilterType">PICKLIST</property>
+             <trigger program="net.moxter.eFapsApp.construction.EntryPartList"
+                method="getEntrySheetFieldValue"
+                name="Construction_EntryPartList4CopyValuesTable.entrySheet.UI_FIELD_VALUE" event="UI_FIELD_VALUE"/>
+        </field>
+    </definition>
+</ui-table>

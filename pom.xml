@@ -119,7 +119,7 @@
                     <passWord>Administrator</passWord>
                     <!-- used from the generateUUID goal -->
                     <count>${count}</count>
-                    <ciName>Contacts</ciName>
+                    <ciName>Construction</ciName>
                 </configuration>
                 <dependencies>
                     <!-- Connection Pooling -->

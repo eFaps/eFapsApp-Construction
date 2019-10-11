@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Copyright 2007 - 2014 Jan Moxter
+  
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+  
+
+-->
+<datamodel-type xmlns="http://www.efaps.org/xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>1df1735d-e85e-4a8c-838e-958f8615d62b</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntryPartList2EntryPartListRev</name>
+        <parent>Products_Product2ProductAbstract</parent>
+
+        <!-- attributes -->
+        <attribute>
+            <name>FromLink</name>
+            <type>Link</type>
+            <typelink>Construction_EntryPartList</typelink>
+            <sqltable>Products_Product2ProductAbstractSQLTable</sqltable>
+            <sqlcolumn>FROMID</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>ToLink</name>
+            <type>Link</type>
+            <typelink>Construction_EntryPartList</typelink>
+            <sqltable>Products_Product2ProductAbstractSQLTable</sqltable>
+            <sqlcolumn>TOID</sqlcolumn>
+        </attribute>
+    </definition>
+</datamodel-type>

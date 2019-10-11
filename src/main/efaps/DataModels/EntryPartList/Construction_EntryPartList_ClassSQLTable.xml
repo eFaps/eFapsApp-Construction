@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+-->
+<datamodel-sqltable xmlns="http://www.efaps.org/xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>d19f2096-5b86-43c0-9f7d-186cfa26ba07</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntryPartList_ClassSQLTable</name>
+        <database>
+            <table-name>T_CON_PRODPARTCLASS</table-name>
+            <column name="PRODUCTID"   type="INTEGER"  not-null="true" />
+            <column name="EFFICIOA"    type="DECIMAL"                   scale="4" length="8"/>
+            <column name="EFFICIP"     type="DECIMAL"                   scale="4" length="8"/>
+            <column name="EFFICIT"     type="DECIMAL"                   scale="4" length="8"/>
+            <column name="UOMID"       type="INTEGER"/>
+            <column name="CURRENCYID"  type="INTEGER"  />
+            <column name="TOTAL"       type="DECIMAL"                   scale="2" length="10" />
+            <column name="MANPER"      type="DECIMAL"                   scale="2" length="10" />
+            <column name="MANAMOUNT"   type="DECIMAL"                   scale="2" length="10" />
+            <foreign name="T_CON_PRODPARTCLASS_FK_PRODUCTID" key="PRODUCTID" reference="T_PRODPRODUCT(ID)" />
+        </database>
+    </definition>
+</datamodel-sqltable>

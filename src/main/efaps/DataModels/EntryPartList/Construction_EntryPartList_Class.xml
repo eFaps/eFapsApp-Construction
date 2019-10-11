@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+-->
+<datamodel-type xmlns="http://www.efaps.org/xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>83befbd6-338d-4014-9bda-12de472f7627</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntryPartList_Class</name>
+        <purpose classification="true">
+            <LinkColumn>ProductLink</LinkColumn>
+        </purpose>
+        <attribute>
+            <name>OID</name>
+            <type>OID</type>
+            <sqltable>Construction_EntryPartList_ClassSQLTable</sqltable>
+            <sqlcolumn>ID</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>ID</name>
+            <type>Long</type>
+            <sqltable>Construction_EntryPartList_ClassSQLTable</sqltable>
+            <sqlcolumn>ID</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>ProductLink</name>
+            <type>Link</type>
+            <typelink>Products_ProductAbstract</typelink>
+            <sqltable>Construction_EntryPartList_ClassSQLTable</sqltable>
+            <sqlcolumn>PRODUCTID</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>EfficiencyUoM</name>
+            <type>Link</type>
+            <typelink>Admin_DataModel_UoM</typelink>
+            <sqltable>Construction_EntryPartList_ClassSQLTable</sqltable>
+            <sqlcolumn>UOMID</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>EfficiencyOverAll</name>
+            <type>Decimal</type>
+            <sqltable>Construction_EntryPartList_ClassSQLTable</sqltable>
+            <sqlcolumn>EFFICIOA</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>EfficiencyPersonal</name>
+            <type>Decimal</type>
+            <sqltable>Construction_EntryPartList_ClassSQLTable</sqltable>
+            <sqlcolumn>EFFICIP</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>EfficiencyTools</name>
+            <type>Decimal</type>
+            <sqltable>Construction_EntryPartList_ClassSQLTable</sqltable>
+            <sqlcolumn>EFFICIT</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>CurrencyLink</name>
+            <type>LinkWithRanges</type>
+            <typelink>ERP_Currency</typelink>
+            <sqltable>Construction_EntryPartList_ClassSQLTable</sqltable>
+            <sqlcolumn>CURRENCYID</sqlcolumn>
+            <trigger event="RANGE_VALUE"
+                name="Sales_Payment.CurrencyId.RANGE_VALUE" program="org.efaps.esjp.admin.datamodel.RangesValue">
+                <property name="Value">Name</property>
+                <property name="Type">ERP_Currency</property>
+            </trigger>
+        </attribute>
+        <attribute>
+            <name>Total</name>
+            <type>Decimal</type>
+            <sqltable>Construction_EntryPartList_ClassSQLTable</sqltable>
+            <sqlcolumn>TOTAL</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>ManualPercent</name>
+            <type>Decimal</type>
+            <sqltable>Construction_EntryPartList_ClassSQLTable</sqltable>
+            <sqlcolumn>MANPER</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>ManualAmount</name>
+            <type>Decimal</type>
+            <sqltable>Construction_EntryPartList_ClassSQLTable</sqltable>
+            <sqlcolumn>MANAMOUNT</sqlcolumn>
+        </attribute>
+        <classifies multipleSelect="false" relLinkAttribute="Product"
+            relType="Products_Product2Class" relTypeAttribute="ClassTypeId"
+            type="Construction_EntryPartList">
+        </classifies>
+    </definition>
+</datamodel-type>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+-->
+<datamodel-type xmlns="http://www.efaps.org/xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>c23660cb-0c51-4b41-9355-d88962a704cf</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntryBOM</name>
+        <parent>Products_BOMAbstract</parent>
+        <attribute>
+            <name>FromLink</name>
+            <type>Link</type>
+            <typelink>Products_ProductAbstract</typelink>
+            <sqltable>Products_BOMSQLTable</sqltable>
+            <sqlcolumn>FROMID</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>ToLink</name>
+            <type>Link</type>
+            <typelink>Products_ProductAbstract</typelink>
+            <sqltable>Products_BOMSQLTable</sqltable>
+            <sqlcolumn>TOID</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>Quantity</name>
+            <type>Decimal</type>
+            <sqltable>Products_BOMSQLTable</sqltable>
+            <sqlcolumn>QUANTITY</sqlcolumn>
+            <defaultvalue>1</defaultvalue>
+        </attribute>
+        <attribute>
+            <name>UoM</name>
+            <type>Link</type>
+            <typelink>Admin_DataModel_UoM</typelink>
+            <sqltable>Products_BOMSQLTable</sqltable>
+            <sqlcolumn>UOMID</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>UnitPrice</name>
+            <type>Decimal</type>
+            <sqltable>Construction_EntryBOMSQLTable</sqltable>
+            <sqlcolumn>UNITPRICE</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>Price</name>
+            <type>Decimal</type>
+            <sqltable>Construction_EntryBOMSQLTable</sqltable>
+            <sqlcolumn>PRICE</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>Factor</name>
+            <type>Decimal</type>
+            <sqltable>Construction_EntryBOMSQLTable</sqltable>
+            <sqlcolumn>FACTOR</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>Remark</name>
+            <type>String</type>
+            <sqltable>Construction_EntryBOMSQLTable</sqltable>
+            <sqlcolumn>REMARK</sqlcolumn>
+        </attribute>
+    </definition>
+</datamodel-type>

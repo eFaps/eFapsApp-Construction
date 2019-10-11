@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+  Copyright 2010 - 2011 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+
+<ui-command xmlns="http://www.efaps.org/xsd"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>9d8bc391-58c6-4e12-ac8f-36c6ebcb6f83</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateTree_EntrySheet_Menu_Action_Add</name>
+        <!-- target definition -->
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <target>
+            <form>Construction_CostEstimateEntrySheetSelectForm</form>
+            <execute program="org.efaps.esjp.common.uisearch.Connect">
+                <property name="ConnectChildAttribute">ToLink</property>
+                <property name="ConnectParentAttribute">FromLink</property>
+                <property name="ConnectType">Construction_CostEstimate2EntrySheet</property>
+            </execute>
+        </target>
+        <!-- properties -->
+        <property name="Target">modal</property>
+        <property name="TargetMode">edit</property>
+    </definition>
+</ui-command>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2010 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>c1350d72-437a-4f72-9d50-2d2cbf6fdfff</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateTree_PositionGroup_Menu_Action_UpDown</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+
+        <!-- target definitions -->
+        <target>
+            <form>Construction_CostEstimateGroupUpDownForm</form>
+            <execute method="upDownPositionGroup"
+                program="net.moxter.eFapsApp.construction.CostEstimatePosGroup" />
+            <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
+                method="check4Status"
+                name="Construction_CostEstimateTree_PositionGroup_Menu_Action_UpDown.UI_ACCESSCHECK"
+                event="UI_ACCESSCHECK">
+                <property name="Status">Open</property>
+            </trigger>
+        </target>
+
+        <!-- properties -->
+        <property name="Target">modal</property>
+        <property name="TargetMode">edit</property>
+        <property name="Submit">true</property>
+        <property name="SubmitSelectedRows">1</property>
+    </definition>
+</ui-command>

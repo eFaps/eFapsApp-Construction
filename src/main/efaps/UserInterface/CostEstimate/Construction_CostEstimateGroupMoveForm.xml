@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2010 - 2012 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>970848b9-6130-485c-a55d-134a9a77c417</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateGroupMoveForm</name>
+        <field name="selectedOIDs">
+            <property name="ModeEdit">HIDDEN</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <trigger event="UI_FIELD_VALUE"
+                method="getStoreOIDsFieldValue"
+                name="Construction_CostEstimateGroupMoveForm.selectedOIDs.UI_FIELD_VALUE"
+                program="org.efaps.esjp.common.uiform.Field"/>
+        </field>
+        <field name="positionTable4View" character="Target">
+            <property name="ModeEdit">READONLY</property>
+            <property name="TargetShowCheckBoxes">true</property>
+            <property name="TargetStructurBrowserField">productDesc</property>
+            <table>Construction_CostEstimatePosition4PositionGroupMoveTable</table>
+            <evaluate program="net.moxter.eFapsApp.construction.CostEstimateStucturBrowser">
+                <property name="Type">Sales_PositionGroupRoot</property>
+                <property name="includeChildTypes">false</property>
+            </evaluate>
+        </field>
+    </definition>
+</ui-form>

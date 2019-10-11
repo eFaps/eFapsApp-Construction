@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2010 - 2013 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>c421b668-6506-404c-ae79-165061c7d4ba</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateSummaryReportForm</name>
+        <!-- fields -->
+        <field name="description">
+            <property name="HideLabel">true</property>
+            <property name="UIType">SNIPPLET</property>
+            <trigger event="UI_FIELD_VALUE" method="getDBPropertiesFieldValue"
+                name="Construction_CostEstimateSummaryReportForm.description.UI_FIELD_VALUE" program="org.efaps.esjp.common.uiform.Field">
+                <property name="DBProperty">Construction_CostEstimateSummaryReportForm.description.html</property>
+            </trigger>
+        </field>
+        <field name="report">
+            <property name="HideLabel">true</property>
+            <property name="UIType">SNIPPLET</property>
+            <trigger event="UI_FIELD_VALUE" method="generateReport"
+                name="Construction_CostEstimateSummaryReportForm.report.UI_FIELD_VALUE"
+                program="net.moxter.eFapsApp.construction.reports.CostEstimateSummaryReport">
+                <property name="Status">Closed</property>
+            </trigger>
+        </field>
+    </definition>
+</ui-form>

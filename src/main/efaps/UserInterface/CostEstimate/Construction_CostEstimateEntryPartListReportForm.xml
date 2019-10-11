@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2010 - 2016 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+-->
+<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>946b8d2d-50dc-420d-9c59-800a01220f95</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateEntryPartListReportForm</name>
+        <field name="description">
+            <property name="HideLabel">true</property>
+            <property name="UIType">SNIPPLET</property>
+            <trigger event="UI_FIELD_VALUE" method="getDBPropertiesFieldValue"
+                name="Construction_CostEstimateEntryPartListReportForm.description.UI_FIELD_VALUE"
+                program="org.efaps.esjp.common.uiform.Field">
+                <property name="DBProperty">Construction_CostEstimateEntryPartListReportForm.description.html</property>
+            </trigger>
+        </field>
+        <field name="filter">
+            <property name="HideLabel">true</property>
+            <property name="UIType">SNIPPLET</property>
+            <trigger event="UI_FIELD_VALUE" index="1" method="setDefaultFilter"
+                name="Sales_InventoryReportForm.filter.UI_FIELD_VALUE.1"
+                program="net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport">
+                <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport.FilterKey</property>
+                <property name="Field01">posType</property>
+                <property name="FilterType01">Enum</property>
+                <property name="FilterDefault01">net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport_Base$PosType</property>
+            </trigger>
+            <trigger event="UI_FIELD_VALUE" index="2" method="getFilterFieldValue"
+                name="Sales_InventoryReportForm.filter.UI_FIELD_VALUE.2"
+                program="net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport">
+                <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport.FilterKey</property>
+                <property name="Field01">posType</property>
+                <property name="DBProperty01">net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport.posType</property>
+            </trigger>
+        </field>
+        <field name="report">
+            <property name="HideLabel">true</property>
+            <property name="UIType">SNIPPLET</property>
+            <trigger event="UI_FIELD_VALUE" method="getReport"
+                name="Construction_CostEstimateEntryPartListReportForm.report.UI_FIELD_VALUE"
+                program="net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport">
+                <property name="Status">Open</property>
+                <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport.FilterKey</property>
+            </trigger>
+        </field>
+    </definition>
+</ui-form>

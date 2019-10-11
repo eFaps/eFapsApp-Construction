@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+  Copyright 2010 - 2011 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+
+<ui-command xmlns="http://www.efaps.org/xsd"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>817928f8-d6cf-4f53-ad91-e03914060378</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateTree_PositionGroup</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <target>
+            <menu>Construction_CostEstimateTree_PositionGroup_Menu</menu>
+            <table>Construction_CostEstimatePosition4PositionGroupTable</table>
+            <evaluate program="net.moxter.eFapsApp.construction.CostEstimateStucturBrowser">
+                <property name="Type">Sales_PositionGroupRoot</property>
+            </evaluate>
+        </target>
+        <!-- properties -->
+        <property name="Target">content</property>
+        <property name="TargetStructurBrowserField">productDesc</property>
+        <property name="TargetShowCheckBoxes">true</property>
+        <property name="TargetMode">view</property>
+    </definition>
+</ui-command>

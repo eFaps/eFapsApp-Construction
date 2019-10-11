@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+--><ui-menu xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>6cb78866-4dd4-4b98-bdd3-7172a2e8f973</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateSaleTree_Menu_Action</name>
+        <childs>
+            <child>Construction_CostEstimateSaleTree_Menu_Action_Edit</child>
+            <child>Construction_CostEstimateSaleTree_Menu_Action_EditPercentageCost</child>
+            <child>Construction_CostEstimateSaleTree_Menu_Action_SetEfficiencyOverAll</child>
+            <child>Construction_CostEstimateSaleTree_Menu_Action_SetClosed</child>
+            <child>Construction_CostEstimateSaleTree_Menu_Action_SetCanceled</child>
+            <child>Construction_CostEstimateSaleTree_Menu_Action_Download</child>
+            <child>Sales_DocumentAbstractTree_Menu_Action_GenerateCode</child>
+        </childs>
+    </definition>
+</ui-menu>

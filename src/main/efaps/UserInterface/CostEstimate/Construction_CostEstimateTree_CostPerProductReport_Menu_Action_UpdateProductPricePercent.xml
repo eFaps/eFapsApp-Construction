@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2010 - 2014 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>8adde747-0cf4-4102-9be1-a2464f8f8dc2</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateTree_CostPerProductReport_Menu_Action_UpdateProductPricePercent</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <target>
+            <form>Construction_CostEstimateUpdateProductPricePercentForm</form>
+            <execute method="updateProductPricePercent"
+                program="net.moxter.eFapsApp.construction.CostEstimate" />
+        </target>
+        <property name="TargetMode">create</property>
+        <property name="Target">modal</property>
+    </definition>
+</ui-command>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2010 - 2012 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>50342788-01eb-45f6-bcfe-293ad07d4416</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateGroupItemForm</name>
+        <field name="parentOID">
+            <property name="ModeCreate">HIDDEN</property>
+            <property name="ModeView">NONE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <trigger event="UI_FIELD_VALUE"
+                method="getStoreOIDsFieldValue"
+                name="Construction_CostEstimateGroupItemForm.parentOID.UI_FIELD_VALUE"
+                program="org.efaps.esjp.common.uiform.Field"/>
+        </field>
+        <field name="count">
+            <property name="Columns">5</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Label">Construction_CostEstimateGroupItemForm.count.Label</property>
+            <property name="Required">true</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.NumberUI</property>
+        </field>
+        <field name="product">
+            <property name="HRef">TREE</property>
+            <property name="Columns">14</property>
+            <property name="SelectAlternateOID">linkto[AbstractPositionAbstractLink].linkto[Product].oid</property>
+            <property name="Select">linkto[AbstractPositionAbstractLink].linkto[Product].attribute[Name]</property>
+            <property name="Label">Sales_QuotationPosition/Product.Label</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Required">true</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+                method="autoComplete4Product"
+                name="Construction_CostEstimateGroupItemForm.product.UI_FIELD_AUTOCOMPLETE"
+                event="UI_FIELD_AUTOCOMPLETE">
+                <property name="ReturnPositionOid">true</property>
+            </trigger>
+        </field>
+        <field name="productDesc">
+            <property name="Columns">45</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Attribute">Name</property>
+            <property name="Label">Sales_QuotationPosition/ProductDesc.Label</property>
+            <property name="Required">true</property>
+        </field>
+    </definition>
+</ui-form>

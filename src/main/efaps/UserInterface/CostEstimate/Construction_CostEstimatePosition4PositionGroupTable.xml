@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-table xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+
+    <uuid>2ff31135-cdd5-42b0-b186-d09679c00e84</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+
+
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimatePosition4PositionGroupTable</name>
+        <field name="code">
+            <property name="Columns">12</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Attribute">Code</property>
+            <property name="Label">Sales_PositionGroupAbstract/Code.Label</property>
+        </field>
+        <field name="product">
+            <property name="HRef">TREE</property>
+            <property name="Columns">14</property>
+            <property name="Width">2</property>
+            <property name="Select">linkto[AbstractPositionAbstractLink].linkto[Product].attribute[Name]</property>
+            <property name="Label">Sales_QuotationPosition/Product.Label</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+                method="autoComplete4Product"
+                name="Construction_CostEstimatePosition4PositionGroupTable.product.UI_FIELD_AUTOCOMPLETE"
+                event="UI_FIELD_AUTOCOMPLETE" />
+            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+                method="updateFields4Product"
+                name="Construction_CostEstimatePosition4PositionGroupTable.product.UI_FIELD_UPDATE"
+                event="UI_FIELD_UPDATE" />
+             <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+                method="getAternateInstance"
+                name="Construction_CostEstimatePosition4PositionGroupTable.product.UI_FIELD_ALTINST"
+                event="UI_FIELD_ALTINST"></trigger>
+        </field>
+        <field name="productDesc">
+            <property name="Columns">45</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Attribute">Name</property>
+            <property name="Label">Sales_QuotationPosition/ProductDesc.Label</property>
+            <property name="Width">8</property>
+        </field>
+        <field name="uoM">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="ModeView">NONE</property>
+            <property name="Select">linkto[AbstractPositionAbstractLink].attribute[UoM]</property>
+            <property name="Label">Sales_QuotationPosition/UoM.Label</property>
+            <property name="UIType">DROPDOWN</property>
+            <trigger program="org.efaps.esjp.common.uiform.Field"
+                method="getUoMDropDownFieldValue"
+                name="Construction_CostEstimatePosition4PositionGroupTable.uoM_M"
+                event="UI_FIELD_VALUE" />
+        </field>
+        <field name="uom4View">
+            <property name="Width">1</property>
+            <property name="ModeCreate">NONE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="Select">linkto[AbstractPositionAbstractLink].linkto[UoM].attribute[Name]</property>
+            <property name="Label">Sales_QuotationPosition/UoM.Label</property>
+        </field>
+        <field name="quantity">
+            <property name="Select">linkto[AbstractPositionAbstractLink].attribute[Quantity]</property>
+            <property name="Label">Sales_QuotationPosition/Quantity.Label</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Align">right</property>
+            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+                method="updateFields4Quantity"
+                name="Construction_CostEstimatePosition4PositionGroupTable.product.UI_FIELD_AUTOCOMPLETE"
+                event="UI_FIELD_UPDATE" />
+        </field>
+        <field name="netUnitPrice">
+            <property name="Columns">10</property>
+            <property name="Width">2</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">HIDDEN</property>
+            <property name="ModeView">NONE</property>
+            <property name="Align">right</property>
+            <property name="Select">linkto[AbstractPositionAbstractLink].attribute[RateNetUnitPrice]</property>
+            <property name="Label">Sales_QuotationPosition/NetUnitPrice.Label</property>
+        </field>
+        <field name="netUnitPrice4View">
+            <property name="Columns">10</property>
+            <property name="Width">2</property>
+            <property name="ModeCreate">NONE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="ModeView">READONLY</property>
+            <property name="Align">right</property>
+            <property name="Select">linkto[AbstractPositionAbstractLink].attribute[RateNetUnitPrice]</property>
+            <property name="Label">Sales_QuotationPosition/NetUnitPrice.Label</property>
+        </field>
+        <field name="netPrice">
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeView">NONE</property>
+            <property name="Align">right</property>
+            <property name="Select">linkto[AbstractPositionAbstractLink].attribute[RateNetPrice]</property>
+            <property name="Label">Sales_QuotationPosition/NetPrice.Label</property>
+        </field>
+        <field name="netPrice4View">
+            <property name="ModeCreate">NONE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="ModeView">READONLY</property>
+            <property name="Align">right</property>
+            <property name="Select">linkto[AbstractPositionAbstractLink].attribute[RateNetPrice]</property>
+            <property name="Label">Sales_QuotationPosition/NetPrice.Label</property>
+        </field>
+        <field name="sumsTotal4View">
+            <property name="ModeCreate">NONE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="Attribute">RateSumsTotal</property>
+            <property name="Align">right</property>
+            <property name="Label">Sales_QuotationPosition/RateSumsTotal.Label</property>
+        </field>
+    </definition>
+</ui-table>

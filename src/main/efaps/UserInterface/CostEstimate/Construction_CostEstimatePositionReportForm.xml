@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2010 - 2013 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>42d0e6b8-04b3-42e5-b6c8-b110255c1a11</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimatePositionReportForm</name>
+        <!-- fields -->
+        <field name="description">
+            <property name="HideLabel">true</property>
+            <property name="UIType">SNIPPLET</property>
+            <trigger program="org.efaps.esjp.common.uiform.Field"
+                method="getDBPropertiesFieldValue"
+                name="SD_Projects_Report4QuotationForm.description.UI_FIELD_VALUE"
+                event="UI_FIELD_VALUE">
+                <property name="DBProperty">CostEstimatePosition4ProjectReport.description.html</property>
+            </trigger>
+        </field>
+        <field name="report">
+            <property name="HideLabel">true</property>
+            <property name="UIType">SNIPPLET</property>
+            <trigger
+                program="net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport"
+                method="generateReport"
+                name="Construction_CostEstimatePosition4ProjectReportForm.report.UI_FIELD_VALUE"
+                event="UI_FIELD_VALUE">
+               <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport.FilterKey</property>
+            </trigger>
+        </field>
+    </definition>
+</ui-form>

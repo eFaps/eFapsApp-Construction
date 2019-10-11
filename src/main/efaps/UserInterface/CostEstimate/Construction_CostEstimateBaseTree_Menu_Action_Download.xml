@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+
+    <uuid>0bacab6f-0257-48a3-8f76-44ede2f59384</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateBaseTree_Menu_Action_Download</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <!-- target definitions -->
+        <target>
+            <execute program="net.moxter.eFapsApp.construction.CostEstimate"
+                method="downloadCostEstimate">
+                <property name="JasperReport">Construction_CostEstimateBase</property>
+                <property name="Mime">pdf</property>
+                <property name="NoDataSource">true</property>
+            </execute>
+        </target>
+        <property name="Target">hidden</property>
+        <property name="TargetShowFile">true</property>
+    </definition>
+</ui-command>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+
+    <uuid>173a4e14-fe81-45f4-91d4-4e4c5dc83b8f</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateMyDesk_Menu_Action_Delete</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <target>
+            <execute program="org.efaps.esjp.common.uitable.CommonDelete" />
+        </target>
+        <property name="AskUser">true</property>
+        <property name="Submit">true</property>
+    </definition>
+</ui-command>

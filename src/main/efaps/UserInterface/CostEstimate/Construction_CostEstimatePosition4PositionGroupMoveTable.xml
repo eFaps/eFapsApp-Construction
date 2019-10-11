@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+ Copyright 2009 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-table xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+
+    <uuid>c861c271-cc58-40aa-8c69-608b97ed5352</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimatePosition4PositionGroupMoveTable</name>
+        <field name="productDesc">
+            <property name="Columns">45</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="Attribute">Name</property>
+            <property name="Label">Sales_QuotationPosition/ProductDesc.Label</property>
+            <property name="Width">8</property>
+        </field>
+    </definition>
+</ui-table>

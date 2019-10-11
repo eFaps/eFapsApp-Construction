@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+  Copyright 2010 - 2011 moxter.net
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+  Author:          moxter.net
+
+-->
+
+<ui-menu xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>c8acb50e-1ed6-4bed-b308-f781a1ab76ee</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateTree_PositionGroup_Menu_Action</name>
+        <childs>
+            <child>Construction_CostEstimateTree_PositionGroup_Menu_Action_Edit</child>
+            <child>Construction_CostEstimateTree_PositionGroup_Menu_Action_CreatePositionRoot</child>
+            <child>Construction_CostEstimateTree_PositionGroup_Menu_Action_CreatePositionGroup</child>
+            <child>Construction_CostEstimateTree_PositionGroup_Menu_Action_CreatePositionItem</child>
+            <child>Construction_CostEstimateTree_PositionGroup_Menu_Action_CreatePositionItemsDefault</child>
+            <child>Construction_CostEstimateTree_PositionGroup_Menu_Action_CreatePositionsItemsSelected</child>
+            <child>Construction_CostEstimateTree_PositionGroup_Menu_Action_Move</child>
+            <child>Construction_CostEstimateTree_PositionGroup_Menu_Action_UpDown</child>
+            <child>Construction_CostEstimateTree_PositionGroup_Menu_Action_Delete</child>
+        </childs>
+    </definition>
+</ui-menu>

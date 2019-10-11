@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>d933e7a7-ebd8-4c7b-bf73-d3ab70db45e7</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateTree_PositionGroup_Menu_Action_CreatePositionsItemsSelected</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <!-- target definitions -->
+        <target>
+            <form>Construction_CostEstimateTree_PositionGroupItemsSelectForm</form>
+            <execute method="createGroupItems"
+                program="net.moxter.eFapsApp.construction.CostEstimatePosGroup" />
+            <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
+                method="check4Status"
+                name="Construction_CostEstimateTree_PositionGroup_Menu_Action_CreatePositionItem.UI_ACCESSCHECK"
+                event="UI_ACCESSCHECK">
+                <property name="Status">Open</property>
+            </trigger>
+        </target>
+
+        <!-- properties -->
+        <property name="Target">modal</property>
+        <property name="TargetCreateType">Sales_PositionGroupItem</property>
+        <property name="TargetConnectAttribute">Sales_PositionGroupItem/ParentGroupLink</property>
+        <property name="TargetMode">edit</property>
+        <property name="WindowHeight">600</property>
+        <property name="WindowWidth">1200</property>
+        <property name="Submit">true</property>
+        <property name="SubmitSelectedRows">1</property>
+    </definition>
+</ui-command>

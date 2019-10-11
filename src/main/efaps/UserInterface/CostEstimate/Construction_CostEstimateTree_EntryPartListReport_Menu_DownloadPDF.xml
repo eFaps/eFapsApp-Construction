@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2010 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+--><ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>692cebd7-8556-42f2-ba6c-4cc360c72421</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateTree_EntryPartListReport_Menu_DownloadPDF</name>
+        <icon>Document_PDF</icon>
+        <target>
+            <execute method="exportReport" program="net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport">
+                <property name="Mime">pdf</property>
+            </execute>
+        </target>
+
+        <property name="Target">hidden</property>
+        <property name="TargetShowFile">true</property>
+        <property name="Label">report.DownloadPDF</property>
+    </definition>
+</ui-command>

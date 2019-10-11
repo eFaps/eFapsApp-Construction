@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-table xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>3794732b-9fd3-494c-a81a-95b5c792624b</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateEntrySheetSelectTable</name>
+        <field name="name">
+            <property name="Attribute">Name</property>
+            <property name="Label">Sales_DocumentAbstract/Name.Label</property>
+            <property name="ModeEdit">READONLY</property>
+        </field>
+        <field name="description">
+            <property name="Attribute">Description</property>
+            <property name="Label">Construction_EntrySheet/Description.Label</property>
+            <property name="ModeEdit">READONLY</property>
+        </field>
+        <field name="date">
+            <property name="Attribute">Date</property>
+            <property name="Label">Sales_DocumentAbstract/Date.Label</property>
+            <property name="ModeEdit">READONLY</property>
+        </field>
+        <field name="crosstotal">
+            <property name="Phrase">$&lt;attribute[RateCrossTotal].format[#,##0.00]&gt; $&lt;linkto[RateCurrencyId].attribute[Symbol]&gt;</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <property name="Label">Sales_DocumentAbstract/CrossTotal.Label</property>
+            <property name="ModeEdit">READONLY</property>
+        </field>
+        <field name="nettotal">
+            <property name="Phrase">$&lt;attribute[RateNetTotal].format[#,##0.00]&gt; $&lt;linkto[RateCurrencyId].attribute[Symbol]&gt;</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <property name="Label">Sales_DocumentAbstract/NetTotal.Label</property>
+            <property name="ModeEdit">READONLY</property>
+        </field>
+        <field name="status">
+            <property name="FilterType">PICKLIST</property>
+            <property name="Attribute">StatusAbstract</property>
+            <property name="Label">Sales_DocumentAbstract/Status.Label</property>
+            <property name="ModeEdit">READONLY</property>
+        </field>
+    </definition>
+</ui-table>

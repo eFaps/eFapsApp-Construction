@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2010 - 2014 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+--><ui-menu xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>3d3fe1f7-020a-4311-a4c5-5c6d1085b4b5</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateTree_MaterialRankingReport_Menu</name>
+        <childs>
+            <child>Construction_CostEstimateTree_MaterialRankingReport_Menu_DownloadExcel</child>
+            <child>Construction_CostEstimateTree_MaterialRankingReport_Menu_DownloadPDF</child>
+        </childs>
+    </definition>
+</ui-menu>

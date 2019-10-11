@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Copyright 2009 - 2015 moxter.net
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  moxter.net Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+  Author:          moxter.net
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>8f3a67c2-5317-447e-8094-96da456ed3a8</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateItemsTemplatePartListPicker</name>
+        <target>
+            <table>Products_TreeViewTable</table>
+            <evaluate program="org.efaps.esjp.products.TreeViewStructurBrowser">
+                <property name="Type">Products_TreeViewRoot</property>
+                <property name="Child_Type">Products_TreeViewNode</property>
+                <property name="Child_LinkFrom">ParentLink</property>
+                <property name="Child_Type01">Products_TreeViewProduct</property>
+                <property name="Child_LinkFrom01">ParentLink</property>
+            </evaluate>
+            <trigger event="UI_PICKER"
+                method="templatePicker"
+                name="Construction_CostEstimateItemsTemplatePartListPicker.UI_PICKER"
+                program="net.moxter.eFapsApp.construction.CostEstimatePosGroup" />
+        </target>
+        <property name="Target">modal</property>
+        <property name="TargetMode">view</property>
+        <property name="TargetShowCheckBoxes">true</property>
+        <property name="NoUpdateAfterCOMMAND">true</property>
+        <property name="TargetStructurBrowserField">label</property>
+        <property name="WindowHeight">460</property>
+        <property name="WindowWidth">515</property>
+    </definition>
+</ui-command>

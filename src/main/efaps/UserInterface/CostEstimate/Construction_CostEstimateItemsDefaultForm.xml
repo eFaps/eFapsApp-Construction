@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2010 - 2013 moxter.net
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+  Author:          Jan Moxter
+
+-->
+<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>a5506106-1b48-4e71-a012-1c7a32524e20</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateItemsDefaultForm</name>
+        <field name="jsLinkField">
+            <property name="ModeCreate">HIDDEN</property>
+            <property name="UIType">SNIPPLET</property>
+            <trigger program="org.efaps.esjp.common.uiform.Field" method="getJSLinkField"
+                name="Construction_CostEstimateItemsDefaultForm.jsLinkField.UI_FIELD_VALUE"
+                event="UI_FIELD_VALUE">
+                <property name="link">/servlet/static/org.efaps.ui.wicket.behaviors.FieldUpdate.js?</property>
+            </trigger>
+        </field>
+        <field name="parentOID">
+            <property name="ModeCreate">HIDDEN</property>
+            <property name="ModeView">NONE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <trigger event="UI_FIELD_VALUE"
+                method="getStoreOIDsFieldValue"
+                name="Construction_CostEstimateItemsEmptyForm.parentOID.UI_FIELD_VALUE"
+                program="org.efaps.esjp.common.uiform.Field" />
+        </field>
+        <field name="templInst">
+            <property name="ModeCreate">HIDDEN</property>
+            <property name="ModeView">NONE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+        </field>
+        <field name="templGroup" character="Group">
+            <property name="ModeCreate">READONLY</property>
+            <property name="GroupCount">2</property>
+        </field>
+        <field name="templName">
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeView">NONE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="UIType">SNIPPLET</property>
+            <property name="Label">Construction_CostEstimateItemsDefaultForm.templName.Label</property>
+            <trigger program="org.efaps.esjp.common.uiform.Field"
+                method="getDBPropertiesFieldValue"
+                name="Construction_CostEstimateItemsDefaultForm.templName.UI_FIELD_VALUE"
+                event="UI_FIELD_VALUE">
+                <property name="DBProperty">Construction_CostEstimateItemsDefaultForm.templName.DefaultValue</property>
+            </trigger>
+        </field>
+        <field name="templInstPicker" character="Picker">
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeView">NONE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="Label">Sales_PaymentCashForm.docPicker.Label</property>
+            <property name="UIType">BUTTON</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <picker name="Construction_CostEstimateItemsTemplatePartListPicker"/>
+        </field>
+        <field name="infoHeading" character="Heading">
+            <property name="ModeCreate">READONLY</property>
+            <property name="Level">4</property>
+            <property name="Label">Construction_CostEstimateItemsDefaultForm.infoHeading.Heading</property>
+        </field>
+        <field name="entrySheets">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Label">Construction_CostEstimateItemsDefaultForm.entrySheets.Label</property>
+            <property name="UIType">DROPDOWN</property>
+            <property name="Required">true</property>
+            <trigger program="org.efaps.esjp.common.uiform.Field"
+                method="getOptionListFieldValue"
+                name="Construction_CostEstimateItemsEmptyForm.entrySheets.UI_FIELD_VALUE"
+                event="UI_FIELD_VALUE">
+                <property name="Type">Construction_CostEstimate2EntrySheet</property>
+                <property name="LinkFrom">FromLink</property>
+                <property name="ValueSelect">linkto[ToLink].oid</property>
+                <property name="Phrase">$&lt;linkto[ToLink].attribute[Name]&gt; - $&lt;linkto[ToLink].attribute[Description]&gt;</property>
+            </trigger>
+        </field>
+        <field name="names">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Label">Construction_CostEstimateItemsDefaultForm.names.Label</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <property name="Required">true</property>
+            <property name="Columns">80</property>
+            <property name="Rows">10</property>
+        </field>
+    </definition>
+</ui-form>

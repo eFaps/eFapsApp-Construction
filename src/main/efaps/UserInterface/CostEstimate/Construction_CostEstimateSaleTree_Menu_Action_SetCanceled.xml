@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+ Copyright 2010 - 2013 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>d4578059-4343-4ea9-8739-cfe109bee860</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateSaleTree_Menu_Action_SetCanceled</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <target>
+            <execute method="setStatus" program="org.efaps.esjp.admin.datamodel.StatusValue">
+                <property name="Status">Canceled</property>
+            </execute>
+            <trigger event="UI_ACCESSCHECK" method="check4Status"
+                name="Construction_CostEstimateSaleTree_Menu_Action_SetCanceled.UI_ACCESSCHECK" program="org.efaps.esjp.admin.access.AccessCheck4UI">
+                <property name="Status">Open</property>
+                <property name="Status">Closed</property>
+            </trigger>
+        </target>
+        <property name="TargetMode">edit</property>
+        <property name="AskUser">true</property>
+        <property name="Submit">true</property>
+        <property name="SubmitSelectedRows">-1</property>
+    </definition>
+</ui-command>

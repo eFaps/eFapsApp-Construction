@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2007 - 2015 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+-->
+<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>5bc4b9b9-4acd-4f22-ab57-32d4c75bf5bb</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateCreateForm</name>
+        <field name="date">
+            <property name="Columns">12</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="ModeSearch">EDITABLE</property>
+            <property name="Attribute">Date</property>
+            <property name="Required">true</property>
+        </field>
+        <field name="annotation">
+            <property name="Attribute">Annotation</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Required">true</property>
+        </field>
+        <field name="project">
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="Required">true</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <property name="Label">Construction_CostEstimateCreateForm.project.Label</property>
+            <property name="Columns">60</property>
+            <trigger event="UI_FIELD_AUTOCOMPLETE" method="autoComplete4Project"
+                name="Construction_CostEstimateCreateForm.project.UI_FIELD_AUTOCOMPLETE"
+                program="org.efaps.esjp.projects.Project">
+                <property name="Status">Open</property>
+            </trigger>
+            <trigger event="UI_FIELD_UPDATE" method="updateField4EntrySheets4Project"
+                name="Construction_CostEstimateCreateForm.project.UI_FIELD_UPDATE"
+                program="net.moxter.eFapsApp.construction.CostEstimate">
+                <property name="Type">Construction_EntrySheet</property>
+                <property name="ValueSelect">oid</property>
+                <property name="Select">attribute[Name]</property>
+                <property name="OrderSelect">attribute[Name]</property>
+                <property name="FieldName">entrySheets</property>
+            </trigger>
+        </field>
+         <field character="Group" name="currencyGroup">
+            <property name="GroupCount">2</property>
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="ModeView">NONE</property>
+        </field>
+        <field name="rateCurrencyId">
+            <property name="Attribute">RateCurrencyId</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="ModeView">NONE</property>
+            <trigger event="UI_FIELD_VALUE" method="rateCurrencyFieldValueUI"
+                name="Construction_CostEstimateCreateForm.currencyId.UI_FIELD_VALUE"
+                program="net.moxter.eFapsApp.construction.CostEstimate" />
+            <trigger event="UI_FIELD_UPDATE" method="updateFields4RateCurrency"
+                name="Construction_CostEstimateCreateForm.currencyId.UI_FIELD_UPDATE"
+                program="net.moxter.eFapsApp.construction.CostEstimate" />
+        </field>
+        <field name="rateCurrencyData">
+            <property name="ModePrint">NONE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="ModeView">NONE</property>
+            <property name="ModeCreate">READONLY</property>
+            <property name="Label">Construction_EntrySheetForm.rateCurrencyData.Label</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+        </field>
+        <field name="entrySheets">
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeCreate">READONLY</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <property name="Label">Construction_CostEstimateCreateForm.entrySheets.Label</property>
+        </field>
+        <field name="rate">
+            <property name="Attribute">Rate</property>
+            <property name="ModeCreate">HIDDEN</property>
+            <property name="ModeEdit">HIDDEN</property>
+        </field>
+        <field name="javaScript">
+            <property name="ModePrint">NONE</property>
+            <property name="ModeCreate">HIDDEN</property>
+            <property name="ModeView">NONE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <trigger event="UI_FIELD_VALUE" method="getJavaScriptUIValue"
+                name="Construction_CostEstimateCreateForm.javaScript.UI_Field_Value"
+                program="net.moxter.eFapsApp.construction.CostEstimate" />
+        </field>
+    </definition>
+</ui-form>

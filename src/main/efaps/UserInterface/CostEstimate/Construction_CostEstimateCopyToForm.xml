@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+
+<ui-form xmlns="http://www.efaps.org/xsd"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>08048975-4135-40d8-a405-5e06e4b0380d</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateCopyToForm</name>
+        <!-- fields -->
+        <field name="type">
+            <property name="ModePrint">NONE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="ModeView">EDITABLE</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="Label">Sales_QuotationForm.type.Label</property>
+            <property name="UIType">DROPDOWN</property>
+            <trigger program="org.efaps.esjp.common.uiform.Field" method="getTypeDropDownFieldValue"
+                name="Construction_CostEstimateCopyToForm.type.UI_FIELD_VALUE" event="UI_FIELD_VALUE">
+                <property name="Type">Construction_CostEstimateAbstract</property>
+                <property name="SelectedType">Construction_CostEstimateBase</property>
+            </trigger>
+        </field>
+        <field name="project">
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <property name="Label">Construction_CostEstimateCopyToForm.project.Label</property>
+            <property name="Columns">90</property>
+            <trigger program="org.efaps.esjp.projects.Project" method="autoComplete4Project"
+                name="Construction_CostEstimateCopyToForm.project.UI_FIELD_AUTOCOMPLETE"
+                event="UI_FIELD_AUTOCOMPLETE">
+                <property name="MinInputLength">2</property>
+            </trigger>
+        </field>
+        <field name="selectedCostEstimate">
+            <property name="ModeCreate">HIDDEN</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <trigger program="org.efaps.esjp.common.uiform.Field" method="getStoreOIDsFieldValue"
+                name="Construction_CostEstimateCopyToForm.selectedCostEstimate.UI_FIELD_VALUE" event="UI_FIELD_VALUE" />
+        </field>
+    </definition>
+</ui-form>

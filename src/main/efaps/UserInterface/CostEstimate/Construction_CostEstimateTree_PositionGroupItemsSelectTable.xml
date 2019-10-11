@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-table xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>5a470141-8ac1-4a2a-b524-46afe771c1a9</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateTree_PositionGroupItemsSelectTable</name>
+        <field name="entrySheet">
+            <property name="Select">linkto[EntrySheetLink].attribute[Name]</property>
+            <property name="Label">Construction_EntrySheetPosition/EntrySheetLink.Label</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="FilterType">PICKLIST</property>
+        </field>
+        <field name="entrySheetDescription">
+            <property name="Select">linkto[EntrySheetLink].attribute[Description]</property>
+            <property name="Label">Construction_EntrySheetPosition/EntrySheetDesc.Label</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="FilterType">PICKLIST</property>
+        </field>
+        <field name="productType">
+            <property name="Select">linkto[Product].type.label</property>
+            <property name="Label">Construction_EntrySheetPosition/Type.Label</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="FilterType">PICKLIST</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+        </field>
+        <field name="product">
+            <property name="Select">linkto[Product].attribute[Name]</property>
+            <property name="Label">Construction_EntrySheetPosition/Product.Label</property>
+            <property name="ModeEdit">READONLY</property>
+        </field>
+        <field name="productDesc">
+            <property name="Columns">90</property>
+            <property name="Attribute">ProductDesc</property>
+            <property name="Label">Construction_EntrySheetPosition/ProductDesc.Label</property>
+            <property name="Width">10</property>
+            <property name="ModeEdit">READONLY</property>
+        </field>
+        <field name="uoM">
+            <property name="Width">1</property>
+            <property name="Select">linkto[UoM].attribute[Name]</property>
+            <property name="Label">Construction_EntrySheetPosition/UoM.Label</property>
+            <property name="ModeEdit">READONLY</property>
+        </field>
+        <field name="rateNetPrice">
+            <property name="Attribute">RateNetPrice</property>
+            <property name="Label">Construction_EntrySheetPosition/RateNetPrice.Label</property>
+            <property name="ModeEdit">READONLY</property>
+        </field>
+    </definition>
+</ui-table>

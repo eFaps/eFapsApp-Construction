@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2010 - 2014 moxter.net
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  moxter.net. Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>02a44d0a-bfc2-4643-814f-131578961d17</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateRealizationTree_Menu_Action_SetEfficiencyOverAll</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <target>
+            <form>Construction_EntryPartListSetEfficiencyOverAllForm</form>
+            <execute method="setEfficiencyOverAll" program="net.moxter.eFapsApp.construction.CostEstimate" />
+            <trigger event="UI_ACCESSCHECK" method="check4Status"
+                name="Construction_CostEstimateRealizationTree_Menu_Action_SetEfficiencyOverAll"
+                program="org.efaps.esjp.admin.access.AccessCheck4UI">
+                <property name="Status">Open</property>
+            </trigger>
+        </target>
+        <property name="Target">modal</property>
+        <property name="TargetMode">edit</property>
+    </definition>
+</ui-command>

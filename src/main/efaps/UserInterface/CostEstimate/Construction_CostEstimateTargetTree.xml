@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-menu xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>1a42156f-4f6a-42c4-9b36-2f18a41a6eea</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateTargetTree</name>
+
+        <target>
+            <menu>Construction_CostEstimateTargetTree_Menu</menu>
+            <form>Construction_CostEstimateTargetForm</form>
+        </target>
+        <type>Construction_CostEstimateTarget</type>
+        <childs>
+            <child>Construction_CostEstimateTree_Position</child>
+            <child>Construction_CostEstimateTree_PositionGroup</child>
+            <child>Construction_CostEstimateTree_EntrySheet</child>
+            <child>Construction_CostEstimateTree_Reports</child>
+        </childs>
+        <property name="Target">content</property>
+        <property name="TargetMode">view</property>
+    </definition>
+</ui-menu>

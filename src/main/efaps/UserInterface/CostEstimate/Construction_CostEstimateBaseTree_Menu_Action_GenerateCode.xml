@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2007 - 2014 moxter.net
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  moxter.net  Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+  Author:          Jan Moxter
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>69bbce6c-51e9-4566-b4b7-96a613c88bb7</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateBaseTree_Menu_Action_GenerateCode</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <target>
+            <execute method="generateCode4Doc" program="org.efaps.esjp.sales.document.GenericDocumentSum" />
+            <trigger event="UI_ACCESSCHECK" method="check4Status"
+                name="Construction_CostEstimateBaseTree_Menu_Action_GenerateCode.UI_ACCESSCHECK"
+                program="org.efaps.esjp.admin.access.AccessCheck4UI">
+                <property name="Status">Open</property>
+            </trigger>
+        </target>
+        <property name="AskUser">true</property>
+        <property name="Submit">true</property>
+        <property name="SubmitSelectedRows">-1</property>
+        <property name="Label">Sales_DocumentAbstractTree_Menu_Action_GenerateCode.Label</property>
+    </definition>
+</ui-command>

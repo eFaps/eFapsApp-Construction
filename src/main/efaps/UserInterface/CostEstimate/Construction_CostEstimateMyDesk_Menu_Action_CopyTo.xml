@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+  Copyright 2010 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+
+<ui-command xmlns="http://www.efaps.org/xsd"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>24b14bd8-2e0c-4dca-a36e-1bdc3c20f9b5</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateMyDesk_Menu_Action_CopyTo</name>
+        <access>
+            <role>Sales_Salesman</role>
+            <role>Construction_Admin</role>
+        </access>
+        <!-- target definitions -->
+        <target>
+            <form>Construction_CostEstimateCopyToForm</form>
+            <execute program="net.moxter.eFapsApp.construction.CostEstimate" method="revise">
+                <property name="UseNumberGenerator4Name">true</property>
+                <property name="ReviseRelation01">Construction_ProjectService2CostEstimate</property>
+                <property name="ReviseRelation02">Construction_CostEstimatePositionAbstract</property>
+                <property name="ReviseRelation03">Construction_CostEstimatePercentageCost</property>
+                <property name="ReviseRelationAttribute01">ToLink</property>
+                <property name="ReviseRelationAttribute02">CostEstimateAbstractLink</property>
+                <property name="ReviseRelationAttribute03">CostEstimateLink</property>
+                <property name="RevisionUpdate">false</property>
+                <property name="RevisionConnect">false</property>
+                <property name="RevisionStatus">Open</property>
+            </execute>
+        </target>
+
+        <!-- properties -->
+        <property name="AskUser">false</property>
+        <property name="TargetMode">create</property>
+        <property name="Target">modal</property>
+        <property name="Submit">true</property>
+        <property name="SubmitSelectedRows">1</property>
+        <property name="WindowHeight">400</property>
+        <property name="WindowWidth">900</property>
+    </definition>
+</ui-command>

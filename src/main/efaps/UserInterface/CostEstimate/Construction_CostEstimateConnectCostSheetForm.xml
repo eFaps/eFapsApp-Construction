@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+  Copyright 2010 - 2011 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+
+<ui-form xmlns="http://www.efaps.org/xsd"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>a6460f8a-86c6-4efa-9f61-91ced40dae40</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateConnectCostSheetForm</name>
+        <!-- fields -->
+        <field name="selectedRow">
+            <property name="ModePrint">NONE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="ModeView">EDITABLE</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="Label">Construction_CostEstimateConnectCostSheetForm.selectedRow.Label</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+                method="getCostSheets4ConnectFieldValueUI"
+                name="Construction_CostEstimateConnectCostSheetForm.costsheets.UI_FIELD_VALUE"
+                event="UI_FIELD_VALUE">
+                <property name="Type">Sales_CostSheet</property>
+                <property name="ValueSelect">oid</property>
+                <property name="Select">attribute[Name]</property>
+                <property name="OrderSelect">attribute[Name]</property>
+            </trigger>
+        </field>
+    </definition>
+</ui-form>

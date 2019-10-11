@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>de5823b1-8fa7-487d-844f-0aaed808919f</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateSaleEditPercentageCostForm</name>
+        <field name="activatePositionsCalculator">
+            <property name="ModeCreate">HIDDEN</property>
+            <property name="ModeEdit">HIDDEN</property>
+            <property name="ModeView">NONE</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <trigger event="UI_FIELD_VALUE" method="activatePositionsCalculator"
+                name="Construction_CostEstimateSaleEditPercentageCostForm.activatePositionsCalculator.UI_FIELD_VALUE"
+                program="net.moxter.eFapsApp.construction.CostEstimate" />
+        </field>
+        <field name="netSubTotal">
+            <property name="Label">Construction_CostEstimateSaleForm.netSubTotal.Label</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.DecimalUI</property>
+            <trigger event="UI_FIELD_VALUE" method="getNetSubTotalFieldvalue"
+                name="Construction_CostEstimateSaleEditPercentageCostForm.subTotal.UI_FIELD_VALUE"
+                program="net.moxter.eFapsApp.construction.CostEstimate" />
+        </field>
+        <field character="Heading" name="percentageCostHeading">
+            <property name="Level">2</property>
+            <property name="Label">Construction_CostEstimateSaleForm.percentageCostHeading.Heading</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeView">READONLY</property>
+        </field>
+        <field character="Target" name="percentageCostTable">
+            <property name="ModeEdit">EDITABLE</property>
+            <table>Construction_CostEstimateSalePercentageCostTable</table>
+            <evaluate program="org.efaps.esjp.common.uitable.MultiPrint">
+                <property name="Type">Construction_CostEstimatePercentageCost</property>
+                <property name="LinkFrom">CostEstimateLink</property>
+            </evaluate>
+        </field>
+        <field name="netTotal">
+            <property name="ModeEdit">READONLY</property>
+            <property name="Attribute">RateNetTotal</property>
+        </field>
+        <field name="taxes">
+            <property name="ModeEdit">READONLY</property>
+            <property name="Attribute">RateTaxes</property>
+        </field>
+        <field name="crossTotal">
+            <property name="ModeEdit">READONLY</property>
+            <property name="Attribute">RateCrossTotal</property>
+        </field>
+
+    </definition>
+</ui-form>

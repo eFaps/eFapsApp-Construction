@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2007 - 2014 moxter.net
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  moxter.net  Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+  Author:          moxter.net
+
+-->
+<ui-menu xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>0b245ec6-6d9f-466d-a8ed-dc0b6d94a21e</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimateRealizationTree_Menu_Action</name>
+        <childs>
+            <child>Construction_CostEstimateRealizationTree_Menu_Action_Edit</child>
+            <child>Construction_CostEstimateRealizationTree_Menu_Action_SetClosed</child>
+            <child>Construction_CostEstimateRealizationTree_Menu_Action_SetCanceled</child>
+            <child>Construction_CostEstimateRealizationTree_Menu_Action_Download</child>
+            <child>Construction_CostEstimateRealizationTree_Menu_Action_GenerateCode</child>
+            <child>Construction_CostEstimateRealizationTree_Menu_Action_ReplaceGenericProducts</child>
+            <child>Construction_CostEstimateRealizationTree_Menu_Action_SetEfficiencyOverAll</child>
+            <child>ERP_DocumentAbstractTree_Action_EditStatus</child>
+        </childs>
+    </definition>
+</ui-menu>

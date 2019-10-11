@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+-->
+<datamodel-sqltable xmlns="http://www.efaps.org/xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>1850290b-46f5-4299-a82f-45779abf7c98</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_ProductServiceClassBaseSQLTable</name>
+        <typeid-column>TYPEID</typeid-column>
+        <database>
+            <table-name>T_CON_PRODSERVCLASSBASE</table-name>
+            <!-- columns -->
+            <column name="PRODUCTID" not-null="true" type="INTEGER" />
+            <column name="TYPEID" not-null="true" type="INTEGER" />
+            <foreign key="PRODUCTID" name="T_Construction_PRODSERVCLASSBASE_FK_PRODUCTID"
+                reference="T_PRODPRODUCT(ID)" />
+            <foreign key="TYPEID" name="T_Construction_PRODSERVCLASSBASE_FK_TYPEID"
+                reference="T_CMABSTRACT(ID)" />
+        </database>
+    </definition>
+</datamodel-sqltable>

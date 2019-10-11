@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+-->
+<datamodel-type xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>5df60056-82e0-4302-92d0-918e75207e70</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_ProductPricelistEntrySheet</name>
+        <parent>Products_ProductPricelistAbstract</parent>
+        <attribute>
+            <name>ProductLink</name>
+            <type>Link</type>
+            <typelink>Products_ProductAbstract</typelink>
+            <sqltable>Products_ProductPricelistSQLTable</sqltable>
+            <sqlcolumn>PRODID</sqlcolumn>
+        </attribute>
+        <trigger event="INSERT_POST" method="trigger4Insert" name="Construction_ProductPricelistEntrySheet.INSERT_POST"
+            program="org.efaps.esjp.products.PriceList">
+            <property name="Type">Construction_ProductPricelistEntrySheet</property>
+        </trigger>
+        <trigger program="org.efaps.esjp.common.cache.CacheUtils" method="cleanQueryCacheTrigger"
+            index="2" name="Construction_ProductPricelistEntrySheet.INSERT_POST.2" event="INSERT_POST">
+            <property name="CacheName">org.efaps.esjp.sales.PriceUtil.CacheKey</property>
+        </trigger>
+        <trigger program="org.efaps.esjp.common.cache.CacheUtils" method="cleanQueryCacheTrigger"
+            name="Construction_ProductPricelistEntrySheet.UPDATE_POST" event="UPDATE_POST">
+            <property name="CacheName">org.efaps.esjp.sales.PriceUtil.CacheKey</property>
+        </trigger>
+        <trigger program="org.efaps.esjp.common.cache.CacheUtils" method="cleanQueryCacheTrigger"
+            name="Construction_ProductPricelistEntrySheet.DELETE_POST" event="DELETE_POST">
+            <property name="CacheName">org.efaps.esjp.sales.PriceUtil.CacheKey</property>
+        </trigger>
+        <trigger event="ACCESSCHECK" name="Construction_ProductPricelistEntrySheet.ACCESSCHECK"
+            program="org.efaps.esjp.admin.access.SimpleAccessCheckOnType" />
+    </definition>
+</datamodel-type>

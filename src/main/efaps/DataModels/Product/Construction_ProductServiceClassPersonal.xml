@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Copyright 2007 - 2014 Jan Moxter
+  
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+  
+
+-->
+<datamodel-type xmlns="http://www.efaps.org/xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>5a96adcc-0f24-422c-9aa7-5927ade489e5</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_ProductServiceClassPersonal</name>
+        <parent>Construction_ProductServiceClassBase</parent>
+        <purpose classification="true">
+            <LinkColumn>ProductLink</LinkColumn>
+            <parent>Construction_ProductServiceClass</parent>
+        </purpose>
+    </definition>
+</datamodel-type>

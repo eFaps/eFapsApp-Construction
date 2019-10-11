@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<datamodel-type xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>b1102c2d-84a5-4f1c-a678-4d40cc6ac61f</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_ProductGeneralCostClass_TravelExpense</name>
+        <parent>Construction_ProductGeneralCostClassBase</parent>
+        <purpose classification="true">
+            <LinkColumn>ProductLink</LinkColumn>
+            <parent>Construction_ProductGeneralCostClass</parent>
+        </purpose>
+    </definition>
+</datamodel-type>

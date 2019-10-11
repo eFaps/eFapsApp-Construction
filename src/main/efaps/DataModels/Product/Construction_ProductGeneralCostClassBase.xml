@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Copyright 2007 - 2014 Jan Moxter
+  
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+  
+
+-->
+<datamodel-type xmlns="http://www.efaps.org/xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>79f8f78a-2d5f-4b65-8f0a-49c2b170efe3</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_ProductGeneralCostClassBase</name>
+        <purpose abstract="true">
+        </purpose>
+        <attribute>
+            <name>Type</name>
+            <type>Type</type>
+            <sqltable>Construction_ProductGeneralCostClassBaseSQLTable</sqltable>
+            <sqlcolumn>TYPEID</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>OID</name>
+            <type>OID</type>
+            <sqltable>Construction_ProductGeneralCostClassBaseSQLTable</sqltable>
+            <sqlcolumn>TYPEID,ID</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>ID</name>
+            <type>Long</type>
+            <sqltable>Construction_ProductGeneralCostClassBaseSQLTable</sqltable>
+            <sqlcolumn>ID</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>ProductLink</name>
+            <type>Link</type>
+            <typelink>Products_ProductAbstract</typelink>
+            <sqltable>Construction_ProductGeneralCostClassBaseSQLTable</sqltable>
+            <sqlcolumn>PRODUCTID</sqlcolumn>
+        </attribute>
+        <classifies multipleSelect="false" relLinkAttribute="Product"
+            relType="Products_Product2Class" relTypeAttribute="ClassTypeId"
+            type="Construction_ProductGeneralCostPosition" />
+    </definition>
+</datamodel-type>

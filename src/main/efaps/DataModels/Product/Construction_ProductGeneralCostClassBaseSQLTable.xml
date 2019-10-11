@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+-->
+<datamodel-sqltable xmlns="http://www.efaps.org/xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>dd5327d6-38e2-4e8a-8b67-ff25faa5e4e1</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_ProductGeneralCostClassBaseSQLTable</name>
+        <typeid-column>TYPEID</typeid-column>
+        <database>
+            <table-name>T_CON_PRODGENECOSTCLASSBASE</table-name>
+            <!-- columns -->
+            <column name="PRODUCTID" not-null="true" type="INTEGER" />
+            <column name="TYPEID" not-null="true" type="INTEGER" />
+            <foreign key="PRODUCTID"
+                name="T_Construction_PRODGENECOSTCLASSBASE_FK_PRODUCTID"
+                reference="T_PRODPRODUCT(ID)" />
+            <foreign key="TYPEID" name="T_Construction_PRODGENECOSTCLASSBASE_FK_TYPEID"
+                reference="T_CMABSTRACT(ID)" />
+        </database>
+    </definition>
+</datamodel-sqltable>

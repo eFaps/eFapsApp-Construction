@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+-->
+<datamodel-type xmlns="http://www.efaps.org/xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>9b9ee1c4-5a56-44cb-b4c0-c3a794c181ec</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_ProductGeneralCostPosition</name>
+        <parent>Products_UnstoreableProductAbstract</parent>
+
+        <trigger program="org.efaps.esjp.common.cache.CacheUtils"
+            method="cleanQueryCacheTrigger" name="Construction_ProductGeneralCostPosition.INSERT_POST"
+            event="INSERT_POST">
+            <property name="CacheName">org.efaps.esjp.products.Product.CacheKey4Product</property>
+        </trigger>
+        <trigger program="org.efaps.esjp.common.cache.CacheUtils"
+            method="cleanQueryCacheTrigger" name="Construction_ProductGeneralCostPosition.UPDATE_POST"
+            event="UPDATE_POST">
+            <property name="CacheName">org.efaps.esjp.products.Product.CacheKey4Product</property>
+        </trigger>
+        <trigger program="org.efaps.esjp.common.cache.CacheUtils"
+            method="cleanQueryCacheTrigger" name="Construction_ProductGeneralCostPosition.DELETE_POST"
+            event="DELETE_POST">
+            <property name="CacheName">org.efaps.esjp.products.Product.CacheKey4Product</property>
+        </trigger>
+    </definition>
+</datamodel-type>

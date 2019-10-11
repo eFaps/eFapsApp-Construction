@@ -13,7 +13,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>22fb2fa6-0367-4954-a3d6-9835ffe9c84e</uuid>
-    <file-application>Innobierto-Construction</file-application>
+    <file-application>eFapsApp-Construction</file-application>
     <definition>
         <version-expression>(version==latest)</version-expression>
         <name>Sales_PositionGroupAbstract</name>

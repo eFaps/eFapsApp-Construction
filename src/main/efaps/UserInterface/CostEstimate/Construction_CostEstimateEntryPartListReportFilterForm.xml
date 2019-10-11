@@ -19,12 +19,12 @@
         <field name="posType">
             <property name="ModeEdit">EDITABLE</property>
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
-            <property name="Label">net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport.posType</property>
+            <property name="Label">org.efaps.esjp.construction.reports.CostEstimateEntryPartListReport.posType</property>
             <trigger event="UI_FIELD_VALUE" method="getEnumFieldValue"
                 name="Construction_CostEstimateEntryPartListReportFilterForm.posType.UI_FIELD_VALUE"
                 program="net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport">
-                <property name="Enum">net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport_Base$PosType</property>
-                <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport.FilterKey</property>
+                <property name="Enum">org.efaps.esjp.construction.reports.CostEstimateEntryPartListReport_Base$PosType</property>
+                <property name="FilterKey">org.efaps.esjp.construction.reports.CostEstimateEntryPartListReport.FilterKey</property>
             </trigger>
         </field>
     </definition>

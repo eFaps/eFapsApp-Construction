@@ -4,6 +4,10 @@
     <test name="CITests">
         <parameter name="baseFolder" value="../../../main/efaps"></parameter>
         <parameter name="application" value="eFapsApp-Construction"/>
+        <parameter name="ciClass" value="org.efaps.esjp.ci.CIConstruction"/>
+        <parameter name="regex4TypeLabelExclude" value=".*|/Flag.Label|/Group.Label|/Company.Label"/>
+        <parameter name="regex4MenuLabelExclude" value=".*_Menu.Label$"/>
+        <parameter name="regex4FieldLabelExclude" value="Sales_.*Label$|Products_.*Label$|Projects_.*Label$"/>
         <packages>
             <package name="org.efaps.tests.*"></package>
         </packages>

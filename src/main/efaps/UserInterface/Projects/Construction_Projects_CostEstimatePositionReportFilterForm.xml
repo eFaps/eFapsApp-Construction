@@ -25,7 +25,7 @@
          <field name="type">
             <property name="ModeEdit">EDITABLE</property>
             <property name="UIType">RADIO</property>
-            <property name="Label">net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport.type</property>
+            <property name="Label">org.efaps.esjp.construction.reports.CostEstimatePositionReport.type</property>
             <trigger event="UI_FIELD_VALUE" method="getTypeFieldValue"
                 name="Construction_Projects_CostEstimatePositionReportFilterForm.dateTo.UI_FIELD_VALUE"
                 program="net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport">
@@ -39,7 +39,7 @@
         <field name="status">
             <property name="ModeEdit">EDITABLE</property>
             <property name="UIType">SNIPPLET</property>
-            <property name="Label">net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport.status</property>
+            <property name="Label">org.efaps.esjp.construction.reports.CostEstimatePositionReport.status</property>
             <trigger event="UI_FIELD_VALUE" method="getStatusFieldValue"
                 name="Construction_Projects_CostEstimatePositionReportFilterForm.dateTo.UI_FIELD_VALUE"
                 program="net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport">

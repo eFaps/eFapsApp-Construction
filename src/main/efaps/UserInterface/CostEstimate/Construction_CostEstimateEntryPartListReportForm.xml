@@ -38,10 +38,10 @@
             </trigger>
             <trigger event="UI_FIELD_VALUE" index="2" method="getFilterFieldValue"
                 name="Sales_InventoryReportForm.filter.UI_FIELD_VALUE.2"
-                program="net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport">
-                <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport.FilterKey</property>
+                program="org.efaps.esjp.construction.reports.CostEstimateEntryPartListReport">
+                <property name="FilterKey">org.efaps.esjp.construction.reports.CostEstimateEntryPartListReport.FilterKey</property>
                 <property name="Field01">posType</property>
-                <property name="DBProperty01">net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport.posType</property>
+                <property name="DBProperty01">org.efaps.esjp.construction.reports.CostEstimateEntryPartListReport.posType</property>
             </trigger>
         </field>
         <field name="report">
@@ -49,9 +49,9 @@
             <property name="UIType">SNIPPLET</property>
             <trigger event="UI_FIELD_VALUE" method="getReport"
                 name="Construction_CostEstimateEntryPartListReportForm.report.UI_FIELD_VALUE"
-                program="net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport">
+                program="org.efaps.esjp.construction.reports.CostEstimateEntryPartListReport">
                 <property name="Status">Open</property>
-                <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport.FilterKey</property>
+                <property name="FilterKey">org.efaps.esjp.construction.reports.CostEstimateEntryPartListReport.FilterKey</property>
             </trigger>
         </field>
     </definition>

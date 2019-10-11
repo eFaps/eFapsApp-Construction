@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+-->
+<datamodel-dimension xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>84eb2a4d-81c3-46d2-b4c5-38e1f5c2e4a1</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Eficiencia</name>
+        <description>Dimension for the field efficiency in a part list</description>
+        <uom>
+            <base>true</base>
+            <symbol>m²/dia</symbol>
+            <name>m²/dia</name>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+        </uom>
+        <uom>
+            <symbol>gbl</symbol>
+            <name>gbl</name>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+        </uom>
+        <uom>
+            <symbol>ml/dia</symbol>
+            <name>ml/dia</name>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+        </uom>
+        <uom>
+            <symbol>kg/dia</symbol>
+            <name>kg/dia</name>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+        </uom>
+        <uom>
+            <symbol>UND/dia</symbol>
+            <name>UND/dia</name>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+        </uom>
+        <uom>
+            <symbol>ptos/dia</symbol>
+            <name>ptos/dia</name>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+        </uom>
+    </definition>
+</datamodel-dimension>

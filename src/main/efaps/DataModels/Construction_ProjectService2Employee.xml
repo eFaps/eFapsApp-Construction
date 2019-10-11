@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+-->
+<datamodel-type xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>6a92fe41-da79-4bfd-a3d0-576b2070c4a9</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_ProjectService2Employee</name>
+        <parent>Projects_ProjectService2Employee</parent>
+        <attribute>
+            <name>Status</name>
+            <type>Status</type>
+            <typelink>Projects_ProjectService2EmployeeStatus</typelink>
+            <sqltable>Projects_Project2ObjectQLTable</sqltable>
+            <sqlcolumn>STATUS</sqlcolumn>
+            <trigger program="org.efaps.esjp.admin.datamodel.StatusValue"
+                name="Construction_ProjectService2Employee.Status.RANGE_VALUE"
+                event="RANGE_VALUE">
+            </trigger>
+        </attribute>
+        <attribute>
+            <name>OperationAreaLink</name>
+            <type>LinkWithRanges</type>
+            <typelink>Construction_AttributeDefinitionOperationArea</typelink>
+            <sqltable>Construction_Project2ObjectExtSQLTable</sqltable>
+            <sqlcolumn>INT1</sqlcolumn>
+            <trigger program="org.efaps.esjp.admin.datamodel.RangesValue"
+                name="Construction_ProjectService2Employee.OperationAreaLink.RANGE_VALUE"
+                event="RANGE_VALUE">
+                <property name="Value">Value</property>
+                <property name="Type">Construction_AttributeDefinitionOperationArea</property>
+            </trigger>
+        </attribute>
+        <attribute>
+            <name>Pay</name>
+            <type>Decimal</type>
+            <sqltable>Construction_Project2ObjectExtSQLTable</sqltable>
+            <sqlcolumn>DECIMAL1</sqlcolumn>
+            <defaultvalue>1</defaultvalue>
+            <trigger program="org.efaps.esjp.erp.CommonDocument" method="setScale4ReadValue"
+                name="Construction_ProjectService2Employee.Pay.READ_VALUE" event="READ_VALUE">
+                <property name="Formatter">total</property>
+            </trigger>
+        </attribute>
+        <attribute>
+            <name>Date</name>
+            <type>Date</type>
+            <sqltable>Construction_Project2ObjectExtSQLTable</sqltable>
+            <sqlcolumn>DATE1</sqlcolumn>
+        </attribute>
+    </definition>
+</datamodel-type>

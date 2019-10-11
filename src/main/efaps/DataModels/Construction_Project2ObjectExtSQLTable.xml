@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<datamodel-sqltable xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>f89fb745-a879-4707-8046-3b0413f07aa6</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_Project2ObjectExtSQLTable</name>
+        <parent>ERP_Object2ObjectAbstractSQLTable</parent>
+        <database>
+            <table-name>T_CON_PROJ2OBJECTEXT</table-name>
+            <parent-table>T_ERPOBJ2OBJ</parent-table>
+            <column name="INT1"     type="INTEGER"/>
+            <column name="DECIMAL1" type="DECIMAL" length="20" scale="10"/>
+            <column name="DATE1"    type="DATETIME"/>
+            <column name="BOOL1"    type="BOOLEAN"/>
+        </database>
+    </definition>
+</datamodel-sqltable>

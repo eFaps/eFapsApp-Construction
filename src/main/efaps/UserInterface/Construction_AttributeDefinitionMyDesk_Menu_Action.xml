@@ -7,14 +7,12 @@
   Jan Moxter Copyright notice is precautionary only and does not
   evidence any actual or intended publication of such program.
 
-
-
 -->
-<ui-menu xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<ui-menu xmlns="http://www.efaps.org/xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>75a79931-6fee-46aa-82eb-e7315071455a</uuid>
     <file-application>eFapsApp-Construction</file-application>
-    
     <definition>
         <version-expression>(version==latest)</version-expression>
         <name>Construction_AttributeDefinitionMyDesk_Menu_Action</name>
@@ -22,5 +20,8 @@
             <child>Construction_AttributeDefinitionMyDesk_Menu_Action_CreatePercentageCost</child>
             <child>Construction_AttributeDefinitionMyDesk_Menu_Action_CreateOperationArea</child>
         </childs>
+        <parents>
+            <parent>ERP_AttributeDefinitionMyDesk_Menu</parent>
+        </parents>
     </definition>
 </ui-menu>

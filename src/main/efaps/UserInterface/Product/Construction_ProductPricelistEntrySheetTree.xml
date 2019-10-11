@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
 
-  Copyright 2003 - 2010 The eFaps Team
+  Copyright 2003 - 2019 The eFaps Team
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -14,15 +15,12 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
-  Author:          The eFaps Team
-  Revision:        $Rev$
-  Last Changed:    $Date$
-  Last Changed By: $Author$
-
---><ui-menu xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+-->
+<ui-menu xmlns="http://www.efaps.org/xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>1a36c43d-7099-46f4-afb8-f1b6ea398928</uuid>
     <file-application>eFapsApp-Construction</file-application>
-    
     <definition>
         <version-expression>(version==latest)</version-expression>
         <name>Construction_ProductPricelistEntrySheetTree</name>
@@ -31,17 +29,20 @@
             <role>Products_Modifier</role>
             <role>Products_Reader</role>
         </access>
-        <!-- target definitions -->
         <target>
             <menu>Construction_ProductPricelistEntrySheetTree_Menu</menu>
             <table>Products_ProductPricelistTable</table>
-            <evaluate program="org.efaps.esjp.common.uitable.MultiPrint">
+            <evaluate
+                program="org.efaps.esjp.common.uitable.MultiPrint">
                 <property name="Type">Construction_ProductPricelistEntrySheet</property>
                 <property name="LinkFrom">ProductLink</property>
             </evaluate>
             <help>org.efaps.wiki.products.Showproducts.wiki</help>
         </target>
-        <!-- properties -->
+        <parents>
+            <parent>Products_ProductTree</parent>
+            <parent>Products_ProductGenericTree</parent>
+        </parents>
         <property name="Target">content</property>
         <property name="TargetMode">view</property>
         <property name="TargetShowCheckBoxes">true</property>

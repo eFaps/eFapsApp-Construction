@@ -151,6 +151,11 @@
     <dependencies>
         <dependency>
             <groupId>org.efaps.apps</groupId>
+            <artifactId>sales</artifactId>
+            <version>${efaps.app.dependencies}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.efaps.apps</groupId>
             <artifactId>projects</artifactId>
             <version>${efaps.app.dependencies}</version>
         </dependency>

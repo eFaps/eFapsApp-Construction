@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2003 - 2019 The eFaps Team
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+
+-->
+<datamodel-type xmlns="http://www.efaps.org/xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>04e27bbc-f5b9-45b5-85b8-8e3ed2698c2b</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_CostEstimatePositionAbstract</name>
+        <parent>Sales_PositionSumAbstract</parent>
+        <purpose abstract="true" />
+        <attribute>
+            <name>CostEstimateAbstractLink</name>
+            <type>Link</type>
+            <typelink>Construction_CostEstimateAbstract</typelink>
+            <sqltable>Sales_PositionAbstractSQLTable</sqltable>
+            <sqlcolumn>DOCID</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>EntrySheetPositionLink</name>
+            <type>Link</type>
+            <typelink>Construction_EntrySheetPosition</typelink>
+            <sqltable>Construction_CostEstimatePositionSQLTable</sqltable>
+            <sqlcolumn>ENTRYSHEETID</sqlcolumn>
+        </attribute>
+    </definition>
+</datamodel-type>

@@ -21,7 +21,7 @@
         <name>Construction_Project2ObjectExtSQLTable</name>
         <parent>ERP_Object2ObjectAbstractSQLTable</parent>
         <database>
-            <table-name>T_CON_PROJ2OBJECTEXT</table-name>
+            <table-name>T_CONSTRPROJ2OBJECTEXT</table-name>
             <parent-table>T_ERPOBJ2OBJ</parent-table>
             <column name="INT1"     type="INTEGER"/>
             <column name="DECIMAL1" type="DECIMAL" length="20" scale="10"/>

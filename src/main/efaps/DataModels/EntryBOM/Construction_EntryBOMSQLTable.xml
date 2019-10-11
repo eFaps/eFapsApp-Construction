@@ -14,14 +14,14 @@
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>d7c70a35-0527-46fe-91ce-eaae28f54d30</uuid>
     <file-application>eFapsApp-Construction</file-application>
-    
+
 
     <definition>
         <version-expression>(version==latest)</version-expression>
         <name>Construction_EntryBOMSQLTable</name>
         <parent>Products_BOMSQLTable</parent>
         <database>
-            <table-name>T_Construction_ENTRYBOM</table-name>
+            <table-name>T_CONSTRENTRYBOM</table-name>
             <column name="UNITPRICE"    type="DECIMAL"          length="10" scale="2"/>
             <column name="PRICE"        type="DECIMAL"          length="10" scale="2"/>
             <column name="FACTOR"       type="DECIMAL"          length="8"  scale="4"/>

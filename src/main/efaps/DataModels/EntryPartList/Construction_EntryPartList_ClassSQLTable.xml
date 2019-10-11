@@ -19,7 +19,7 @@
         <version-expression>(version==latest)</version-expression>
         <name>Construction_EntryPartList_ClassSQLTable</name>
         <database>
-            <table-name>T_CON_PRODPARTCLASS</table-name>
+            <table-name>T_CONSTRPRODPARTCLASS</table-name>
             <column name="PRODUCTID"   type="INTEGER"  not-null="true" />
             <column name="EFFICIOA"    type="DECIMAL"                   scale="4" length="8"/>
             <column name="EFFICIP"     type="DECIMAL"                   scale="4" length="8"/>
@@ -29,7 +29,7 @@
             <column name="TOTAL"       type="DECIMAL"                   scale="2" length="10" />
             <column name="MANPER"      type="DECIMAL"                   scale="2" length="10" />
             <column name="MANAMOUNT"   type="DECIMAL"                   scale="2" length="10" />
-            <foreign name="T_CON_PRODPARTCLASS_FK_PRODUCTID" key="PRODUCTID" reference="T_PRODPRODUCT(ID)" />
+            <foreign name="T_CONSTRPRODPARTCLASS_FK_PRODUCTID" key="PRODUCTID" reference="T_PRODPRODUCT(ID)" />
         </database>
     </definition>
 </datamodel-sqltable>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Copyright 2007 - 2014 Jan Moxter
+  
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+  
+
+-->
+<datamodel-statusgroup xmlns="http://www.efaps.org/xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>d8c46dbd-3f23-46d4-9203-1a4a9d567994</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntrySheetStatus</name>
+        <parent>Sales_DocumentStatus</parent>
+        <status key="Open">
+            <description>EntrySheet is still editable.</description>
+        </status>
+        <status key="Closed">
+            <description>EntrySheet is not any more editable</description>
+        </status>
+        <status key="Canceled">
+            <description>EntrySheet was canceled.</description>
+        </status>
+    </definition>
+</datamodel-statusgroup>

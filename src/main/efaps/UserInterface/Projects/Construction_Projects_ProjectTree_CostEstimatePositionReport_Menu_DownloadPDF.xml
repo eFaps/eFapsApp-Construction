@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2010 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+  Author:          Jan Moxter
+  Revision:        $Rev: 262 $
+  Last Changed:    $Date: 2014-09-22 14:54:19 -0500 (Mon, 22 Sep 2014) $
+  Last Changed By: $Author: jan.moxter $
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>5e688b2d-a471-47b1-b8a2-160daec6cfb1</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <file-revision>$Rev: 262 $</file-revision>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_Projects_ProjectTree_CostEstimatePositionReport_Menu_DownloadPDF</name>
+        <icon>Document_PDF</icon>
+        <target>
+            <execute method="exportReport" program="net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport">
+                 <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport4Project.FilterKey</property>
+                <property name="Mime">pdf</property>
+            </execute>
+        </target>
+        <property name="Target">hidden</property>
+        <property name="TargetShowFile">true</property>
+        <property name="Label">report.DownloadPDF</property>
+    </definition>
+</ui-command>

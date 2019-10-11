@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+ Copyright 2009 - 2015 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+  Author:          Jan Moxter
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>dac7a328-9e44-402f-b9b5-adb0ea7d6f12</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntrySheetTree_Position_Menu_Action_Copy</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <target>
+            <form>Construction_EntryPartListCopyForm</form>
+            <execute method="copyEntry"
+                 program="net.moxter.eFapsApp.construction.EntryPartList" />
+            <trigger event="UI_ACCESSCHECK" method="check4Status"
+                name="Construction_EntrySheetTree_Position_Menu_Action_Copy.UI_ACCESSCHECK"
+                program="org.efaps.esjp.admin.access.AccessCheck4UI">
+                <property name="Status">Open</property>
+            </trigger>
+        </target>
+        <property name="Target">modal</property>
+        <property name="TargetCreateType">Construction_EntryPartList</property>
+        <property name="TargetMode">create</property>
+        <property name="Submit">true</property>
+        <property name="SubmitSelectedRows">1</property>
+    </definition>
+</ui-command>

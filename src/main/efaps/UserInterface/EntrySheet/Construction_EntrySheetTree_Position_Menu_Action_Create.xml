@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+ Copyright 2009 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>0d2321b3-e73f-445b-ba94-67f5336e5aa8</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntrySheetTree_Position_Menu_Action_Create</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <!-- target definitions -->
+        <target>
+            <form>Construction_EntryPartListForm</form>
+            <execute method="create" program="net.moxter.eFapsApp.construction.EntryPartList"/>
+            <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
+                method="check4Status"
+                name="Construction_EntrySheetTree_Position_Menu_Action_Create.UI_ACCESSCHECK"
+                event="UI_ACCESSCHECK">
+                <property name="Status">Open</property>
+            </trigger>
+        </target>
+
+        <!-- properties -->
+        <property name="Target">modal</property>
+        <property name="TargetCreateType">Construction_EntryPartList</property>
+        <property name="TargetMode">create</property>
+        <property name="WindowHeight">600</property>
+        <property name="WindowWidth">900</property>
+    </definition>
+</ui-command>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+-->
+<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>457afe4c-35ff-4f28-8764-2612d64c7fa0</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+        <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntrySheetPositionForm</name>
+        <field name="quantity">
+            <property name="Attribute">Quantity</property>
+            <property name="Label">Construction_EntrySheetPosition/Quantity.Label</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <trigger event="UI_FIELD_UPDATE" method="updateFields4Quantity"
+                name="Construction_EntrySheetPositionTable.product.UI_FIELD_AUTOCOMPLETE"
+                program="net.moxter.eFapsApp.construction.EntrySheet" />
+        </field>
+        <field name="product4view">
+            <property name="SelectAlternateOID">linkto[Product].oid</property>
+            <property name="Select">linkto[Product].attribute[Name]</property>
+            <property name="Label">Construction_EntrySheetPosition/Product.Label</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="HRef">TREE</property>
+        </field>
+        <field name="product">
+            <property name="Select">linkto[Product].oid</property>
+            <property name="ModeEdit">HIDDEN</property>
+            <property name="ModeView">NONE</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+        </field>
+        <field name="productDesc">
+            <property name="Columns">90</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Attribute">ProductDesc</property>
+            <property name="Label">Construction_EntrySheetPosition/ProductDesc.Label</property>
+            <property name="Width">10</property>
+        </field>
+        <field name="uom4View">
+            <property name="Width">1</property>
+            <property name="ModeCreate">NONE</property>
+            <property name="Select">linkto[UoM].attribute[Name]</property>
+            <property name="Label">Construction_EntrySheetPosition/UoM.Label</property>
+        </field>
+         <field name="participation">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Attribute">Participation</property>
+            <property name="Label">Construction_EntrySheetPosition/Participation.Label</property>
+            <property name="Align">right</property>
+            <trigger event="UI_FIELD_UPDATE" method="updateFields4Participation"
+                name="Construction_EntrySheetPositionTable.participation.UI_FIELD_UPDATE"
+                program="net.moxter.eFapsApp.construction.EntrySheet" />
+        </field>
+        <field name="time">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Attribute">Time</property>
+            <property name="Label">Construction_EntrySheetPosition/Time.Label</property>
+            <property name="Align">right</property>
+            <trigger event="UI_FIELD_UPDATE" method="updateFields4Time"
+                name="Construction_EntrySheetPositionTable.participation.UI_FIELD_UPDATE"
+                program="net.moxter.eFapsApp.construction.EntrySheet" />
+        </field>
+        <field name="netUnitPrice">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Attribute">RateNetUnitPrice</property>
+            <property name="Label">Construction_EntrySheetPosition/RateNetUnitPrice.Label</property>
+            <property name="Align">right</property>
+            <trigger event="UI_FIELD_UPDATE" method="updateFields4NetUnitPrice"
+                name="Construction_EntrySheetPositionTable.netUnitPrice.UI_FIELD_UPDATE"
+                program="net.moxter.eFapsApp.construction.EntrySheet" />
+            <trigger event="UI_ACCESSCHECK" method="accessCheck4NetUnitPrice"
+                name="Construction_EntrySheetPositionTable.netUnitPrice.UI_ACCESSCHECK"
+                program="net.moxter.eFapsApp.construction.EntrySheet" />
+        </field>
+        <field name="netPrice">
+            <property name="ModeCreate">READONLY</property>
+            <property name="Attribute">RateNetPrice</property>
+            <property name="Label">Construction_EntrySheetPosition/NetPrice.Label</property>
+            <property name="Align">right</property>
+        </field>
+    </definition>
+</ui-form>

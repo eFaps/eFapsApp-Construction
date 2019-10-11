@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+ Copyright 2009 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>031069cd-23ac-4ae6-9183-e5de62cc0de1</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntrySheetTree_CostPosition_Menu_Action_EditGeneralCost</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <!-- target definitions -->
+        <target>
+            <form>Construction_EntrySheetCostPositionForm</form>
+            <execute method="editGeneralCost"
+                program="net.moxter.eFapsApp.construction.EntrySheet" />
+            <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
+                method="check4Status"
+                name="Construction_EntrySheetTree_Position_Menu_Action_EditGeneralCost.UI_ACCESSCHECK"
+                event="UI_ACCESSCHECK">
+                <property name="Status">Open</property>
+            </trigger>
+        </target>
+
+        <!-- properties -->
+        <property name="Target">modal</property>
+        <property name="TargetCreateType">Construction_EntryPartList</property>
+        <property name="TargetMode">edit</property>
+        <property name="WindowHeight">600</property>
+        <property name="WindowWidth">900</property>
+    </definition>
+</ui-command>

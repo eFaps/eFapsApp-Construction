@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>900d09fd-8e90-44af-b1b6-db679aecce86</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_ProductGeneralCostMyDesk</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <target>
+            <menu>Construction_ProductGeneralCostMyDesk_Menu</menu>
+            <table>Construction_ProductGeneralCostTable</table>
+            <evaluate program="org.efaps.esjp.common.uitable.MultiPrint">
+                <property name="Type">Construction_ProductGeneralCostPosition</property>
+                <property name="ExpandChildTypes">true</property>
+            </evaluate>
+        </target>
+
+        <!-- properties -->
+        <property name="Target">content</property>
+        <property name="TargetShowCheckBoxes">true</property>
+    </definition>
+</ui-command>

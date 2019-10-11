@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2010 - 2011 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>7a8c1c6d-5a15-45a5-9bad-5d29d050f6f9</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_ProjectService2EmployeeForm</name>
+        <field name="employeeLink">
+            <property name="SelectAlternateOID">linkto[ToLink].oid</property>
+            <property name="Phrase">$&lt;linkto[ToLink].attribute[LastName]&gt;, $&lt;linkto[ToLink].attribute[FirstName]&gt; - $&lt;linkto[ToLink].attribute[Number]&gt;</property>
+            <property name="HRef">${COMMONURL}/MenuTree.jsp</property>
+            <property name="Label">Construction_ProjectService2EmployeeTable.employeeLink.Label</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+        </field>
+        <field name="operationAreaLink4Edit">
+            <property name="Attribute">OperationAreaLink</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="ModeView">NONE</property>
+            <property name="Label">Construction_ProjectService2Employee/OperationAreaLink.Label</property>
+        </field>
+        <field name="pay4Edit">
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Attribute">Pay</property>
+            <property name="ModeView">NONE</property>
+            <property name="Required">true</property>
+            <property name="Label">Construction_ProjectService2Employee/Pay.Label</property>
+        </field>
+        <field name="date4Edit">
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="ModeView">NONE</property>
+            <property name="Attribute">Date</property>
+            <property name="Label">Construction_ProjectService2Employee/Date.Label</property>
+        </field>
+        <field name="operationAreaLink4View">
+            <property name="Attribute">OperationAreaLink</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="Required">true</property>
+            <property name="Label">Construction_ProjectService2Employee/OperationAreaLink.Label</property>
+        </field>
+        <field name="pay4View">
+            <property name="ModeEdit">NONE</property>
+            <property name="Attribute">Pay</property>
+            <property name="Required">true</property>
+            <property name="Label">Construction_ProjectService2Employee/Pay.Label</property>
+        </field>
+        <field name="date4View">
+            <property name="ModeEdit">NONE</property>
+            <property name="Attribute">Date</property>
+            <property name="Label">Construction_ProjectService2Employee/Date.Label</property>
+        </field>
+        <field name="status">
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Attribute">Status</property>
+            <property name="Required">true</property>
+        </field>
+        <field character="Group" name="createGroup">
+            <property name="GroupCount">2</property>
+            <property name="ModeEdit">NONE</property>
+        </field>
+        <field name="creator">
+            <property name="SelectAlternateOID">linkto[Creator].oid</property>
+            <property name="Attribute">Creator</property>
+            <property name="HRef">${COMMONURL}/MenuTree.jsp</property>
+            <property name="ModeSearch">EDITABLE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="ShowTypeIcon">true</property>
+        </field>
+        <field name="created">
+            <property name="Attribute">Created</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="ModeSearch">EDITABLE</property>
+        </field>
+        <field character="Group" name="modifyGroup">
+            <property name="GroupCount">2</property>
+            <property name="ModeEdit">NONE</property>
+        </field>
+        <field name="modifier">
+            <property name="SelectAlternateOID">linkto[Modifier].oid</property>
+            <property name="Attribute">Modifier</property>
+            <property name="HRef">${COMMONURL}/MenuTree.jsp</property>
+            <property name="ModeSearch">EDITABLE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="ShowTypeIcon">true</property>
+        </field>
+        <field name="modified">
+            <property name="Attribute">Modified</property>
+            <property name="ModeSearch">EDITABLE</property>
+            <property name="ModeEdit">NONE</property>
+        </field>
+    </definition>
+</ui-form>

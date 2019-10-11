@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2010 - 2013 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+-->
+<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>347455fb-704c-4438-8b3b-39c4c6176fc2</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_Projects_CostEstimatePositionReportForm</name>
+        <field name="filter">
+            <property name="HideLabel">true</property>
+            <property name="UIType">SNIPPLET</property>
+            <trigger program="net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport"
+                method="setDefaultFilter"
+                name="Construction_Projects_CostEstimatePositionReportForm.filter.UI_FIELD_VALUE.1"
+                event="UI_FIELD_VALUE" index="1">
+                <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport4Project.FilterKey</property>
+                <property name="Field01">type</property>
+                <property name="Field02">status</property>
+                <property name="FilterType01">Type</property>
+                <property name="FilterType02">Status</property>
+                <property name="FilterDefault01">Construction_CostEstimateRealization</property>
+                <property name="FilterDefault02">Closed</property>
+             </trigger>
+            <trigger program="net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport"
+                method="getFilterFieldValue"
+                name="Construction_Projects_CostEstimatePositionReportForm.filter.UI_FIELD_VALUE.2"
+                event="UI_FIELD_VALUE" index="2">
+                <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport4Project.FilterKey</property>
+                <property name="Field01">type</property>
+                <property name="Field02">status</property>
+                <property name="DBProperty01">net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport.type</property>
+                <property name="DBProperty02">net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport.status</property>
+            </trigger>
+        </field>
+        <field name="report">
+            <property name="HideLabel">true</property>
+            <property name="UIType">SNIPPLET</property>
+            <trigger event="UI_FIELD_VALUE" method="generateReport"
+                name="Construction_Projects_CostEstimatePositionReportForm.report.UI_FIELD_VALUE"
+                program="net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport">
+                <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport4Project.FilterKey</property>
+            </trigger>
+        </field>
+    </definition>
+</ui-form>

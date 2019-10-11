@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2010 - 2011 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-menu xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>30352ba7-cb35-4107-a828-4a926e7075a1</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_TemplatePartListTree</name>
+        <!-- targets -->
+        <target>
+            <menu>Construction_TemplatePartListTree_Menu</menu>
+            <form>Construction_TemplatePartListForm</form>
+        </target>
+        <!-- type tree for -->
+        <type>Construction_TemplatePartList</type>
+        <childs>
+            <child>Construction_TemplatePartListTree_Product</child>
+        </childs>
+        <!-- properties -->
+        <property name="Target">content</property>
+        <property name="TargetMode">view</property>
+    </definition>
+</ui-menu>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2007 -2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>649bcdfa-a8c4-4d6e-8c85-3351694cac70</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_TemplatePartListCreateFromProductForm</name>
+        <!-- fields -->
+        <field character="Target" name="strucBrowser">
+            <property name="ModeCreate">READONLY</property>
+            <property name="TargetShowCheckBoxes">true</property>
+            <property name="TargetStructurBrowserField">label</property>
+            <table>Products_ProductPickerTable</table>
+            <evaluate program="org.efaps.esjp.products.TreeViewStructurBrowser">
+                <property name="Type">Products_TreeViewRoot</property>
+                <property name="ExpandChildType">true</property>
+                <property name="Child_Type">Products_TreeViewNode</property>
+                <property name="Child_LinkFrom">ParentLink</property>
+                <property name="Child_ExpandChildType">true</property>
+                <property name="ProductTypes">Construction_TemplatePartList</property>
+            </evaluate>
+        </field>
+    </definition>
+</ui-form>

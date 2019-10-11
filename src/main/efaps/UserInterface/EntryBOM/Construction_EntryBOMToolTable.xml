@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2010 - 2013 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-table xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>f0658c3f-80b9-43bb-aa0b-1989f46099bb</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntryBOMToolTable</name>
+        <field name="position_T">
+            <property name="ModeEdit">NONE</property>
+            <property name="Attribute">Position</property>
+            <property name="Label">Construction_EntryBOMToolTable.position.Label</property>
+            <property name="Align">right</property>
+        </field>
+        <field name="product_T">
+            <property name="SelectAlternateOID">linkto[ToLink].oid</property>
+            <property name="Select">linkto[ToLink].attribute[Name]</property>
+            <property name="Width">2</property>
+            <property name="HRef">${COMMONURL}/MenuTree.jsp</property>
+            <property name="Label">Construction_EntryBOMToolTable.product.Label</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <trigger event="UI_FIELD_AUTOCOMPLETE" method="autoComplete4Product"
+                name="Construction_EntryBOMToolTable.product.UI_FIELD_AUTOCOMPLETE"
+                program="net.moxter.eFapsApp.construction.EntryBOM">
+                <property name="ExcludeTypes">Construction_EntryPartList</property>
+            </trigger>
+            <trigger event="UI_FIELD_UPDATE" method="updateFields4Product"
+                name="Construction_EntryBOMToolTable.product.UI_FIELD_UPDATE"
+                program="net.moxter.eFapsApp.construction.EntryBOM" />
+        </field>
+        <field name="productDesc_T">
+            <property name="Select">linkto[ToLink].attribute[Description]</property>
+            <property name="Columns">80</property>
+            <property name="Rows">4</property>
+            <property name="ModeCreate">READONLY</property>
+            <property name="Label">Construction_EntryBOMToolTable.productDesc.Label</property>
+            <property name="Width">9</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+        </field>
+        <field name="base_T">
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeView">NONE</property>
+            <property name="Label">Construction_EntryBOMToolTable.base.Label</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.DecimalUI</property>
+        </field>
+        <field name="factor_T">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Attribute">Factor</property>
+            <property name="Label">Construction_EntryBOMToolTable.factor.Label</property>
+            <property name="Align">right</property>
+            <trigger event="UI_FIELD_UPDATE" method="updateFields4Factor"
+                name="Construction_EntryBOMToolTable.factor.UI_FIELD_UPDATE"
+                program="net.moxter.eFapsApp.construction.EntryBOM" />
+        </field>
+        <field name="uoM_T">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="ModeView">NONE</property>
+            <property name="ModePrint">NONE</property>
+            <property name="Attribute">UoM</property>
+            <property name="Label">Construction_EntryBOMToolTable.uoM.Label</property>
+            <property name="UIType">DROPDOWN</property>
+            <trigger program="org.efaps.esjp.common.uiform.Field"
+                method="getUoMDropDownFieldValue"
+                name="Construction_EntryBOMPersonalTable.uoM_M"
+                event="UI_FIELD_VALUE"/>
+        </field>
+        <field name="uom4View_T">
+            <property name="ModeCreate">NONE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="Select">linkto[UoM].attribute[Name]</property>
+            <property name="Label">Construction_EntryBOMToolTable.uoM.Label</property>
+        </field>
+        <field name="quantity_T">
+            <property name="Attribute">Quantity</property>
+            <property name="Label">Construction_EntryBOMToolTable.quantity.Label</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Align">right</property>
+            <trigger event="UI_FIELD_UPDATE" method="updateFields4Quantity"
+                name="Construction_EntryBOMToolTable.product.UI_FIELD_UPDATE"
+                program="net.moxter.eFapsApp.construction.EntryBOM" />
+        </field>
+        <field name="unitPrice_T">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Attribute">UnitPrice</property>
+            <property name="Label">Construction_EntryBOMToolTable.unitPrice.Label</property>
+            <property name="Align">right</property>
+            <trigger event="UI_FIELD_UPDATE" method="updateFields4UnitPrice"
+                name="Construction_EntryBOMToolTable.discount.UI_FIELD_UPDATE"
+                program="net.moxter.eFapsApp.construction.EntryBOM" />
+        </field>
+        <field name="price_T">
+            <property name="ModeCreate">READONLY</property>
+            <property name="Attribute">Price</property>
+            <property name="Label">Construction_EntryBOMToolTable.price.Label</property>
+            <property name="Align">right</property>
+        </field>
+    </definition>
+</ui-table>

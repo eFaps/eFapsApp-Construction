@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2010 - 2011 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>7f69f565-9e39-4880-85d7-01957c714612</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntrySheetCopyToForm</name>
+        <!-- fields -->
+        <field name="type">
+            <property name="ModePrint">NONE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="ModeView">EDITABLE</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="Label">Construction_EntrySheetCopyToForm.type.Label</property>
+            <property name="UIType">DROPDOWN</property>
+            <trigger event="UI_FIELD_VALUE" method="getTypeDropDownFieldValue"
+                name="Construction_EntrySheetCopyToForm.type.UI_FIELD_VALUE"
+                program="org.efaps.esjp.common.uiform.Field">
+                <property name="Types">Sales_CostSheet</property>
+                <property name="SelectedType">Sales_CostSheet</property>
+            </trigger>
+        </field>
+        <field name="project">
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <property name="Label">Construction_EntrySheetCopyToForm.project.Label</property>
+            <property name="Columns">90</property>
+            <trigger event="UI_FIELD_AUTOCOMPLETE" method="autoComplete4Project"
+                name="Construction_EntrySheetCopyToForm.project.UI_FIELD_AUTOCOMPLETE"
+                program="org.efaps.esjp.projects.Project" >
+                <property name="MinInputLength">2</property>
+            </trigger>
+        </field>
+        <field name="selectedQuotation">
+            <property name="ModeCreate">HIDDEN</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <trigger event="UI_FIELD_VALUE" method="getStoreOIDsFieldValue"
+                name="Construction_EntrySheetCopyToForm.selectedQuotation.UI_FIELD_VALUE"
+                program="org.efaps.esjp.common.uiform.Field" />
+        </field>
+    </definition>
+</ui-form>

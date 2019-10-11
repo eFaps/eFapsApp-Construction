@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2010 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>ce9f1a35-3583-4855-89c6-80a8412633d7</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_Projects_ProjectTree_CostEstimateViaDocumentReport_Menu_DownloadPDF</name>
+        <icon>Document_PDF</icon>
+        <target>
+            <execute method="exportReport"
+                program="net.moxter.eFapsApp.construction.reports.CostEstimateViaDocumentReport">
+                <property name="Mime">pdf</property>
+                <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimateViaDocumentReport.FilterKey</property>
+                <property name="Type01">Construction_CostEstimateRealization</property>
+                <property name="Type02">Sales_IncomingInvoice</property>
+                <property name="Type100">Construction_CostEstimateRealization</property>
+                <property name="Type101">Sales_OrderOutbound</property>
+                <property name="PageOrientation">LANDSCAPE</property>
+                <property name="PageType">A4</property>
+            </execute>
+        </target>
+        <property name="Target">hidden</property>
+        <property name="TargetShowFile">true</property>
+        <property name="Label">report.DownloadPDF</property>
+    </definition>
+</ui-command>

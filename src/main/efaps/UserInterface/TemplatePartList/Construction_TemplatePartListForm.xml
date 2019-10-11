@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2010 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>ccde775d-e74a-4759-86c2-5d25af991a6c</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_TemplatePartListForm</name>
+        <!-- fields -->
+        <field name="activatePositionsCalculator">
+            <property name="ModeCreate">HIDDEN</property>
+            <property name="ModeView">NONE</property>
+            <property name="ModeEdit">HIDDEN</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <trigger program="net.moxter.eFapsApp.construction.EntryBOM" method="activatePositionsCalculator"
+                name="Construction_TemplatePartListForm.activatePositionsCalculator.UI_FIELD_VALUE" event="UI_FIELD_VALUE"/>
+        </field>
+         <field character="Group" name="nameGroup">
+            <property name="GroupCount">2</property>
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeView">NONE</property>
+        </field>
+        <field name="name">
+            <property name="Attribute">Name</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Required">true</property>
+        </field>
+        <field name="base">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="ModeView">NONE</property>
+            <property name="Columns">10</property>
+            <property name="Label">Construction_EntryPartListForm.base.Label</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.DecimalUI</property>
+            <trigger program="net.moxter.eFapsApp.construction.EntryBOM" method="updateFields4Base"
+                name="Construction_TemplatePartListForm.base.UI_FIELD_UPDATE" event="UI_FIELD_UPDATE"/>
+        </field>
+        <field name="description">
+            <property name="Attribute">Description</property>
+            <property name="Columns">50</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Required">true</property>
+        </field>
+        <field name="dimension">
+            <property name="Attribute">Dimension</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+        </field>
+         <field character="Group" name="totalGroup">
+            <property name="GroupCount">2</property>
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+        </field>
+        <field name="efficiencyOverAll">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Columns">10</property>
+            <property name="Select">class[Construction_EntryPartList_Class].attribute[EfficiencyOverAll]</property>
+            <property name="Label">Construction_EntryPartListForm.efficiencyOverAll.Label</property>
+            <trigger program="net.moxter.eFapsApp.construction.EntryBOM" method="updateFields4EfficiencyOverAll"
+                name="Construction_TemplatePartListForm.efficiencyOverAll.UI_FIELD_UPDATE" event="UI_FIELD_UPDATE"/>
+        </field>
+        <field name="total">
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="Select">class[Construction_EntryPartList_Class].attribute[Total]</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.DecimalUI</property>
+            <property name="Label">Construction_EntryPartListForm.total.Label</property>
+        </field>
+         <field character="Group" name="efficiencyGroup">
+            <property name="GroupCount">3</property>
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+        </field>
+        <field name="efficiencyUoM">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Select">class[Construction_EntryPartList_Class].attribute[EfficiencyUoM]</property>
+            <property name="Label">Construction_EntryPartListForm.efficiencyUoM.Label</property>
+            <property name="UIType">DROPDOWN</property>
+            <trigger program="org.efaps.esjp.common.uiform.Field" method="getUoMDropDownFieldValue"
+                name="Construction_TemplatePartListForm.efficiencyUoM.UI_FIELD_VALUE" event="UI_FIELD_VALUE">
+                <!-- Construction_Dimension_Efficiency -->
+                <property name="Dimension">84eb2a4d-81c3-46d2-b4c5-38e1f5c2e4a1</property>
+            </trigger>
+        </field>
+        <field name="efficiencyPersonal">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Columns">10</property>
+            <property name="Select">class[Construction_EntryPartList_Class].attribute[EfficiencyPersonal]</property>
+            <property name="Label">Construction_EntryPartListForm.efficiencyPersonal.Label</property>
+            <trigger program="net.moxter.eFapsApp.construction.EntryBOM" method="updateFields4EfficiencyPersonal"
+                name="Construction_TemplatePartListForm.efficiencyPersonal.UI_FIELD_UPDATE" event="UI_FIELD_UPDATE"/>
+        </field>
+        <field name="efficiencyTools">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Columns">10</property>
+            <property name="Select">class[Construction_EntryPartList_Class].attribute[EfficiencyTools]</property>
+            <property name="Label">Construction_EntryPartListForm.efficiencyTools.Label</property>
+            <trigger program="net.moxter.eFapsApp.construction.EntryBOM" method="updateFields4EfficiencyTools"
+                name="Construction_TemplatePartListForm.efficiencyTools.UI_FIELD_UPDATE" event="UI_FIELD_UPDATE"/>
+        </field>
+        <field character="Heading" name="materialHeader">
+            <property name="Level">2</property>
+            <property name="Label">Construction_EntryPartListForm.materialHeader.Heading</property>
+            <property name="ModeCreate">READONLY</property>
+        </field>
+        <field character="Target" name="bomTable_M">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <table>Construction_EntryBOMMaterialTable</table>
+            <evaluate program="net.moxter.eFapsApp.construction.EntryPartList" method="bomMultiPrint">
+                <property name="Type">Construction_EntryBOM</property>
+                <property name="LinkFrom">FromLink</property>
+            </evaluate>
+        </field>
+        <field character="Group" name="materialGroup">
+            <property name="GroupCount">2</property>
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeView">NONE</property>
+        </field>
+        <field name="materialPlaceholder">
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeView">NONE</property>
+            <property name="HideLabel">true</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+        </field>
+        <field name="materialTotal">
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeView">NONE</property>
+            <property name="Label">Construction_EntryPartListForm.materialTotal.Label</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+        </field>
+        <field character="Heading" name="personalHeader">
+            <property name="Level">2</property>
+            <property name="Label">Construction_EntryPartListForm.personalHeader.Heading</property>
+            <property name="ModeCreate">READONLY</property>
+        </field>
+        <field character="Target" name="bomTable_P">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <table>Construction_EntryBOMPersonalTable</table>
+            <evaluate program="net.moxter.eFapsApp.construction.EntryPartList" method="bomMultiPrint">
+                <property name="Type">Construction_EntryBOM</property>
+                <property name="LinkFrom">FromLink</property>
+            </evaluate>
+        </field>
+        <field character="Group" name="personalGroup">
+            <property name="GroupCount">2</property>
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeView">NONE</property>
+        </field>
+        <field name="personalPlaceholder">
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeView">NONE</property>
+            <property name="HideLabel">true</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+        </field>
+        <field name="personalTotal">
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeView">NONE</property>
+            <property name="Label">Construction_EntryPartListForm.personalTotal.Label</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+        </field>
+        <field character="Heading" name="toolHeader">
+            <property name="Level">2</property>
+            <property name="Label">Construction_EntryPartListForm.toolHeader.Heading</property>
+            <property name="ModeCreate">READONLY</property>
+        </field>
+        <field character="Group" name="manualPercentGroup">
+            <property name="GroupCount">2</property>
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+        </field>
+        <field name="manualPercent">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Select">class[Construction_EntryPartList_Class].attribute[ManualPercent]</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.DecimalUI</property>
+            <property name="Label">Construction_EntryPartListForm.manualPercent.Label</property>
+            <property name="Columns">5</property>
+            <trigger program="net.moxter.eFapsApp.construction.EntryBOM" method="updateFields4Quantity"
+                name="Construction_TemplatePartListForm.manualPercent.UI_FIELD_UPDATE" event="UI_FIELD_UPDATE"/>
+        </field>
+        <field name="manualPercentSum">
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="Select">class[Construction_EntryPartList_Class].attribute[ManualAmount]</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.DecimalUI</property>
+            <property name="Label">Construction_EntryPartListForm.manualPercentSum.Label</property>
+            <property name="Columns">5</property>
+        </field>
+        <field character="Target" name="bomTable_T">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <table>Construction_EntryBOMToolTable</table>
+            <evaluate program="net.moxter.eFapsApp.construction.EntryPartList" method="bomMultiPrint">
+                <property name="Type">Construction_EntryBOM</property>
+                <property name="LinkFrom">FromLink</property>
+            </evaluate>
+        </field>
+        <field character="Group" name="toolGroup">
+            <property name="GroupCount">2</property>
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeView">NONE</property>
+        </field>
+        <field name="toolPlaceholder">
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeView">NONE</property>
+            <property name="HideLabel">true</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+        </field>
+        <field name="toolTotal">
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeView">NONE</property>
+            <property name="Label">Construction_EntryPartListForm.toolTotal.Label</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+        </field>
+        <field character="Heading" name="contractHeader">
+            <property name="Level">2</property>
+            <property name="Label">Construction_EntryPartListForm.contractHeader.Heading</property>
+            <property name="ModeCreate">READONLY</property>
+        </field>
+        <field character="Target" name="bomTable_C">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <table>Construction_EntryBOMContractTable</table>
+            <evaluate program="net.moxter.eFapsApp.construction.EntryPartList" method="bomMultiPrint">
+                <property name="Type">Construction_EntryBOM</property>
+                <property name="LinkFrom">FromLink</property>
+            </evaluate>
+        </field>
+        <field character="Group" name="contractGroup">
+            <property name="GroupCount">2</property>
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeView">NONE</property>
+        </field>
+        <field name="contractPlaceholder">
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeView">NONE</property>
+            <property name="HideLabel">true</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+        </field>
+        <field name="contractTotal">
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeView">NONE</property>
+            <property name="Label">Construction_EntryPartListForm.contractTotal.Label</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+        </field>
+        <field name="javaScript">
+            <property name="ModePrint">NONE</property>
+            <property name="ModeCreate">HIDDEN</property>
+            <property name="ModeView">NONE</property>
+            <property name="ModeEdit">HIDDEN</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <trigger program="net.moxter.eFapsApp.construction.EntryBOM" method="getJavaScriptUIValue"
+                name="Construction_TemplatePartListForm.javaScript.UI_Field_Value" event="UI_FIELD_VALUE"/>
+        </field>
+    </definition>
+</ui-form>

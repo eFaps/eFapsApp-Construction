@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+ Copyright 2009 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>cd5bb3e1-43f2-4596-bee6-58a6f0e98017</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntrySheetTree_Position_Menu_Action_CreateFromTemplate</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <target>
+            <form>Construction_TemplatePartListCreateFromProductForm</form>
+            <execute method="createEntryFromTemplate"
+                program="net.moxter.eFapsApp.construction.EntryPartList" />
+            <validate method="validateCreateFromTemplate"
+                program="net.moxter.eFapsApp.construction.EntryPartList" />
+            <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
+                method="check4Status"
+                name="Construction_EntrySheetTree_Position_Menu_Action_CreateFromTemplate.UI_ACCESSCHECK"
+                event="UI_ACCESSCHECK">
+                <property name="Status">Open</property>
+            </trigger>
+        </target>
+        <property name="Target">modal</property>
+        <property name="TargetCreateType">SD_Products_EntryPartList</property>
+        <property name="TargetMode">edit</property>
+        <property name="WindowHeight">600</property>
+        <property name="WindowWidth">900</property>
+    </definition>
+
+</ui-command>

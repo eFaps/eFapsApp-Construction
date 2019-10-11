@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2010 - 2011 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>bf3b733d-c1ba-4032-813d-786511d1dd96</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_Projects_ProjectTree_HumanResource</name>
+        <target>
+            <menu>Construction_Projects_ProjectTree_HumanResource_Menu</menu>
+            <table>Construction_ProjectService2EmployeeTable</table>
+            <evaluate program="org.efaps.esjp.common.uitable.MultiPrint">
+                <property name="Type">Construction_ProjectService2Employee</property>
+                <property name="LinkFrom">FromLink</property>
+            </evaluate>
+        </target>
+        <parents>
+            <parent>Projects_ProjectTree</parent>
+        </parents>
+        <property name="Target">content</property>
+        <property name="TargetShowCheckBoxes">true</property>
+    </definition>
+</ui-command>

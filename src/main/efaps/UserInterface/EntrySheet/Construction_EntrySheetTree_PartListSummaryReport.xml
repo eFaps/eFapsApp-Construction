@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2015 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>4ad89b07-5117-418d-af00-a7ab6deb8d3e</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntrySheetTree_PartListSummaryReport</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <target>
+            <menu>Construction_EntrySheetTree_PartListSummaryReport_Menu</menu>
+            <form>Construction_EntrySheetPartListSummaryReportForm</form>
+        </target>
+        <property name="Target">content</property>
+        <property name="TargetMode">view</property>
+    </definition>
+</ui-command>

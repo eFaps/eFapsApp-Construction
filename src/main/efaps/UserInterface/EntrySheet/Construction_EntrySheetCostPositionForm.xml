@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+ Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+-->
+<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>6a28d2a6-72c5-40d7-9c4c-090245d475c6</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntrySheetCostPositionForm</name>
+        <field name="activatePositionsCalculator">
+            <property name="ModeCreate">HIDDEN</property>
+            <property name="ModeEdit">HIDDEN</property>
+            <property name="ModeView">NONE</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <trigger program="net.moxter.eFapsApp.construction.EntrySheet"
+                method="activatePositionsCalculator"
+                name="Construction_EntrySheetPositionForm.activatePositionsCalculator.UI_FIELD_VALUE"
+                event="UI_FIELD_VALUE" />
+        </field>
+        <field name="rate">
+            <property name="ModeEdit">HIDDEN</property>
+            <property name="Attribute">Rate</property>
+        </field>
+        <field name="positionTable" character="Target">
+            <property name="ModeEdit">EDITABLE</property>
+            <table>Construction_EntrySheetCostPositionTable</table>
+            <evaluate program="net.moxter.eFapsApp.construction.EntrySheet"
+                method="positionMultiPrint">
+                <property name="Type">Construction_EntrySheetPosition</property>
+                <property name="LinkFrom">EntrySheetLink</property>
+                <property name="ProductType">Construction_ProductGeneralCostPosition</property>
+            </evaluate>
+        </field>
+        <field name="netTotal">
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeView">NONE</property>
+            <property name="Attribute">NetTotal</property>
+        </field>
+        <field name="crossTotal">
+            <property name="ModeEdit">READONLY</property>
+            <property name="ModeCreate">READONLY</property>
+            <property name="ModeView">NONE</property>
+            <property name="Attribute">CrossTotal</property>
+        </field>
+        <field name="javaScript">
+            <property name="ModePrint">NONE</property>
+            <property name="ModeCreate">HIDDEN</property>
+            <property name="ModeView">NONE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <trigger program="net.moxter.eFapsApp.construction.EntrySheet"
+                method="getJavaScriptUIValue"
+                name="Construction_EntrySheetCostPositionForm.javaScript.UI_Field_Value"
+                event="UI_FIELD_VALUE" />
+        </field>
+    </definition>
+</ui-form>

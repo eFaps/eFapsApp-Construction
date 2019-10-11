@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2010 - 2011 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>e6304633-1fc0-448d-9820-33e290b902ab</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_Projects_ProjectTree_HumanResource_Menu_Action_AddExisting</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <target>
+            <search>Construction_Projects_ProjectTree_HumanResource_Menu_Action_AddExisting_Search</search>
+            <execute program="org.efaps.esjp.common.uisearch.Connect">
+                <property name="ConnectChildAttribute">ToLink</property>
+                <property name="ConnectParentAttribute">FromLink</property>
+                <property name="ConnectType">Construction_ProjectService2Employee</property>
+                <property name="StatusGroup">Projects_ProjectService2EmployeeStatus</property>
+                <property name="Status">Active</property>
+            </execute>
+        </target>
+        <property name="Target">modal</property>
+    </definition>
+</ui-command>

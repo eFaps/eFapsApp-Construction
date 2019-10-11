@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2010 - 2015 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+-->
+<ui-table xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>f12f2ff9-f259-46d7-96bb-ddc63153a901</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_HumanResource_ProjectService2EmployeeTable</name>
+        <field name="projectLink">
+            <property name="SelectAlternateOID">linkto[FromLink].oid</property>
+            <property name="MsgPhrase">Project_ProjectMsgPhrase</property>
+            <property name="HRef">TREE</property>
+            <property name="Label">Projects_ProjectService.Label</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+        </field>
+        <field name="operationAreaLink">
+            <property name="Select">linkto[OperationAreaLink].attribute[Value]</property>
+            <property name="Label">Construction_ProjectService2Employee.operationAreaLink.Label</property>
+        </field>
+        <field name="pay">
+            <property name="HRef">${COMMONURL}/MenuTree.jsp</property>
+            <property name="Attribute">Pay</property>
+            <property name="Label">Construction_ProjectService2Employee/Pay.Label</property>
+            <property name="ModeCreate">EDITABLE</property>
+        </field>
+        <field name="date">
+            <property name="Attribute">Date</property>
+            <property name="Label">Construction_ProjectService2Employee/Date.Label</property>
+        </field>
+        <field name="status">
+            <property name="Attribute">Status</property>
+            <property name="Label">Construction_ProjectService2Employee/Status.Label</property>
+            <property name="FilterType">PICKLIST</property>
+        </field>
+    </definition>
+</ui-table>

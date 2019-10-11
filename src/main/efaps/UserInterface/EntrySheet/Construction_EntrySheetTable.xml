@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+ Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-table xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+
+    <uuid>ecfa203a-0c3b-4a3d-af95-d7137a8d40a4</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntrySheetTable</name>
+         <field name="type">
+            <property name="Attribute">Type</property>
+            <property name="Label">Sales_DocumentAbstract/Type.Label</property>
+            <property name="ShowTypeIcon">true</property>
+        </field>
+        <field name="revision">
+            <property name="Attribute">Revision</property>
+            <property name="Label">Sales_DocumentAbstract/Revision.Label</property>
+        </field>
+        <field name="name">
+            <property name="Attribute">Name</property>
+            <property name="Label">Sales_DocumentAbstract/Name.Label</property>
+            <property name="HRef">${COMMONURL}/MenuTree.jsp</property>
+        </field>
+        <field name="description">
+            <property name="Attribute">Description</property>
+            <property name="Label">Construction_EntrySheet/Description.Label</property>
+        </field>
+        <field name="project">
+            <property name="SelectAlternateOID">linkfrom[Construction_ProjectService2EntrySheet#ToLink].linkto[FromLink].oid</property>
+            <property name="Select">linkfrom[Construction_ProjectService2EntrySheet#ToLink].linkto[FromLink].attribute[Name]</property>
+            <property name="HRef">${COMMONURL}/MenuTree.jsp</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <property name="Label">Sales_ProductRequest.project.Label</property>
+            <property name="FilterType">PICKLIST</property>
+        </field>
+        <field name="projectDesc">
+            <property name="SelectAlternateOID">linkfrom[Construction_ProjectService2EntrySheet#ToLink].linkto[FromLink].oid</property>
+            <property name="Select">linkfrom[Construction_ProjectService2EntrySheet#ToLink].linkto[FromLink].attribute[Description]</property>
+            <property name="Label">Sales_ProductRequest.projectDesc.Label</property>
+        </field>
+        <field name="date">
+            <property name="FilterType">FREETEXT</property>
+            <property name="FilterRequired">TRUE</property>
+            <property name="FilterBase">DATABASE</property>
+            <property name="FilterDefault">WEEK</property>
+            <property name="Attribute">Date</property>
+            <property name="Label">Sales_DocumentAbstract/Date.Label</property>
+        </field>
+        <field name="crosstotal">
+            <property name="Phrase">$&lt;attribute[CrossTotal].format[#,##0.00]&gt; $&lt;linkto[CurrencyId].attribute[Symbol]&gt;</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <property name="Label">Sales_DocumentAbstract/CrossTotal.Label</property>
+            <property name="Align">right</property>
+        </field>
+        <field name="nettotal">
+            <property name="Phrase">$&lt;attribute[NetTotal].format[#,##0.00]&gt; $&lt;linkto[CurrencyId].attribute[Symbol]&gt;</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <property name="Label">Sales_DocumentAbstract/NetTotal.Label</property>
+            <property name="Align">right</property>
+        </field>
+         <field name="rateCrosstotal">
+            <property name="Phrase">$&lt;attribute[RateCrossTotal].format[#,##0.00]&gt; $&lt;linkto[RateCurrencyId].attribute[Symbol]&gt;</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <property name="Label">Construction_CostEstimateTable.rateCrossTotal.Label</property>
+            <property name="Align">right</property>
+        </field>
+        <field name="rateNettotal">
+            <property name="Phrase">$&lt;attribute[RateNetTotal].format[#,##0.00]&gt; $&lt;linkto[RateCurrencyId].attribute[Symbol]&gt;</property>
+            <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
+            <property name="Label">Construction_CostEstimateTable.rateNetTotal.Label</property>
+            <property name="Align">right</property>
+        </field>
+        <field name="vendorLink">
+            <property name="Attribute">Creator</property>
+            <property name="Label">Sales_DocumentAbstract/Salesperson.Label</property>
+        </field>
+        <field name="status">
+            <property name="FilterType">PICKLIST</property>
+            <property name="Attribute">StatusAbstract</property>
+            <property name="Label">Sales_DocumentAbstract/Status.Label</property>
+        </field>
+        <field name="buttonOpenInNewWindow">
+            <icon>eFapsActionNewWindow</icon>
+            <property name="HRef">${COMMONURL}/MenuTree.jsp</property>
+            <property name="Target">popup</property>
+            <property name="SortAble">false</property>
+            <property name="Width">15px</property>
+        </field>
+    </definition>
+</ui-table>

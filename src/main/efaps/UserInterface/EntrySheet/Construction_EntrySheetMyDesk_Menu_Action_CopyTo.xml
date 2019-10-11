@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>f2e102d8-b0dd-4706-811e-30317037de7b</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_EntrySheetMyDesk_Menu_Action_CopyTo</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <!-- target definitions -->
+        <target>
+            <form>Construction_EntrySheetCopyToForm</form>
+            <execute method="revise"
+                program="net.moxter.eFapsApp.construction.EntrySheet">
+                <property name="UseNumberGenerator4Name">true</property>
+                <property name="ReviseRelations">Construction_ProjectService2EntrySheet;Construction_EntrySheetPosition</property>
+                <property name="ReviseRelationsAttribute">ToLink;EntrySheetLink</property>
+                <property name="RevisionUpdate">false</property>
+                <property name="RevisionConnect">false</property>
+                <property name="RevisionStatus">Open</property>
+            </execute>
+        </target>
+
+        <!-- properties -->
+        <property name="AskUser">false</property>
+        <property name="TargetMode">create</property>
+        <property name="Target">modal</property>
+        <property name="Submit">true</property>
+        <property name="SubmitSelectedRows">1</property>
+        <property name="WindowHeight">400</property>
+        <property name="WindowWidth">900</property>
+    </definition>
+</ui-command>

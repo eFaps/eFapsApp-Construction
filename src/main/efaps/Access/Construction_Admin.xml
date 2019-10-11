@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+  This program contains proprietary and trade secret information of
+  Jan Moxter Copyright notice is precautionary only and does not
+  evidence any actual or intended publication of such program.
+
+
+
+-->
+<access-set xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>2418761a-aa8b-4310-8672-d4b7165a6cc1</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+
+
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+
+        <name>Construction_Admin</name>
+
+        <access-type>show</access-type>
+        <access-type>read</access-type>
+        <access-type>modify</access-type>
+        <access-type>checkout</access-type>
+        <access-type>checkin</access-type>
+        <access-type>create</access-type>
+        <access-type>statusBoost</access-type>
+        <access-type>statusModify</access-type>
+        <access-type>delete</access-type>
+        <access-type>grant</access-type>
+
+        <type>Construction_CostEstimateBase</type>
+        <type>Construction_CostEstimateSale</type>
+        <type>Construction_CostEstimateTarget</type>
+        <type>Construction_CostEstimateRealization</type>
+        <type>Construction_EntryPartList</type>
+        <type>Construction_EntrySheet</type>
+        <type>Construction_TemplatePartList</type>
+        <type>Construction_VerificationList</type>
+        <type>Construction_ProductService</type>
+
+        <status group="Construction_CostEstimateStatus">
+            <key>Open</key>
+            <key>Closed</key>
+            <key>Canceled</key>
+        </status>
+
+        <status group="Construction_EntrySheetStatus">
+            <key>Open</key>
+            <key>Closed</key>
+            <key>Canceled</key>
+        </status>
+
+        <status group="Construction_VerificationListStatus">
+            <key>Open</key>
+            <key>Closed</key>
+            <key>Canceled</key>
+        </status>
+
+        <role>Construction_Admin</role>
+    </definition>
+</access-set>

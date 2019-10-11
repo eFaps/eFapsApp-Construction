@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
+<!-- 2016-04-06T19:44:34 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Construction_CostEstimateBase" pageWidth="630" pageHeight="842" columnWidth="610" leftMargin="10" rightMargin="10" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="8e7b4cff-b992-4827-83ae-bd5d5c1191c8">
+    <property name="org.efaps.admin.program.jasper.EFapsApplication" value="eFapsApp-Construction"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="9999 SD"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.cell.background" value="true"/>
+	<property name="net.sf.jasperreports.print.keep.full.text" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.white.page.background" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.rows" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.cell.border" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="lastPageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="columnFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.5" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.report.5" value="*"/>
+	<property name="net.sf.jasperreports.export.xls.wrap.text" value="false"/>
+	<import value="org.efaps.number2words.Converter"/>
+	<parameter name="CompanyName" class="java.lang.String">
+		<defaultValueExpression><![CDATA["INNOBIERT - CONSTRUCTION"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CompanyTaxNum" class="java.lang.String">
+		<defaultValueExpression><![CDATA["12345678901"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CompanyActivity" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Actividades varios"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CompanyStreet" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Calle Azul 567"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CompanyRegion" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Lima"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CompanyCity" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Lima"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CompanyDistrict" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Miraflores"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="INSTANCE" class="java.lang.Object">
+		<defaultValueExpression><![CDATA[211099.39854]]></defaultValueExpression>
+	</parameter>
+	<queryString language="eFaps">
+		<![CDATA[print $P!{INSTANCE} select linkto[Contact].attribute[Name] as contactName,
+ linkfrom[Projects_Project2DocumentAbstract#ToAbstract].linkto[FromAbstract].attribute[Name] as project,
+ attribute[Date] as date,
+ attribute[RateDiscountTotal] as discountTotal,
+ attribute[RateCrossTotal] as crossTotal,
+ attribute[RateNetTotal] as netTotal,
+ linkto[RateCurrencyId].attribute[Name] as currencyName,
+ linkto[RateCurrencyId].attribute[Symbol] as currencySymbol,
+ type.label as typeName,
+ attribute[Name] as name]]>
+	</queryString>
+	<field name="typeName" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="contactName" class="java.lang.String"/>
+	<field name="project" class="java.lang.String"/>
+	<field name="date" class="org.joda.time.DateTime"/>
+	<field name="discountTotal" class="java.math.BigDecimal"/>
+	<field name="crossTotal" class="java.math.BigDecimal"/>
+	<field name="netTotal" class="java.math.BigDecimal"/>
+	<field name="currencyName" class="java.lang.String"/>
+	<field name="currencySymbol" class="java.lang.String"/>
+	<variable name="totalWithout" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{netTotal}.add( $F{discountTotal} )]]></variableExpression>
+	</variable>
+	<title>
+		<band height="70" splitType="Stretch">
+			<textField>
+				<reportElement mode="Transparent" x="0" y="30" width="610" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="6648c141-07d8-497d-bda5-dc449a6e05ae"/>
+				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{CompanyTaxNum} != null && !$P{CompanyTaxNum}.isEmpty()) ? "RUC: " + $P{CompanyTaxNum} : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="0" y="15" width="610" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="13040d0c-5334-4a26-821b-29aced6549f0"/>
+				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CompanyStreet} + " " + $P{CompanyDistrict} + " " + $P{CompanyCity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="0" y="0" width="610" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="d9d2be6e-87ca-45dd-b344-d09fcf4150c2"/>
+				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CompanyName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="0" y="45" width="610" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="cf673c47-0112-4487-8976-4f55546fde42">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="15" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{typeName} + " - " + $F{name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="12" uuid="d5a1304b-d51b-4291-9166-f29f9f6a1bd9">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[Fecha: ]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="50" y="0" width="80" height="12" uuid="88c91c87-103f-4bf9-a27f-90a8cfbaaa9f">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5"/>
+				<textFieldExpression><![CDATA[$F{date}.toDate()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="509" y="0" width="68" height="12" uuid="c7e6edfb-f071-43db-9add-767ac06e669d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["P\u00e1gina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="577" y="0" width="33" height="12" uuid="159e24a7-df66-4302-9bb4-41e138efbb69"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="130" y="0" width="378" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="08ca25f0-b274-44be-92ae-dd9031cf763c">
+					<printWhenExpression><![CDATA[new Boolean($V{PAGE_NUMBER} > 1)]]></printWhenExpression>
+				</reportElement>
+				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{typeName} + " - " + $F{name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="64" height="12" uuid="2bc9021f-17f9-4398-8113-44ead128865c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="12" width="64" height="12" uuid="bb068215-0e6c-4394-bd33-8c9fe301beaf">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[Proyecto:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="64" y="0" width="546" height="12" uuid="c798fd2a-6d86-4e29-9064-b75c4319bc56">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{contactName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="64" y="12" width="546" height="12" uuid="8340a4d8-50ef-4237-8500-6791bad84fbe">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{project}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="610" height="20" uuid="62961eef-5dbe-4d75-afa6-07c933539635">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<subreportParameter name="INSTANCE">
+					<subreportParameterExpression><![CDATA[$P{INSTANCE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["Construction_CostEstimateBasePosition.jrxml"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<summary>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement positionType="Float" x="290" y="61" width="120" height="16" uuid="227e5925-5300-49b2-88e8-7f444d9f9b88"/>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<textFieldExpression><![CDATA["I.G.V.: " + $F{currencySymbol}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="455" y="29" width="155" height="16" uuid="33589e38-9e16-4742-ab2a-7cf0fce9a397">
+					<printWhenExpression><![CDATA[new Boolean($F{discountTotal} != null && $F{discountTotal}.compareTo(BigDecimal.ZERO) != 0)]]></printWhenExpression>
+				</reportElement>
+				<box rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{discountTotal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement positionType="Float" x="455" y="77" width="155" height="16" uuid="029dce11-d6e5-4e71-801b-c6267208659a"/>
+				<box rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{crossTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="290" y="45" width="120" height="16" uuid="80e6f13a-e14d-4908-89bb-b7fd75632731"/>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<textFieldExpression><![CDATA["Sub Total: " + $F{currencySymbol}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement positionType="Float" x="455" y="61" width="155" height="16" uuid="c0c321f2-370b-4222-9797-7024189f0d44"/>
+				<box rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{crossTotal}.subtract($F{netTotal})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="29" width="120" height="16" isRemoveLineWhenBlank="true" uuid="aee3b9e9-1d97-44fd-bcda-daa79dde2509">
+					<printWhenExpression><![CDATA[new Boolean($F{discountTotal} != null && $F{discountTotal}.compareTo(BigDecimal.ZERO) != 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Descuento: " + $F{currencySymbol}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement positionType="Float" x="455" y="45" width="155" height="16" uuid="b92adca5-ffca-4a53-bc69-60efd7ad7f6e"/>
+				<box rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{netTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="290" y="77" width="120" height="16" uuid="b4b3a094-2539-4f92-8e74-db88ed771c17"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Total: " + $F{currencySymbol}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="455" y="13" width="155" height="16" isRemoveLineWhenBlank="true" uuid="258088c4-ef3c-40ca-86f0-d1e8f364a45a">
+					<printWhenExpression><![CDATA[new Boolean($F{discountTotal} != null && $F{discountTotal}.compareTo(BigDecimal.ZERO) != 0)]]></printWhenExpression>
+				</reportElement>
+				<box rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{totalWithout}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="13" width="120" height="16" isRemoveLineWhenBlank="true" uuid="c4d90b26-17cd-4f21-b048-ecebb2987c38">
+					<printWhenExpression><![CDATA[new Boolean($F{discountTotal} != null && $F{discountTotal}.compareTo(BigDecimal.ZERO) != 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<textFieldExpression><![CDATA["Total: " + $F{currencySymbol}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="64" y="106" width="546" height="12" uuid="227eb3dd-23ce-42e9-9543-f4616db9ee86">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[new StringBuilder().append(Converter.getMaleConverter(
+    new Locale("es")).convert($F{crossTotal}.longValue())).append(" y ")
+.append($F{crossTotal}.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString().replaceAll("^.*\\.", "")).append("/100 ")
+.append($F{currencyName}).toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="106" width="64" height="12" uuid="a044880f-f653-4436-9f93-e7960934c998"/>
+				<box leftPadding="2"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[son: S.E.Ú.O.]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

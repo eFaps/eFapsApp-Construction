@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
+<!-- 2016-04-06T19:40:27 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Construction_CostEstimateBasePosition" language="groovy" pageWidth="610" pageHeight="842" columnWidth="610" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ae2a1ab9-046a-4c11-bf87-ba2f2ca66784">
+    <property name="org.efaps.admin.program.jasper.EFapsApplication" value="eFapsApp-Construction"/>
+	<property name="net.sf.jasperreports.style.evaluation.time.enabled" value="true"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="9999 SD"/>
+	<style name="Style1">
+		<box leftPadding="2"/>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{level}==1)]]></conditionExpression>
+			<style>
+				<box leftPadding="2"/>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{level}==2)]]></conditionExpression>
+			<style>
+				<box leftPadding="8"/>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{level}==3)]]></conditionExpression>
+			<style>
+				<box leftPadding="14"/>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{level}==4)]]></conditionExpression>
+			<style>
+				<box leftPadding="20"/>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{level}==5)]]></conditionExpression>
+			<style>
+				<box leftPadding="26"/>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{level}==6)]]></conditionExpression>
+			<style>
+				<box leftPadding="32"/>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{level}==7)]]></conditionExpression>
+			<style>
+				<box leftPadding="38"/>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{level}==8)]]></conditionExpression>
+			<style>
+				<box leftPadding="44"/>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{sumsTotal}!=null)]]></conditionExpression>
+			<style isBold="true"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="INSTANCE" class="java.lang.Object">
+		<defaultValueExpression><![CDATA[211099.39854]]></defaultValueExpression>
+	</parameter>
+	<queryString language="eFaps">
+		<![CDATA[query type Sales_PositionGroupAbstract where DocumentAbstractLink == $P!{INSTANCE} 
+ select attribute[Code] as code,
+ linkto[AbstractPositionAbstractLink].attribute[Quantity] as quantity,
+ linkto[AbstractPositionAbstractLink].linkto[UoM].attribute[Name] as uoM,
+ attribute[Name] as description,
+ attribute[Order] as orderPos,
+ attribute[Level] as level,
+ linkto[AbstractPositionAbstractLink].attribute[RateDiscountNetUnitPrice] as discountNetUnitPrice,
+ linkto[AbstractPositionAbstractLink].attribute[RateNetPrice] as netPrice,
+ attribute[RateSumsTotal] as sumsTotal]]>
+	</queryString>
+	<field name="code" class="java.lang.String"/>
+	<field name="quantity" class="java.math.BigDecimal"/>
+	<field name="uoM" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="orderPos" class="java.lang.Integer"/>
+	<field name="level" class="java.lang.Integer"/>
+	<field name="discountNetUnitPrice" class="java.math.BigDecimal"/>
+	<field name="netPrice" class="java.math.BigDecimal"/>
+	<field name="sumsTotal" class="java.math.BigDecimal"/>
+	<sortField name="orderPos"/>
+	<columnHeader>
+		<band height="15">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="64" height="15" backcolor="#CCCCCC" uuid="ee936ed4-65dd-47cb-b97e-04505eb5caf5"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Item]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="500" y="0" width="55" height="15" backcolor="#CCCCCC" uuid="2d3423ad-5aa7-46ab-be7b-96f8e0602bc0"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Parcial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="445" y="0" width="55" height="15" backcolor="#CCCCCC" uuid="355ed7a9-dbcb-47ba-9d72-74929bee0c25"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="64" y="0" width="291" height="15" backcolor="#CCCCCC" uuid="cace295c-95f9-4ae1-a2c6-07f05681aaef"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="555" y="0" width="55" height="15" backcolor="#CCCCCC" uuid="b986b569-b5f8-443c-afa2-e9244be9d33c"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="393" y="0" width="52" height="15" backcolor="#CCCCCC" uuid="25f63d21-3872-4455-8090-ab6d1f39924f"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Metrado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="355" y="0" width="38" height="15" backcolor="#CCCCCC" uuid="2f2e38cb-81d8-467d-9b4d-99ab12ca104f"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Und.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="610" height="15" backcolor="#CCCCCC" uuid="ea4f401e-c1d1-44d3-bfe7-395cc875a89b">
+					<printWhenExpression><![CDATA[new Boolean( $V{PAGE_COUNT}.intValue() % 2 ==0 )]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="393" y="0" width="52" height="15" isPrintWhenDetailOverflows="true" uuid="fe41dc78-fbcd-4fe2-ac77-d9a8f1aa16f7"/>
+				<box leftPadding="0" rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement key="desc4level1" style="Style1" stretchType="RelativeToTallestObject" x="64" y="0" width="291" height="15" isPrintWhenDetailOverflows="true" uuid="bae8ae3a-a6fe-485a-8808-af0aa49b941e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="355" y="0" width="38" height="15" isPrintWhenDetailOverflows="true" uuid="9e097cb4-4817-41ac-aa48-13927a19c11c"/>
+				<box leftPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{uoM}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="445" y="0" width="55" height="15" uuid="2f3f4e8b-b757-4de3-9464-da0929228947"/>
+				<box rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{discountNetUnitPrice}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement key="" stretchType="RelativeToTallestObject" x="500" y="0" width="55" height="15" uuid="af132d67-fc00-47c0-8364-b30e2ab0d9e3"/>
+				<box rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{netPrice}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="555" y="0" width="55" height="15" uuid="53af877c-8cb0-4420-9cd1-eb6cea167e0d"/>
+				<box rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{sumsTotal}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="64" height="15" isPrintWhenDetailOverflows="true" uuid="0d9d7f15-6a06-43a9-953e-ba654380f60e"/>
+				<box leftPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>26569605-6d70-4a53-9b9c-2d8a9cfc0d41</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_VerificationListTree_Menu_Action_SetClosed</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <!-- target definitions -->
+        <target>
+             <execute program="org.efaps.esjp.admin.datamodel.StatusValue" method="setStatus">
+                <property name="Status">Closed</property>
+            </execute>
+            <trigger event="UI_ACCESSCHECK" method="configCheck"
+                name="Construction_VerificationListTree_Menu_Action_SetClosed.UI_ACCESSCHECK"
+                program="org.efaps.esjp.admin.access.AccessCheck4UI">
+                <property name="SystemConfig">Construction-Configuration</property>
+                <property name="Attribute">net.moxter.eFapsApp.construction.VerificationListManual</property>
+            </trigger>
+            <trigger event="UI_ACCESSCHECK" index="2" method="check4Status"
+                name="Construction_VerificationListTree_Menu_Action_SetClosed.2.UI_ACCESSCHECK"
+                program="org.efaps.esjp.admin.access.AccessCheck4UI">
+                <property name="Status">Open</property>
+            </trigger>
+        </target>
+        <property name="AskUser">true</property>
+        <property name="Submit">true</property>
+        <property name="SubmitSelectedRows">-1</property>
+    </definition>
+</ui-command>

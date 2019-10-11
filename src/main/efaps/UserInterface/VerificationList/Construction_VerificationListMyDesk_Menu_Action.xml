@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-menu xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>178312e3-97d1-40d8-8b25-b931138df997</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_VerificationListMyDesk_Menu_Action</name>
+        <childs>
+            <child>Construction_VerificationListMyDesk_Menu_Action_Create</child>
+            <child>Construction_VerificationListMyDesk_Menu_Action_Revise</child>
+            <child>Construction_VerificationListMyDesk_Menu_Action_Delete</child>
+        </childs>
+    </definition>
+</ui-menu>

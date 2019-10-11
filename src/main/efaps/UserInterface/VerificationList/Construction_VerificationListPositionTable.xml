@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-table xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>e5ab929c-b518-4a2f-b3db-98991e39ede5</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_VerificationListPositionTable</name>
+        <field name="positionNumber">
+            <property name="Attribute">PositionNumber</property>
+            <property name="Label">Construction_VerificationListPosition/PositionNumber.Label</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="Align">right</property>
+        </field>
+        <field name="quantity">
+            <property name="Attribute">Quantity</property>
+            <property name="Label">Construction_VerificationListPosition/Quantity.Label</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="ModeSearch">READONLY</property>
+            <property name="Align">right</property>
+            <trigger event="UI_FIELD_UPDATE" method="updateFields4Quantity"
+                name="Construction_VerificationListPositionTable.product.UI_FIELD_AUTOCOMPLETE"
+                program="net.moxter.eFapsApp.construction.VerificationList" />
+        </field>
+        <field name="product">
+            <property name="SelectAlternateOID">linkto[Product].oid</property>
+            <property name="Select">linkto[Product].attribute[Name]</property>
+            <property name="HRef">${COMMONURL}/MenuTree.jsp</property>
+            <property name="Label">Construction_VerificationListPosition/Product.Label</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="ModeSearch">READONLY</property>
+            <trigger event="UI_FIELD_AUTOCOMPLETE" method="autoComplete4Product"
+                name="Construction_VerificationListPositionTable.product.UI_FIELD_AUTOCOMPLETE"
+                program="net.moxter.eFapsApp.construction.VerificationList" />
+            <trigger event="UI_FIELD_UPDATE" method="updateFields4Product"
+                name="Construction_VerificationListPositionTable.product.UI_FIELD_UPDATE"
+                program="net.moxter.eFapsApp.construction.VerificationList" />
+        </field>
+        <field name="productDesc">
+            <property name="Columns">90</property>
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="ModeSearch">READONLY</property>
+            <property name="Attribute">ProductDesc</property>
+            <property name="Label">Construction_VerificationListPosition/ProductDesc.Label</property>
+            <property name="Width">10</property>
+        </field>
+        <field name="uoM">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="ModeView">NONE</property>
+            <property name="Attribute">UoM</property>
+            <property name="Label">Construction_VerificationListPosition/UoM.Label</property>
+        </field>
+        <field name="uom4View">
+            <property name="Width">1</property>
+            <property name="ModeCreate">NONE</property>
+            <property name="ModeEdit">NONE</property>
+            <property name="ModeSearch">READONLY</property>
+            <property name="Select">linkto[UoM].attribute[Name]</property>
+            <property name="Label">Construction_VerificationListPosition/UoM.Label</property>
+        </field>
+        <field name="netUnitPrice">
+            <property name="ModeCreate">EDITABLE</property>
+            <property name="ModeEdit">EDITABLE</property>
+            <property name="Attribute">NetUnitPrice</property>
+            <property name="Label">Construction_VerificationListPosition/NetUnitPrice.Label</property>
+            <property name="Align">right</property>
+            <trigger event="UI_FIELD_UPDATE" method="updateFields4NetUnitPrice"
+                name="Construction_VerificationListPositionTable.netUnitPrice.UI_FIELD_UPDATE"
+                program="net.moxter.eFapsApp.construction.VerificationList" />
+        </field>
+        <field name="netPrice">
+            <property name="ModeCreate">READONLY</property>
+            <property name="Attribute">NetPrice</property>
+            <property name="Label">Construction_VerificationListPosition/NetPrice.Label</property>
+            <property name="Align">right</property>
+        </field>
+    </definition>
+</ui-table>

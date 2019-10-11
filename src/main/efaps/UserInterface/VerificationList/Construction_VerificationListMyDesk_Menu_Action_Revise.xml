@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2010 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>8d65c9e9-b86e-4586-b096-380cdcfd952d</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_VerificationListMyDesk_Menu_Action_Revise</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <target>
+            <execute method="revise" program="net.moxter.eFapsApp.construction.VerificationList">
+                <property name="ReviseRelations">Construction_ProjectService2VerificationList;Construction_VerificationListPosition</property>
+                <property name="ReviseRelationsAttribute">ToLink;VerificationListLink</property>
+                <property name="Status">Canceled</property>
+                <property name="RevisionStatus">Open</property>
+            </execute>
+            <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
+                method="configCheck"
+                name="Construction_VerificationListMyDesk_Menu_Action_Revise.UI_ACCESSCHECK"
+                event="UI_ACCESSCHECK">
+                <property name="SystemConfig">Construction-Configuration</property>
+                <property name="Attribute">net.moxter.eFapsApp.construction.VerificationListManual</property>
+            </trigger>
+        </target>
+        <property name="AskUser">true</property>
+        <property name="Submit">true</property>
+        <property name="SubmitSelectedRows">1</property>
+    </definition>
+</ui-command>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Copyright 2007 - 2014 Jan Moxter
+
+  All Rights Reserved.
+? This program contains proprietary and trade secret information of
+? Jan Moxter Copyright notice is precautionary only and does not
+? evidence any actual or intended publication of such program.
+
+
+
+-->
+<ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>3f0b0415-95fa-440a-96b1-896dd5d87f30</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_VerificationListTree_Menu_Action_Edit</name>
+        <access>
+            <role>Construction_Admin</role>
+        </access>
+        <!-- target definitions -->
+        <target>
+            <form>Construction_VerificationListForm</form>
+            <execute method="edit" program="net.moxter.eFapsApp.construction.VerificationList" >
+                <property name="PositionType">Construction_VerificationListPosition</property>
+            </execute>
+            <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
+                method="configCheck"
+                name="Construction_VerificationListTree_Menu_Action_Edit.UI_ACCESSCHECK"
+                event="UI_ACCESSCHECK">
+                <property name="SystemConfig">Construction-Configuration</property>
+                <property name="Attribute">net.moxter.eFapsApp.construction.VerificationListManual</property>
+            </trigger>
+            <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
+                method="check4Status"
+                name="Construction_VerificationListTree_Menu_Action_Edit.2.UI_ACCESSCHECK"
+                event="UI_ACCESSCHECK"
+                index="2">
+                <property name="Status">Open</property>
+            </trigger>
+        </target>
+        <!-- properties -->
+        <property name="Target">modal</property>
+        <property name="TargetMode">edit</property>
+        <property name="WindowHeight">750</property>
+        <property name="WindowWidth">1150</property>
+    </definition>
+</ui-command>

@@ -22,7 +22,7 @@
         </access>
         <!-- target definitions -->
         <target>
-            <execute method="revise" program="net.moxter.eFapsApp.construction.CostEstimate">
+            <execute method="revise" program="org.efaps.esjp.construction.CostEstimate">
                 <property name="ReviseRelations">Construction_ProjectService2CostEstimate;Construction_CostEstimatePositionAbstract;Construction_CostEstimatePercentageCost</property>
                 <property name="ReviseRelationsAttribute">ToLink;CostEstimateAbstractLink;CostEstimateLink</property>
                 <property name="Status">Canceled</property>

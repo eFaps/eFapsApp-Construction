@@ -30,11 +30,11 @@
             <property name="UIType">SNIPPLET</property>
             <trigger event="UI_FIELD_VALUE" index="1" method="setDefaultFilter"
                 name="Sales_InventoryReportForm.filter.UI_FIELD_VALUE.1"
-                program="net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport">
-                <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport.FilterKey</property>
+                program="org.efaps.esjp.construction.reports.CostEstimateEntryPartListReport">
+                <property name="FilterKey">org.efaps.esjp.construction.reports.CostEstimateEntryPartListReport.FilterKey</property>
                 <property name="Field01">posType</property>
                 <property name="FilterType01">Enum</property>
-                <property name="FilterDefault01">net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport_Base$PosType</property>
+                <property name="FilterDefault01">org.efaps.esjp.construction.reports.CostEstimateEntryPartListReport_Base$PosType</property>
             </trigger>
             <trigger event="UI_FIELD_VALUE" index="2" method="getFilterFieldValue"
                 name="Sales_InventoryReportForm.filter.UI_FIELD_VALUE.2"

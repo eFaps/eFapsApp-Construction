@@ -28,7 +28,7 @@
             <property name="TargetShowCheckBoxes">true</property>
             <property name="ModeEdit">READONLY</property>
             <table>Construction_CostEstimateEntrySheetSelectTable</table>
-            <evaluate program="net.moxter.eFapsApp.construction.CostEstimate" method="getEntrySheets4Connect">
+            <evaluate program="org.efaps.esjp.construction.CostEstimate" method="getEntrySheets4Connect">
                 <property name="Type">Construction_EntrySheet</property>
             </evaluate>
         </field>

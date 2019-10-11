@@ -29,7 +29,7 @@
                 name="Construction_VerificationListMyDesk_Menu_Action_Delete.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK">
                 <property name="SystemConfig">Construction-Configuration</property>
-                <property name="Attribute">net.moxter.eFapsApp.construction.VerificationListManual</property>
+                <property name="Attribute">org.efaps.esjp.construction.VerificationListManual</property>
             </trigger>
         </target>
         <property name="AskUser">true</property>

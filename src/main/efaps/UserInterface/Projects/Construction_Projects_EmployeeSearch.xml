@@ -22,7 +22,7 @@
         <target>
             <form>HumanResource_EmployeeForm</form>
             <table>HumanResource_EmployeeTable</table>
-            <evaluate method="employee4Project" program="net.moxter.eFapsApp.construction.Search">
+            <evaluate method="employee4Project" program="org.efaps.esjp.construction.Search">
                 <property name="Type">HumanResource_Employee</property>
                 <property name="ExpandChildTypes">true</property>
                 <property name="IgnoreCase4Fields">firstName;lastName</property>

@@ -31,13 +31,13 @@
         <icon>Filter</icon>
         <target>
             <form>Construction_Projects_CostEstimateSummaryReportFilterForm</form>
-            <execute method="setFilter" program="net.moxter.eFapsApp.construction.reports.CostEstimateSummaryReport">
-                <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimateSummaryReport4Project.FilterKey</property>
+            <execute method="setFilter" program="org.efaps.esjp.construction.reports.CostEstimateSummaryReport">
+                <property name="FilterKey">org.efaps.esjp.construction.reports.CostEstimateSummaryReport4Project.FilterKey</property>
             </execute>
         </target>
         <property name="Target">modal</property>
         <property name="TargetMode">edit</property>
         <property name="Label">report.Filter</property>
-        <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimateSummaryReport4Project.FilterKey</property>
+        <property name="FilterKey">org.efaps.esjp.construction.reports.CostEstimateSummaryReport4Project.FilterKey</property>
     </definition>
 </ui-command>

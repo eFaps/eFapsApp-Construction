@@ -28,7 +28,7 @@
         <target>
             <form>Construction_CostEstimateCreateForm</form>
             <execute method="create"
-                program="net.moxter.eFapsApp.construction.CostEstimate">
+                program="org.efaps.esjp.construction.CostEstimate">
                 <property name="StatusGroup">Construction_CostEstimateStatus</property>
                 <property name="Status">Open</property>
                 <property name="UseNumberGenerator4Name">true</property>

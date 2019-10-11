@@ -24,7 +24,7 @@
         </access>
         <target>
             <execute method="revise"
-                program="net.moxter.eFapsApp.construction.EntrySheet">
+                program="org.efaps.esjp.construction.EntrySheet">
                 <property name="ReviseRelations">Construction_ProjectService2EntrySheet;Construction_EntrySheetPosition;Construction_CostEstimate2EntrySheet</property>
                 <property name="ReviseRelationsAttribute">ToLink;EntrySheetLink;ToLink</property>
                 <property name="Status">Canceled</property>

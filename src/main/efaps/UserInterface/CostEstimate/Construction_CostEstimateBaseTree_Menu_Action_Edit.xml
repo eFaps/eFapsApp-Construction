@@ -27,7 +27,7 @@
         <!-- target definitions -->
         <target>
             <form>Construction_CostEstimateBaseForm</form>
-            <execute method="edit" program="net.moxter.eFapsApp.construction.CostEstimate" />
+            <execute method="edit" program="org.efaps.esjp.construction.CostEstimate" />
             <trigger event="UI_ACCESSCHECK" method="check4Status"
                 name="Construction_CostEstimateBaseTree_Menu_Action_Edit.UI_ACCESSCHECK"
                 program="org.efaps.esjp.admin.access.AccessCheck4UI">

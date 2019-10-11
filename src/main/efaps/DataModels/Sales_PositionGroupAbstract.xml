@@ -79,7 +79,7 @@
             <sqltable>Construction_PositionGroupExtSQLTable</sqltable>
             <sqlcolumn>SUMSTOTAL</sqlcolumn>
             <trigger
-                program="net.moxter.innobierto.construction.CostEstimate"
+                program="org.efaps.esjp.construction.CostEstimate"
                 method="setScale4ReadValue"
                 name="Sales_PositionGroupAbstract.SumsTotal.READ_VALUE"
                 event="READ_VALUE">
@@ -92,7 +92,7 @@
             <sqltable>Construction_PositionGroupExtSQLTable</sqltable>
             <sqlcolumn>RATESUMSTOTAL</sqlcolumn>
             <trigger
-                program="net.moxter.innobierto.construction.CostEstimate"
+                program="org.efaps.esjp.construction.CostEstimate"
                 method="setScale4ReadValue"
                 name="Sales_PositionGroupAbstract.RateSumsTotal.READ_VALUE"
                 event="READ_VALUE">

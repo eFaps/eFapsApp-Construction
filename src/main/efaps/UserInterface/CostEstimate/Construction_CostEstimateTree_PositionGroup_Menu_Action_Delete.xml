@@ -25,7 +25,7 @@
             <role>Construction_Admin</role>
         </access>
         <target>
-            <execute program="net.moxter.eFapsApp.construction.CostEstimatePosGroup"
+            <execute program="org.efaps.esjp.construction.CostEstimatePosGroup"
                 method="deleteGroupPosition" />
             <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
                 method="check4Status"

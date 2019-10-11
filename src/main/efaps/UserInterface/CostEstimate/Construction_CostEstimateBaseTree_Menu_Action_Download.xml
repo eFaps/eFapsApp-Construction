@@ -26,7 +26,7 @@
         </access>
         <!-- target definitions -->
         <target>
-            <execute program="net.moxter.eFapsApp.construction.CostEstimate"
+            <execute program="org.efaps.esjp.construction.CostEstimate"
                 method="downloadCostEstimate">
                 <property name="JasperReport">Construction_CostEstimateBase</property>
                 <property name="Mime">pdf</property>

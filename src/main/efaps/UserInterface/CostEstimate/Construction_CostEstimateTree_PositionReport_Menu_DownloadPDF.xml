@@ -21,9 +21,9 @@
         <icon>Document_PDF</icon>
         <target>
             <execute method="exportReport"
-                program="net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport">
+                program="org.efaps.esjp.construction.reports.CostEstimatePositionReport">
                 <property name="Mime">pdf</property>
-                 <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport.FilterKey</property>
+                 <property name="FilterKey">org.efaps.esjp.construction.reports.CostEstimatePositionReport.FilterKey</property>
             </execute>
         </target>
 

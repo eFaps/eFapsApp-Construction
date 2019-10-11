@@ -28,7 +28,7 @@
             <property name="Label">org.efaps.esjp.construction.reports.CostEstimatePositionReport.type</property>
             <trigger event="UI_FIELD_VALUE" method="getTypeFieldValue"
                 name="Construction_Projects_CostEstimatePositionReportFilterForm.dateTo.UI_FIELD_VALUE"
-                program="net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport">
+                program="org.efaps.esjp.construction.reports.CostEstimatePositionReport">
                 <property name="ListType">CHECKBOX</property>
                 <property name="Type01">Construction_CostEstimateBase</property>
                 <property name="Type02">Construction_CostEstimateRealization</property>
@@ -42,7 +42,7 @@
             <property name="Label">org.efaps.esjp.construction.reports.CostEstimatePositionReport.status</property>
             <trigger event="UI_FIELD_VALUE" method="getStatusFieldValue"
                 name="Construction_Projects_CostEstimatePositionReportFilterForm.dateTo.UI_FIELD_VALUE"
-                program="net.moxter.eFapsApp.construction.reports.CostEstimatePositionReport">
+                program="org.efaps.esjp.construction.reports.CostEstimatePositionReport">
                 <property name="ListType">CHECKBOX</property>
                 <property name="StatusGroup">Construction_CostEstimateStatus</property>
                 <property name="Status01">Open</property>

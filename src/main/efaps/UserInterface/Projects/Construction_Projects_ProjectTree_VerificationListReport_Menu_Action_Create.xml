@@ -19,7 +19,7 @@
         <version-expression>(version==latest)</version-expression>
         <name>Construction_Projects_ProjectTree_VerificationListReport_Menu_Action_Create</name>
         <target>
-            <execute method="create4Project" program="net.moxter.eFapsApp.construction.VerificationList">
+            <execute method="create4Project" program="org.efaps.esjp.construction.VerificationList">
             </execute>
         </target>
         <property name="AskUser">true</property>

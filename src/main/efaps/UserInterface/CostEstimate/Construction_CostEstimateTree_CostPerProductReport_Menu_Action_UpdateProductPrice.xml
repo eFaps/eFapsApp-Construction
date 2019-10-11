@@ -23,7 +23,7 @@
         </access>
         <target>
             <form>Construction_CostEstimateUpdateProductPriceForm</form>
-            <execute program="net.moxter.eFapsApp.construction.CostEstimate"
+            <execute program="org.efaps.esjp.construction.CostEstimate"
                 method="updateProductPrice" />
         </target>
         <property name="TargetMode">create</property>

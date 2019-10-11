@@ -35,14 +35,14 @@
         <target>
             <form>Construction_EntrySheetForm</form>
             <execute method="create"
-                program="net.moxter.eFapsApp.construction.EntrySheet">
+                program="org.efaps.esjp.construction.EntrySheet">
                 <property name="UseNumberGenerator4Name">true</property>
                 <property name="PositionType">Construction_EntrySheetPosition</property>
                 <property name="StatusGroup">Construction_EntrySheetStatus</property>
                 <property name="Status">Open</property>
             </execute>
             <validate method="validateEntrySheet"
-                program="net.moxter.eFapsApp.construction.EntrySheet" />
+                program="org.efaps.esjp.construction.EntrySheet" />
         </target>
         <!-- properties -->
         <property name="Target">modal</property>

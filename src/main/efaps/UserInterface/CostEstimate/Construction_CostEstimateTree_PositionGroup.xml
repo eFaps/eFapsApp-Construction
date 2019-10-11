@@ -28,7 +28,7 @@
         <target>
             <menu>Construction_CostEstimateTree_PositionGroup_Menu</menu>
             <table>Construction_CostEstimatePosition4PositionGroupTable</table>
-            <evaluate program="net.moxter.eFapsApp.construction.CostEstimateStucturBrowser">
+            <evaluate program="org.efaps.esjp.construction.CostEstimateStucturBrowser">
                 <property name="Type">Sales_PositionGroupRoot</property>
             </evaluate>
         </target>

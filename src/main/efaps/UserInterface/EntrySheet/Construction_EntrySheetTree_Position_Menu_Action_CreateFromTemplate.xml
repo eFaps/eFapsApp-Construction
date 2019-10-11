@@ -22,9 +22,9 @@
         <target>
             <form>Construction_TemplatePartListCreateFromProductForm</form>
             <execute method="createEntryFromTemplate"
-                program="net.moxter.eFapsApp.construction.EntryPartList" />
+                program="org.efaps.esjp.construction.EntryPartList" />
             <validate method="validateCreateFromTemplate"
-                program="net.moxter.eFapsApp.construction.EntryPartList" />
+                program="org.efaps.esjp.construction.EntryPartList" />
             <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
                 method="check4Status"
                 name="Construction_EntrySheetTree_Position_Menu_Action_CreateFromTemplate.UI_ACCESSCHECK"

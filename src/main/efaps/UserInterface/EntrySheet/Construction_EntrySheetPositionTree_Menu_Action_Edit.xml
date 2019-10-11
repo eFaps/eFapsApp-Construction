@@ -29,7 +29,7 @@
         </access>
         <target>
             <form>Construction_EntrySheetPositionForm</form>
-            <execute program="net.moxter.eFapsApp.construction.EntrySheet" method="editPosition"/>
+            <execute program="org.efaps.esjp.construction.EntrySheet" method="editPosition"/>
         </target>
         <property name="Target">modal</property>
         <property name="TargetMode">edit</property>

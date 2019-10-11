@@ -32,7 +32,7 @@
         <target>
 
             <form>Construction_CostEstimateBaseForm</form>
-            <execute program="net.moxter.eFapsApp.construction.CostEstimate" method="edit"/>
+            <execute program="org.efaps.esjp.construction.CostEstimate" method="edit"/>
             <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
                 method="check4Status"
                 name="Sales_QuotationTree_Menu_Action_Edit.UI_ACCESSCHECK"

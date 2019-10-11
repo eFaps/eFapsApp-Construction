@@ -24,7 +24,7 @@
         </access>
         <target>
             <form>Construction_CostEstimateGroupForm</form>
-            <execute method="createGroup" program="net.moxter.eFapsApp.construction.CostEstimatePosGroup" />
+            <execute method="createGroup" program="org.efaps.esjp.construction.CostEstimatePosGroup" />
             <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
                 method="check4Status"
                 name="Construction_CostEstimateTree_PositionGroup_Menu_Action_CreatePositionGroup.UI_ACCESSCHECK"

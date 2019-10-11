@@ -26,7 +26,7 @@
         <target>
             <form>Construction_CostEstimateGroupUpDownForm</form>
             <execute method="upDownPositionGroup"
-                program="net.moxter.eFapsApp.construction.CostEstimatePosGroup" />
+                program="org.efaps.esjp.construction.CostEstimatePosGroup" />
             <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
                 method="check4Status"
                 name="Construction_CostEstimateTree_PositionGroup_Menu_Action_UpDown.UI_ACCESSCHECK"

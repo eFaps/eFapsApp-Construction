@@ -21,7 +21,7 @@
         </access>
         <target>
             <form>Construction_EntryPartListSetEfficiencyOverAllForm</form>
-            <execute program="net.moxter.eFapsApp.construction.EntrySheet"
+            <execute program="org.efaps.esjp.construction.EntrySheet"
                 method="setEfficiencyOverAll"/>
             <trigger event="UI_ACCESSCHECK" method="check4Status"
                 name="Construction_EntrySheetTree_Menu_Action_SetEfficiencyOverAll"

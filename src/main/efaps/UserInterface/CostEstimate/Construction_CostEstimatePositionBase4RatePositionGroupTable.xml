@@ -31,7 +31,7 @@
             <property name="Label">Sales_QuotationPosition/Product.Label</property>
             <property name="ModeCreate">EDITABLE</property>
             <property name="ModeEdit">EDITABLE</property>
-            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+            <trigger program="org.efaps.esjp.construction.CostEstimate"
                 method="getAternateInstance"
                 name="Construction_CostEstimatePositionBase4RatePositionGroupTable.product.UI_FIELD_ALTINST"
                 event="UI_FIELD_ALTINST"></trigger>

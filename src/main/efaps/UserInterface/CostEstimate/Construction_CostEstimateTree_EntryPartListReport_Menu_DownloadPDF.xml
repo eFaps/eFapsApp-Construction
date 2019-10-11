@@ -18,7 +18,7 @@
         <name>Construction_CostEstimateTree_EntryPartListReport_Menu_DownloadPDF</name>
         <icon>Document_PDF</icon>
         <target>
-            <execute method="exportReport" program="net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport">
+            <execute method="exportReport" program="org.efaps.esjp.construction.reports.CostEstimateEntryPartListReport">
                 <property name="Mime">pdf</property>
             </execute>
         </target>

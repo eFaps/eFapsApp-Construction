@@ -22,7 +22,7 @@
         <icon>Document_PDF</icon>
         <target>
             <execute method="exportReport"
-                program="net.moxter.eFapsApp.construction.reports.CostEstimateCostPerProductReport">
+                program="org.efaps.esjp.construction.reports.CostEstimateCostPerProductReport">
                 <property name="Mime">pdf</property>
             </execute>
         </target>

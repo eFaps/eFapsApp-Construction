@@ -31,7 +31,7 @@
             <property name="TargetShowCheckBoxes">true</property>
             <property name="TargetStructurBrowserField">productDesc</property>
             <table>Construction_CostEstimatePosition4PositionGroupMoveTable</table>
-            <evaluate program="net.moxter.eFapsApp.construction.CostEstimateStucturBrowser">
+            <evaluate program="org.efaps.esjp.construction.CostEstimateStucturBrowser">
                 <property name="Type">Sales_PositionGroupRoot</property>
                 <property name="includeChildTypes">false</property>
             </evaluate>

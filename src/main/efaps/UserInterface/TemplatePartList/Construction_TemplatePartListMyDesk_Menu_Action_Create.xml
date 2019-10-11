@@ -23,8 +23,8 @@
         </access>
         <target>
             <form>Construction_TemplatePartListForm</form>
-            <execute method="create" program="net.moxter.eFapsApp.construction.EntryPartList" />
-            <validate method="validateCreateTemplate" program="net.moxter.eFapsApp.construction.EntryPartList" />
+            <execute method="create" program="org.efaps.esjp.construction.EntryPartList" />
+            <validate method="validateCreateTemplate" program="org.efaps.esjp.construction.EntryPartList" />
         </target>
 
         <!-- properties -->

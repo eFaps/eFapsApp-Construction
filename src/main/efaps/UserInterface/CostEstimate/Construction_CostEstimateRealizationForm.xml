@@ -22,7 +22,7 @@
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
             <trigger event="UI_FIELD_VALUE" method="activatePositionsCalculator"
                 name="Construction_CostEstimateRealizationForm.activatePositionsCalculator.UI_FIELD_VALUE"
-                program="net.moxter.eFapsApp.construction.CostEstimate" />
+                program="org.efaps.esjp.construction.CostEstimate" />
         </field>
         <field character="Group" name="dateGroup">
             <property name="GroupCount">2</property>
@@ -45,7 +45,7 @@
             <property name="Required">true</property>
             <trigger event="UI_FIELD_VALUE" method="getSalesPersonFieldValue"
                 name="Construction_CostEstimateRealizationForm.salesperson.UI_FIELD_VALUE"
-                program="net.moxter.eFapsApp.construction.CostEstimate">
+                program="org.efaps.esjp.construction.CostEstimate">
                 <property name="Type">Admin_User_Person</property>
                 <property name="Phrase">$&lt;attribute[LastName]&gt;, $&lt;attribute[FirstName]&gt;</property>
                 <property name="OrderSelect">attribute[LastName]</property>
@@ -194,10 +194,10 @@
             <property name="ModeView">NONE</property>
             <trigger event="UI_FIELD_VALUE" method="rateCurrencyFieldValueUI"
                 name="Construction_CostEstimateRealizationForm.rateCurrencyId.UI_FIELD_VALUE"
-                program="net.moxter.eFapsApp.construction.CostEstimate" />
+                program="org.efaps.esjp.construction.CostEstimate" />
             <trigger event="UI_FIELD_UPDATE" method="updateFields4RateCurrency"
                 name="Construction_CostEstimateRealizationForm.currencyId.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.CostEstimate" />
+                program="org.efaps.esjp.construction.CostEstimate" />
         </field>
         <field name="rateCurrencyData">
             <property name="ModePrint">NONE</property>
@@ -214,7 +214,7 @@
             <property name="TargetStructurBrowserField">productDesc</property>
             <table>Construction_CostEstimatePositionRealization4PositionGroupTable</table>
             <evaluate
-                program="net.moxter.eFapsApp.construction.CostEstimateStucturBrowser">
+                program="org.efaps.esjp.construction.CostEstimateStucturBrowser">
                 <property name="Type">Sales_PositionGroupRoot</property>
             </evaluate>
         </field>
@@ -224,7 +224,7 @@
             <property name="TargetStructurBrowserField">productDesc</property>
             <table>Construction_CostEstimatePositionRealization4PositionGroupTable</table>
             <evaluate
-                program="net.moxter.eFapsApp.construction.CostEstimateStucturBrowser">
+                program="org.efaps.esjp.construction.CostEstimateStucturBrowser">
                 <property name="Type">Sales_PositionGroupRoot</property>
             </evaluate>
         </field>
@@ -278,7 +278,7 @@
             <property name="ModeCreate">NONE</property>
             <property name="ModeEdit">NONE</property>
             <property name="ModeView">READONLY</property>
-            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+            <trigger program="org.efaps.esjp.construction.CostEstimate"
                 method="accessCheck4Rate"
                 name="Construction_CostEstimateRealizationForm.rate4ReadHeading.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK"/>
@@ -288,7 +288,7 @@
             <property name="ModeCreate">NONE</property>
             <property name="ModeEdit">NONE</property>
             <property name="ModeView">READONLY</property>
-            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+            <trigger program="org.efaps.esjp.construction.CostEstimate"
                 method="accessCheck4Rate"
                 name="Construction_CostEstimateRealizationForm.rateGroup.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK"/>
@@ -297,7 +297,7 @@
             <property name="Attribute">RateCurrencyId</property>
             <property name="ModeCreate">NONE</property>
             <property name="ModeEdit">NONE</property>
-            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+            <trigger program="org.efaps.esjp.construction.CostEstimate"
                 method="accessCheck4Rate"
                 name="Construction_CostEstimateRealizationForm.rateCurrencyId4Read.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK"/>
@@ -311,7 +311,7 @@
         <field name="rate4view">
             <property name="Attribute">Rate</property>
             <property name="ModeEdit">NONE</property>
-            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+            <trigger program="org.efaps.esjp.construction.CostEstimate"
                 method="accessCheck4Rate"
                 name="Construction_CostEstimateRealizationForm.rate4view.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK"/>
@@ -320,7 +320,7 @@
             <property name="Level">3</property>
             <property name="Label">Construction_CostEstimateRealizationForm.headingPositon.Heading</property>
             <property name="ModeEdit">NONE</property>
-            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+            <trigger program="org.efaps.esjp.construction.CostEstimate"
                 method="accessCheck4Rate"
                 name="Construction_CostEstimateRealizationForm.rateHeadingPositon.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK"/>
@@ -328,13 +328,13 @@
         <field name="ratePositionTable" character="Target">
             <property name="ModeEdit">NONE</property>
             <property name="TargetStructurBrowserField">productDesc</property>
-            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+            <trigger program="org.efaps.esjp.construction.CostEstimate"
                 method="accessCheck4Rate"
                 name="Construction_CostEstimateRealizationForm.ratePositionTable.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK"/>
             <table>Construction_CostEstimatePositionRealization4RatePositionGroupTable</table>
             <evaluate
-                program="net.moxter.eFapsApp.construction.CostEstimateStucturBrowser">
+                program="org.efaps.esjp.construction.CostEstimateStucturBrowser">
                 <property name="Type">Sales_PositionGroupRoot</property>
             </evaluate>
         </field>
@@ -343,7 +343,7 @@
             <property name="Phrase">$&lt;attribute[RateNetTotal]&gt; $&lt;linkto[RateCurrencyId].attribute[Symbol]&gt;</property>
             <property name="Label">Construction_EntrySheet/RateNetTotal.Label</property>
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
-            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+            <trigger program="org.efaps.esjp.construction.CostEstimate"
                 method="accessCheck4Rate"
                 name="Construction_CostEstimateRealizationForm.rateNetTotal4Read.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK"/>
@@ -351,7 +351,7 @@
         <field name="rateTaxes">
             <property name="Attribute">RateTaxes</property>
             <property name="ModeEdit">NONE</property>
-            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+            <trigger program="org.efaps.esjp.construction.CostEstimate"
                 method="accessCheck4Rate"
                 name="Construction_CostEstimateRealizationForm.rateTaxes.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK"/>
@@ -361,7 +361,7 @@
             <property name="Phrase">$&lt;attribute[RateCrossTotal]&gt; $&lt;linkto[RateCurrencyId].attribute[Symbol]&gt;</property>
             <property name="Label">Construction_EntrySheet/RateCrossTotal.Label</property>
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
-            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+            <trigger program="org.efaps.esjp.construction.CostEstimate"
                 method="accessCheck4Rate"
                 name="Construction_CostEstimateRealizationForm.rateCrossTotal4Read.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK"/>
@@ -374,7 +374,7 @@
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
             <trigger event="UI_FIELD_VALUE" method="getJavaScriptUIValue"
                 name="Construction_CostEstimateRealizationForm.javaScript.UI_Field_Value"
-                program="net.moxter.eFapsApp.construction.CostEstimate" />
+                program="org.efaps.esjp.construction.CostEstimate" />
         </field>
         <field name="jsLinkField">
             <property name="ModeEdit">HIDDEN</property>
@@ -391,7 +391,7 @@
             <property name="HideLabel">true</property>
             <property name="ModeView">NONE</property>
             <property name="ModeEdit">READONLY</property>
-            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+            <trigger program="org.efaps.esjp.construction.CostEstimate"
                 method="executeCalculatorOnScript"
                 name="Construction_CostEstimateBaseForm.executeCalculator.UI_FIELD_UPDATE"
                 event="UI_FIELD_UPDATE" />

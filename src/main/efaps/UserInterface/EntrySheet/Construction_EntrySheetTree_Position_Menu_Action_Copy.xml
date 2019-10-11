@@ -24,7 +24,7 @@
         <target>
             <form>Construction_EntryPartListCopyForm</form>
             <execute method="copyEntry"
-                 program="net.moxter.eFapsApp.construction.EntryPartList" />
+                 program="org.efaps.esjp.construction.EntryPartList" />
             <trigger event="UI_ACCESSCHECK" method="check4Status"
                 name="Construction_EntrySheetTree_Position_Menu_Action_Copy.UI_ACCESSCHECK"
                 program="org.efaps.esjp.admin.access.AccessCheck4UI">

@@ -27,7 +27,7 @@
             <role>Construction_Admin</role>
         </access>
         <target>
-            <execute program="net.moxter.eFapsApp.construction.CostEstimate" method="deleteEntrySheet"/>
+            <execute program="org.efaps.esjp.construction.CostEstimate" method="deleteEntrySheet"/>
         </target>
         <!-- properties -->
         <property name="AskUser">true</property>

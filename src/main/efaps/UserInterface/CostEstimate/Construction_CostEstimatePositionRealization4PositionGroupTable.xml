@@ -34,11 +34,11 @@
             <property name="ModeEdit">EDITABLE</property>
             <trigger event="UI_FIELD_AUTOCOMPLETE" method="autoComplete4Product"
                 name="Construction_CostEstimatePosition4PositionGroupTable.product.UI_FIELD_AUTOCOMPLETE"
-                program="net.moxter.eFapsApp.construction.CostEstimate" />
+                program="org.efaps.esjp.construction.CostEstimate" />
             <trigger event="UI_FIELD_UPDATE" method="updateFields4Product"
                 name="Construction_CostEstimatePosition4PositionGroupTable.product.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.CostEstimate" />
-            <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+                program="org.efaps.esjp.construction.CostEstimate" />
+            <trigger program="org.efaps.esjp.construction.CostEstimate"
                 method="getAternateInstance"
                 name="Construction_CostEstimatePositionRealization4PositionGroupTable.product.UI_FIELD_ALTINST"
                 event="UI_FIELD_ALTINST"></trigger>
@@ -76,7 +76,7 @@
             <property name="Align">right</property>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4Quantity"
                 name="Construction_CostEstimatePosition4PositionGroupTable.product.UI_FIELD_AUTOCOMPLETE"
-                program="net.moxter.eFapsApp.construction.CostEstimate" />
+                program="org.efaps.esjp.construction.CostEstimate" />
         </field>
         <field name="netUnitPrice">
             <property name="Columns">10</property>

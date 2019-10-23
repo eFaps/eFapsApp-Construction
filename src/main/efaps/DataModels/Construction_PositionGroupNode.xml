@@ -16,27 +16,21 @@
  limitations under the License.
 
 -->
-<ui-command xmlns="http://www.efaps.org/xsd"
+<datamodel-type xmlns="http://www.efaps.org/xsd"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
-    <uuid>900d09fd-8e90-44af-b1b6-db679aecce86</uuid>
-    <file-application>eFapsApp-Construction</file-application>
+    <uuid>1a58dfa0-a824-488d-bed9-d711cdb9ed97</uuid>
+    <file-application>eFapsApp-Sales</file-application>
     <definition>
         <version-expression>(version==latest)</version-expression>
-        <name>Construction_ProductGeneralCostMyDesk</name>
-        <access>
-            <role>Construction_Admin</role>
-        </access>
-        <target>
-            <menu>Construction_ProductGeneralCostMyDesk_Menu</menu>
-            <table>Construction_ProductGeneralCostTable</table>
-            <evaluate
-                program="org.efaps.esjp.common.uitable.MultiPrint">
-                <property name="Type">Construction_ProductGeneralCostPosition</property>
-                <property name="ExpandChildTypes">true</property>
-            </evaluate>
-        </target>
-        <property name="Target">content</property>
-        <property name="TargetShowCheckBoxes">true</property>
+        <name>Construction_PositionGroupNode</name>
+        <parent>Construction_PositionGroupAbstract</parent>
+        <attribute>
+            <name>ParentGroupLink</name>
+            <type>Link</type>
+            <typelink>Construction_PositionGroupRoot</typelink>
+            <sqltable>Sales_PositionGroupSQLTable</sqltable>
+            <sqlcolumn>PARENTID</sqlcolumn>
+        </attribute>
     </definition>
-</ui-command>
+</datamodel-type>

@@ -21,13 +21,13 @@
             <property name="Columns">12</property>
             <property name="ModeEdit">EDITABLE</property>
             <property name="Attribute">Code</property>
-            <property name="Label">Sales_PositionGroupAbstract/Code.Label</property>
+            <property name="Label">Construction_PositionGroupAbstract/Code.Label</property>
         </field>
         <field name="product">
             <property name="HRef">TREE</property>
             <property name="Columns">14</property>
             <property name="Width">2</property>
-            <property name="Select">linkto[AbstractPositionAbstractLink].linkto[Product].attribute[Name]</property>
+            <property name="Select">linkto[AbstractPositionLink].linkto[Product].attribute[Name]</property>
             <property name="Label">Sales_QuotationPosition/Product.Label</property>
             <property name="ModeCreate">EDITABLE</property>
             <property name="ModeEdit">EDITABLE</property>
@@ -48,18 +48,18 @@
             <property name="ModeCreate">EDITABLE</property>
             <property name="ModeEdit">EDITABLE</property>
             <property name="ModeView">NONE</property>
-            <property name="Select">linkto[AbstractPositionAbstractLink].attribute[UoM]</property>
+            <property name="Select">linkto[AbstractPositionLink].attribute[UoM]</property>
             <property name="Label">Sales_QuotationPosition/UoM.Label</property>
         </field>
         <field name="uom4View">
             <property name="Width">1</property>
             <property name="ModeCreate">NONE</property>
             <property name="ModeEdit">NONE</property>
-            <property name="Select">linkto[AbstractPositionAbstractLink].linkto[UoM].attribute[Name]</property>
+            <property name="Select">linkto[AbstractPositionLink].linkto[UoM].attribute[Name]</property>
             <property name="Label">Sales_QuotationPosition/UoM.Label</property>
         </field>
         <field name="quantity">
-            <property name="Select">linkto[AbstractPositionAbstractLink].attribute[Quantity]</property>
+            <property name="Select">linkto[AbstractPositionLink].attribute[Quantity]</property>
             <property name="Label">Sales_QuotationPosition/Quantity.Label</property>
             <property name="ModeCreate">EDITABLE</property>
             <property name="ModeEdit">EDITABLE</property>
@@ -70,7 +70,7 @@
             <property name="Width">2</property>
             <property name="ModeView">READONLY</property>
             <property name="Align">right</property>
-            <property name="Select">linkto[AbstractPositionAbstractLink].attribute[RateNetUnitPrice]</property>
+            <property name="Select">linkto[AbstractPositionLink].attribute[RateNetUnitPrice]</property>
             <property name="Label">Sales_QuotationPosition/NetUnitPrice.Label</property>
         </field>
         <field name="netPrice4View">
@@ -78,7 +78,7 @@
             <property name="ModeEdit">NONE</property>
             <property name="ModeView">READONLY</property>
             <property name="Align">right</property>
-            <property name="Select">linkto[AbstractPositionAbstractLink].attribute[RateNetPrice]</property>
+            <property name="Select">linkto[AbstractPositionLink].attribute[RateNetPrice]</property>
             <property name="Label">Sales_QuotationPosition/NetPrice.Label</property>
         </field>
         <field name="sumsTotal4View">

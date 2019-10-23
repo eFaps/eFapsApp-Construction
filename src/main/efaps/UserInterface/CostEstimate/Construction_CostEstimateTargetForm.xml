@@ -215,7 +215,7 @@
             <table>Construction_CostEstimatePositionTarget4PositionGroupTable</table>
             <evaluate
                 program="org.efaps.esjp.construction.CostEstimateStucturBrowser">
-                <property name="Type">Sales_PositionGroupRoot</property>
+                <property name="Type">Construction_PositionGroupRoot</property>
             </evaluate>
         </field>
         <field character="Target" name="positionTable4View">
@@ -225,7 +225,7 @@
             <table>Construction_CostEstimatePositionTarget4PositionGroupTable</table>
             <evaluate
                 program="org.efaps.esjp.construction.CostEstimateStucturBrowser">
-                <property name="Type">Sales_PositionGroupRoot</property>
+                <property name="Type">Construction_PositionGroupRoot</property>
             </evaluate>
         </field>
         <field name="note">
@@ -335,7 +335,7 @@
             <table>Construction_CostEstimatePositionTarget4RatePositionGroupTable</table>
             <evaluate
                 program="org.efaps.esjp.construction.CostEstimateStucturBrowser">
-                <property name="Type">Sales_PositionGroupRoot</property>
+                <property name="Type">Construction_PositionGroupRoot</property>
             </evaluate>
         </field>
         <field name="rateNetTotal4Read">

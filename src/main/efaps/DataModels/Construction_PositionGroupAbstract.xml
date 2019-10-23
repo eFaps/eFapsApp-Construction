@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+ Copyright 2003 - 2010 The eFaps Team
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+-->
+<datamodel-type xmlns="http://www.efaps.org/xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+    <uuid>e48551f9-89ea-43cd-93fc-5edd475959e8</uuid>
+    <file-application>eFapsApp-Construction</file-application>
+    <definition>
+        <version-expression>(version==latest)</version-expression>
+        <name>Construction_PositionGroupAbstract</name>
+        <parent>Sales_PositionGroupAbstract</parent>
+        <purpose abstract="true"/>
+        <attribute>
+            <name>AbstractPositionLink</name>
+            <type>Link</type>
+            <typelink>Sales_PositionSumAbstract</typelink>
+            <sqltable>Sales_PositionGroupSQLTable</sqltable>
+            <sqlcolumn>POSID</sqlcolumn>
+        </attribute>
+        <attribute>
+            <name>SumsTotal</name>
+            <type>Decimal</type>
+            <sqltable>Construction_PositionGroupExtSQLTable</sqltable>
+            <sqlcolumn>SUMSTOTAL</sqlcolumn>
+            <trigger event="READ_VALUE"
+                method="setScale4ReadValue"
+                name="Sales_PositionGroupAbstract.SumsTotal.READ_VALUE"
+                program="org.efaps.esjp.construction.CostEstimate">
+                <property name="Formatter">TOTAL</property>
+            </trigger>
+        </attribute>
+        <attribute>
+            <name>RateSumsTotal</name>
+            <type>Decimal</type>
+            <sqltable>Construction_PositionGroupExtSQLTable</sqltable>
+            <sqlcolumn>RATESUMSTOTAL</sqlcolumn>
+            <trigger event="READ_VALUE"
+                method="setScale4ReadValue"
+                name="Sales_PositionGroupAbstract.RateSumsTotal.READ_VALUE"
+                program="org.efaps.esjp.construction.CostEstimate">
+                <property name="Formatter">TOTAL</property>
+            </trigger>
+        </attribute>
+    </definition>
+</datamodel-type>

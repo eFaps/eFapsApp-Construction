@@ -20,7 +20,7 @@
             <property name="Columns">12</property>
             <property name="ModeEdit">EDITABLE</property>
             <property name="Attribute">Code</property>
-            <property name="Label">Sales_PositionGroupAbstract/Code.Label</property>
+            <property name="Label">Construction_PositionGroupAbstract/Code.Label</property>
         </field>
         <field name="product">
             <property name="HRef">TREE</property>

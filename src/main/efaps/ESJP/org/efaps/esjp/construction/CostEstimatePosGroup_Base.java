@@ -162,16 +162,16 @@ public abstract class CostEstimatePosGroup_Base
                 for (int i = 0; i < nameArr.length; i++) {
                     final Insert insert = new Insert(isItem ? CIConstruction.PositionGroupItem
                                     : CIConstruction.PositionGroupNode);
-                    insert.add(CISales.PositionGroupNode.Name, nameArr[i]);
-                    insert.add(CISales.PositionGroupNode.ParentGroupLink, instance);
-                    insert.add(CISales.PositionGroupNode.DocumentAbstractLink, docInst);
-                    insert.add(CISales.PositionGroupNode.Level,
-                                    print.<Integer>getAttribute(CISales.PositionGroupRoot.Level) + 1);
-                    insert.add(CISales.PositionGroupNode.Order, order + i);
+                    insert.add(CIConstruction.PositionGroupNode.Name, nameArr[i]);
+                    insert.add(CIConstruction.PositionGroupItem.ParentGroupLink, instance);
+                    insert.add(CIConstruction.PositionGroupNode.DocumentAbstractLink, docInst);
+                    insert.add(CIConstruction.PositionGroupNode.Level,
+                                    print.<Integer>getAttribute(CIConstruction.PositionGroupRoot.Level) + 1);
+                    insert.add(CIConstruction.PositionGroupNode.Order, order + i);
 
                     if (isItem) {
                         newPosInstance = new CostEstimate().createDefaultPosition(_parameter, docInst, nameArr[i]);
-                        insert.add(CISales.PositionGroupItem.PositionAbstractLink, newPosInstance);
+                        insert.add(CIConstruction.PositionGroupItem.PositionLink, newPosInstance);
                     }
                     insert.execute();
                 }

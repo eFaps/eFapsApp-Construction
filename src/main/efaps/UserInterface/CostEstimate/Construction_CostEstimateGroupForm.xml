@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
 
-  Copyright 2003 - 2010 The eFaps Team
+  Copyright 2003 - 2019 The eFaps Team
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -14,17 +15,13 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
-  Author:          The eFaps Team
-  Revision:        $Rev$
-  Last Changed:    $Date$
-  Last Changed By: $Author$
 
 -->
-<ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<ui-form xmlns="http://www.efaps.org/xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>93b307e6-80b0-442e-a873-a61ac7487f80</uuid>
     <file-application>eFapsApp-Construction</file-application>
-    
     <definition>
         <version-expression>(version==latest)</version-expression>
         <name>Construction_CostEstimateGroupForm</name>
@@ -33,7 +30,8 @@
             <property name="ModeView">NONE</property>
             <property name="ModeEdit">NONE</property>
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
-            <trigger event="UI_FIELD_VALUE" method="getStoreOIDsFieldValue"
+            <trigger event="UI_FIELD_VALUE"
+                method="getStoreOIDsFieldValue"
                 name="Construction_PositionGroupForm.parentOID.UI_FIELD_VALUE"
                 program="org.efaps.esjp.common.uiform.Field" />
         </field>
@@ -43,7 +41,6 @@
             <property name="Label">Construction_CostEstimateGroupForm.name.Label</property>
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
             <property name="Required">true</property>
-            <property name="Columns">80</property>
             <property name="Rows">10</property>
         </field>
     </definition>

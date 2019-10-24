@@ -1701,10 +1701,10 @@ public abstract class CostEstimate_Base
 
         Instance costEstimateInst = _parameter.getInstance();
         if (costEstimateInst != null && costEstimateInst.isValid()
-                        && costEstimateInst.getType().isCIType(CISales.PositionGroupItem)) {
+                        && costEstimateInst.getType().isCIType(CIConstruction.PositionGroupItem)) {
             final PrintQuery print = new PrintQuery(costEstimateInst);
             final SelectBuilder selCostEstimateInst = SelectBuilder.get()
-                            .linkto(CISales.PositionGroupItem.DocumentAbstractLink).instance();
+                            .linkto(CIConstruction.PositionGroupItem.DocumentAbstractLink).instance();
             print.addSelect(selCostEstimateInst);
             print.execute();
             costEstimateInst = print.getSelect(selCostEstimateInst);
@@ -1723,7 +1723,7 @@ public abstract class CostEstimate_Base
             final Set<String> keySel = new TreeSet<>();
             final MultiPrintQuery multi = new MultiPrintQuery(tempList);
             final SelectBuilder selPosInst = SelectBuilder.get()
-                            .linkto(CISales.PositionGroupItem.PositionAbstractLink).instance();
+                            .linkto(CIConstruction.PositionGroupItem.PositionLink).instance();
             multi.addSelect(selPosInst);
             multi.executeWithoutAccessCheck();
             while (multi.next()) {
@@ -1779,7 +1779,8 @@ public abstract class CostEstimate_Base
                 _queryBldr.addWhereAttrInQuery(CIConstruction.EntrySheet.ID, attrQuery);
                 _queryBldr.addWhereAttrNotInQuery(CIConstruction.EntrySheet.ID, attrQuery2);
 
-                _queryBldr.addWhereAttrEqValue(CIConstruction.EntrySheet.Status, Status.find(CIConstruction.EntrySheetStatus.Open));
+                _queryBldr.addWhereAttrEqValue(CIConstruction.EntrySheet.Status,
+                                Status.find(CIConstruction.EntrySheetStatus.Open));
             }
         } .getCheckBoxList(_parameter);
 

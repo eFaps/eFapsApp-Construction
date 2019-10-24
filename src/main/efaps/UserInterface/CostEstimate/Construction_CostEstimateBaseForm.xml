@@ -219,7 +219,8 @@
             <table>Construction_CostEstimatePositionBase4PositionGroupTable</table>
             <evaluate program="org.efaps.esjp.construction.CostEstimateStucturBrowser">
                 <property name="Type">Construction_PositionGroupRoot</property>
-                <property name="Child_Type">Construction_PositionGroupNode</property>
+                <property name="Child_Type01">Construction_PositionGroupNode</property>
+                <property name="Child_Type02">Construction_PositionGroupItem</property>
                 <property name="Child_LinkFrom">ParentGroupLink</property>
             </evaluate>
         </field>
@@ -230,7 +231,8 @@
             <table>Construction_CostEstimatePositionBase4PositionGroupTable</table>
             <evaluate program="org.efaps.esjp.construction.CostEstimateStucturBrowser">
                 <property name="Type">Construction_PositionGroupRoot</property>
-                <property name="Child_Type">Construction_PositionGroupNode</property>
+                <property name="Child_Type01">Construction_PositionGroupNode</property>
+                <property name="Child_Type02">Construction_PositionGroupItem</property>
                 <property name="Child_LinkFrom">ParentGroupLink</property>
             </evaluate>
         </field>
@@ -341,6 +343,9 @@
             <table>Construction_CostEstimatePositionBase4RatePositionGroupTable</table>
             <evaluate program="org.efaps.esjp.construction.CostEstimateStucturBrowser">
                 <property name="Type">Construction_PositionGroupRoot</property>
+                <property name="Child_Type01">Construction_PositionGroupNode</property>
+                <property name="Child_Type02">Construction_PositionGroupItem</property>
+                <property name="Child_LinkFrom">ParentGroupLink</property>
             </evaluate>
         </field>
         <field name="rateNetTotal4Read">

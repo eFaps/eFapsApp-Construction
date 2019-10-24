@@ -1,10 +1,17 @@
 /*
- * Copyright 2007 - 2014 Jan Moxter
+ *  Copyright 2003 - 2019 The eFaps Team
  *
- * All Rights Reserved.
- * This program contains proprietary and trade secret information of
- * Jan Moxter Copyright notice is precautionary only and does not
- * evidence any actual or intended publication of such program.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
  */
 
@@ -12,7 +19,6 @@ package org.efaps.esjp.construction;
 
 import java.text.DecimalFormat;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -30,7 +36,7 @@ import org.efaps.db.Instance;
 import org.efaps.db.InstanceQuery;
 import org.efaps.db.MultiPrintQuery;
 import org.efaps.db.QueryBuilder;
-import org.efaps.esjp.ci.CISales;
+import org.efaps.esjp.ci.CIConstruction;
 import org.efaps.esjp.erp.NumberFormatter;
 import org.efaps.esjp.sales.Calculator;
 import org.efaps.esjp.sales.document.Quotation;
@@ -40,8 +46,6 @@ import org.efaps.ui.wicket.models.objects.UIStructurBrowser;
 import org.efaps.util.EFapsException;
 
 /**
- * TODO comment!
- *
  * @author Jan Moxter
  */
 @EFapsUUID("86a81b09-7b4d-43c3-84d6-bc72b5352ad4")
@@ -56,7 +60,7 @@ public abstract class CostEstimateStucturBrowser_Base
     protected Return internalExecute(final Parameter _parameter)
         throws EFapsException
     {
-        Context.getThreadContext().removeSessionAttribute(this.KEYMAP2SORT);
+        Context.getThreadContext().removeSessionAttribute(KEYMAP2SORT);
         final Map<Instance, Integer> map2sort = new HashMap<Instance, Integer>();
         final Return ret = new Return();
         final Map<?, ?> properties = (Map<?, ?>) _parameter.get(ParameterValues.PROPERTIES);
@@ -68,25 +72,26 @@ public abstract class CostEstimateStucturBrowser_Base
         if (_parameter.getInstance() != null) {
             final String[] posStr = (String[]) Context.getThreadContext().getSessionAttribute("selectedPositionGroup");
 
-            QueryBuilder queryBldr = new QueryBuilder(CISales.PositionGroupRoot);
+            QueryBuilder queryBldr = new QueryBuilder(CIConstruction.PositionGroupRoot);
             if (editGr && posStr != null) {
                 final Instance instPos = Instance.get(posStr[0]);
                 queryBldr = new QueryBuilder(Type.get(typeStr));
-                queryBldr.addWhereAttrEqValue(CISales.PositionGroupAbstract.ID, instPos);
+                queryBldr.addWhereAttrEqValue(CIConstruction.PositionGroupAbstract.ID, instPos);
             }
-            queryBldr.addWhereAttrEqValue(CISales.PositionGroupAbstract.DocumentAbstractLink, _parameter.getInstance());
+            queryBldr.addWhereAttrEqValue(CIConstruction.PositionGroupAbstract.DocumentAbstractLink,
+                            _parameter.getInstance());
             final MultiPrintQuery multi = queryBldr.getPrint();
-            multi.addAttribute(CISales.PositionGroupAbstract.Order);
+            multi.addAttribute(CIConstruction.PositionGroupAbstract.Order);
             multi.execute();
 
             while (multi.next()) {
                 tree.put(multi.getCurrentInstance(), null);
                 map2sort.put(multi.getCurrentInstance(),
-                                multi.<Integer>getAttribute(CISales.PositionGroupAbstract.Order));
+                                multi.<Integer>getAttribute(CIConstruction.PositionGroupAbstract.Order));
             }
         }
         if (!map2sort.isEmpty()) {
-            Context.getThreadContext().setSessionAttribute(this.KEYMAP2SORT, map2sort);
+            Context.getThreadContext().setSessionAttribute(KEYMAP2SORT, map2sort);
         }
         ret.put(ReturnValues.VALUES, tree);
         return ret;
@@ -106,34 +111,34 @@ public abstract class CostEstimateStucturBrowser_Base
     {
         final Map<Instance, Boolean> ret = new LinkedHashMap<Instance, Boolean>();
         if (_parameter.getInstance() != null) {
-            if (_parameter.getInstance().getType().isKindOf(CISales.PositionGroupRoot.getType())
-                            || _parameter.getInstance().getType().isKindOf(CISales.PositionGroupNode.getType())) {
+            if (_parameter.getInstance().getType().isKindOf(CIConstruction.PositionGroupRoot.getType())
+                            || _parameter.getInstance().getType().isKindOf(CIConstruction.PositionGroupNode.getType())) {
                 final Map<?, ?> properties = (Map<?, ?>) _parameter.get(ParameterValues.PROPERTIES);
 
                 final Boolean includeChildTypes = properties.containsKey("includeChildTypes")
                                 ? Boolean.parseBoolean((String) properties.get("includeChildTypes"))
                                 : true;
 
-                final QueryBuilder queryBldr = new QueryBuilder(CISales.PositionGroupNode);
-                queryBldr.addWhereAttrEqValue(CISales.PositionGroupNode.ParentGroupLink,
+                final QueryBuilder queryBldr = new QueryBuilder(CIConstruction.PositionGroupNode);
+                queryBldr.addWhereAttrEqValue(CIConstruction.PositionGroupNode.ParentGroupLink,
                                 _parameter.getInstance().getId());
                 final InstanceQuery query = queryBldr.getQuery();
                 query.setIncludeChildTypes(includeChildTypes);
                 final MultiPrintQuery multi = queryBldr.getPrint();
-                multi.addAttribute(CISales.PositionGroupAbstract.Order);
+                multi.addAttribute(CIConstruction.PositionGroupAbstract.Order);
                 multi.execute();
 
                 while (multi.next()) {
                     ret.put(multi.getCurrentInstance(), null);
                     Map<Instance, Integer> map2sort = new HashMap<Instance, Integer>();
-                    if (Context.getThreadContext().getSessionAttribute(this.KEYMAP2SORT) != null) {
+                    if (Context.getThreadContext().getSessionAttribute(KEYMAP2SORT) != null) {
                         map2sort = (Map<Instance, Integer>) Context.getThreadContext()
-                                        .getSessionAttribute(this.KEYMAP2SORT);
+                                        .getSessionAttribute(KEYMAP2SORT);
                     }
                     map2sort.put(multi.getCurrentInstance(),
-                                    multi.<Integer>getAttribute(CISales.PositionGroupRoot.Order));
+                                    multi.<Integer>getAttribute(CIConstruction.PositionGroupRoot.Order));
                     if (!map2sort.isEmpty()) {
-                        Context.getThreadContext().setSessionAttribute(this.KEYMAP2SORT, map2sort);
+                        Context.getThreadContext().setSessionAttribute(KEYMAP2SORT, map2sort);
                     }
                 }
             }
@@ -155,7 +160,7 @@ public abstract class CostEstimateStucturBrowser_Base
     {
         final Return ret = new Return();
         if (_parameter.getInstance() == null || !_parameter.getInstance().isValid()
-                        || !_parameter.getInstance().getType().equals(CISales.PositionGroupItem.getType())) {
+                        || !_parameter.getInstance().getType().equals(CIConstruction.PositionGroupItem.getType())) {
             ret.put(ReturnValues.TRUE, true);
         }
         return ret;
@@ -200,35 +205,30 @@ public abstract class CostEstimateStucturBrowser_Base
     {
         final UIStructurBrowser strBro = (UIStructurBrowser) _parameter.get(ParameterValues.CLASS);
 
-        Collections.sort(strBro.getChildren(), new Comparator<UIStructurBrowser>()
-        {
-            @Override
-            public int compare(final UIStructurBrowser _structurBrowser1,
-                               final UIStructurBrowser _structurBrowser2)
-            {
-                Integer value1 = 0;
-                Integer value2 = 0;
-                try {
-                    Map<Instance, Integer> map2sort = new HashMap<Instance, Integer>();
-                    if (Context.getThreadContext()
-                                    .getSessionAttribute(CostEstimateStucturBrowser_Base.this.KEYMAP2SORT) != null) {
-                        map2sort = (Map<Instance, Integer>) Context.getThreadContext()
-                                        .getSessionAttribute(CostEstimateStucturBrowser_Base.this.KEYMAP2SORT);
-                    }
-
-                    if (map2sort.containsKey(_structurBrowser1.getInstance())) {
-                        value1 = map2sort.get(_structurBrowser1.getInstance());
-                    }
-                    if (map2sort.containsKey(_structurBrowser2.getInstance())) {
-                        value2 = map2sort.get(_structurBrowser2.getInstance());
-                    }
-                } catch (final EFapsException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+        Collections.sort(strBro.getChildren(), (_structurBrowser1,
+         _structurBrowser2) -> {
+            Integer value1 = 0;
+            Integer value2 = 0;
+            try {
+                Map<Instance, Integer> map2sort = new HashMap<Instance, Integer>();
+                if (Context.getThreadContext()
+                                .getSessionAttribute(KEYMAP2SORT) != null) {
+                    map2sort = (Map<Instance, Integer>) Context.getThreadContext()
+                                    .getSessionAttribute(KEYMAP2SORT);
                 }
 
-                return value1.compareTo(value2);
+                if (map2sort.containsKey(_structurBrowser1.getInstance())) {
+                    value1 = map2sort.get(_structurBrowser1.getInstance());
+                }
+                if (map2sort.containsKey(_structurBrowser2.getInstance())) {
+                    value2 = map2sort.get(_structurBrowser2.getInstance());
+                }
+            } catch (final EFapsException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
+
+            return value1.compareTo(value2);
         });
         return new Return();
     }

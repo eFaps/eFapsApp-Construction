@@ -1,10 +1,17 @@
 /*
- * Copyright 2007 - 2014 Jan Moxter
+ *  Copyright 2003 - 2019 The eFaps Team
  *
- * All Rights Reserved.
- * This program contains proprietary and trade secret information of
- * Jan Moxter Copyright notice is precautionary only and does not
- * evidence any actual or intended publication of such program.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
  */
 
@@ -39,11 +46,10 @@ import org.efaps.esjp.ci.CIProducts;
 import org.efaps.esjp.ci.CISales;
 import org.efaps.esjp.common.parameter.ParameterUtil;
 import org.efaps.esjp.construction.util.Construction;
+import org.efaps.esjp.db.InstanceUtils;
 import org.efaps.util.EFapsException;
 
 /**
- * TODO comment!
- *
  * @author Jan Moxter
  */
 @EFapsUUID("3164bdc0-8bcb-484d-928b-56ae2981c520")
@@ -74,15 +80,16 @@ public abstract class CostEstimatePosGroup_Base
             order = multi.<Integer>getAttribute(CISales.PositionGroupAbstract.Order);
         }
 
-        final String nameStr = _parameter.getParameterValue(CIFormConstruction.Construction_CostEstimateGroupForm.name.name);
+        final String nameStr = _parameter.getParameterValue(
+                        CIFormConstruction.Construction_CostEstimateGroupForm.name.name);
         final String[] nameArr = validateNames(_parameter, nameStr.split("\n"));
         for (int i = 0; i < nameArr.length; i++) {
             order++;
-            final Insert insert = new Insert(CISales.PositionGroupRoot);
-            insert.add(CISales.PositionGroupAbstract.DocumentAbstractLink, _parameter.getInstance());
-            insert.add(CISales.PositionGroupAbstract.Name, nameArr[i]);
-            insert.add(CISales.PositionGroupAbstract.Level, 1);
-            insert.add(CISales.PositionGroupAbstract.Order, order);
+            final Insert insert = new Insert(CIConstruction.PositionGroupRoot);
+            insert.add(CIConstruction.PositionGroupAbstract.DocumentAbstractLink, _parameter.getInstance());
+            insert.add(CIConstruction.PositionGroupAbstract.Name, nameArr[i]);
+            insert.add(CIConstruction.PositionGroupAbstract.Level, 1);
+            insert.add(CIConstruction.PositionGroupAbstract.Order, order);
             insert.execute();
         }
         return new Return();
@@ -107,8 +114,8 @@ public abstract class CostEstimatePosGroup_Base
         }
         if (oids.length > 0) {
             final Instance instance = Instance.get(oids[0]);
-            if (instance.getType().equals(CISales.PositionGroupNode.getType())
-                            || instance.getType().equals(CISales.PositionGroupRoot.getType())) {
+            if (InstanceUtils.isType(instance, CIConstruction.PositionGroupNode)
+                            || InstanceUtils.isType(instance, CIConstruction.PositionGroupRoot)) {
 
                 final String names = _parameter.getParameterValue(CIFormConstruction.Construction_CostEstimateGroupForm.name.name) == null
                                 ? _parameter.getParameterValue(CIFormConstruction.Construction_CostEstimateGroupItemForm.productDesc.name)
@@ -126,7 +133,7 @@ public abstract class CostEstimatePosGroup_Base
 
                 final Instance docInst = print.<Instance>getSelect(selDocInst);
 
-                final QueryBuilder queryBldr = new QueryBuilder(CISales.PositionGroupNode);
+                final QueryBuilder queryBldr = new QueryBuilder(CIConstruction.PositionGroupNode);
                 queryBldr.addWhereAttrEqValue(CISales.PositionGroupNode.ParentGroupLink, instance);
                 queryBldr.addOrderByAttributeDesc(CISales.PositionGroupNode.Order);
                 final MultiPrintQuery multi = queryBldr.getPrint();
@@ -153,7 +160,8 @@ public abstract class CostEstimatePosGroup_Base
                 // in case of an item the array always contains only one name
                 Instance newPosInstance = null;
                 for (int i = 0; i < nameArr.length; i++) {
-                    final Insert insert = new Insert(isItem ? CISales.PositionGroupItem : CISales.PositionGroupNode);
+                    final Insert insert = new Insert(isItem ? CIConstruction.PositionGroupItem
+                                    : CIConstruction.PositionGroupNode);
                     insert.add(CISales.PositionGroupNode.Name, nameArr[i]);
                     insert.add(CISales.PositionGroupNode.ParentGroupLink, instance);
                     insert.add(CISales.PositionGroupNode.DocumentAbstractLink, docInst);
@@ -221,7 +229,7 @@ public abstract class CostEstimatePosGroup_Base
         update.add(CISales.PositionGroupAbstract.Order, ret);
         update.executeWithoutTrigger();
 
-        final QueryBuilder queryBldr = new QueryBuilder(CISales.PositionGroupNode);
+        final QueryBuilder queryBldr = new QueryBuilder(CIConstruction.PositionGroupNode);
         queryBldr.addWhereAttrEqValue(CISales.PositionGroupNode.ParentGroupLink, _grpInst);
         queryBldr.addOrderByAttributeAsc(CISales.PositionGroupNode.Order);
         final InstanceQuery query = queryBldr.getQuery();
@@ -243,7 +251,7 @@ public abstract class CostEstimatePosGroup_Base
     protected void renumberGroupPostions4Doc(final Instance _docInst)
         throws EFapsException
     {
-        final QueryBuilder queryBldr = new QueryBuilder(CISales.PositionGroupRoot);
+        final QueryBuilder queryBldr = new QueryBuilder(CIConstruction.PositionGroupRoot);
         queryBldr.addWhereAttrEqValue(CISales.PositionGroupRoot.DocumentAbstractLink, _docInst);
         queryBldr.addOrderByAttributeAsc(CISales.PositionGroupRoot.Order);
         final InstanceQuery query = queryBldr.getQuery();
@@ -278,9 +286,10 @@ public abstract class CostEstimatePosGroup_Base
 
                     final String prodDesc = print.<String>getAttribute(CIConstruction.EntrySheetPosition.ProductDesc);
 
-                    ParameterUtil.setParameterValues(_parameter, CIFormConstruction.Construction_CostEstimateGroupItemForm.productDesc.name,
-                                    prodDesc);
-                    ParameterUtil.setParameterValues(_parameter, CIFormConstruction.Construction_CostEstimateGroupItemForm.product.name, oid);
+                    ParameterUtil.setParameterValues(_parameter,
+                                CIFormConstruction.Construction_CostEstimateGroupItemForm.productDesc.name, prodDesc);
+                    ParameterUtil.setParameterValues(_parameter,
+                                CIFormConstruction.Construction_CostEstimateGroupItemForm.product.name, oid);
                     createGroup(_parameter);
                 }
             }
@@ -424,14 +433,14 @@ public abstract class CostEstimatePosGroup_Base
                                        final Instance _parentInst)
         throws EFapsException
     {
-        final QueryBuilder queryBldr = new QueryBuilder(CISales.PositionGroupNode);
+        final QueryBuilder queryBldr = new QueryBuilder(CIConstruction.PositionGroupNode);
         queryBldr.addWhereAttrEqValue(CISales.PositionGroupNode.ParentGroupLink, _parentInst);
         final InstanceQuery query = queryBldr.getQuery();
         query.executeWithoutAccessCheck();
         while (query.next()) {
             deleteGroupPosition(_parameter, query.getCurrentValue());
         }
-        if (_parentInst.getType().equals(CISales.PositionGroupItem.getType())) {
+        if (_parentInst.getType().equals(CIConstruction.PositionGroupItem.getType())) {
             final PrintQuery print = new PrintQuery(_parentInst);
             final SelectBuilder sel = new SelectBuilder()
                             .linkto(CISales.PositionGroupAbstract.AbstractPositionAbstractLink).oid();
@@ -455,7 +464,8 @@ public abstract class CostEstimatePosGroup_Base
     public Return createPositionItemsDefault(final Parameter _parameter)
         throws EFapsException
     {
-        final String names = _parameter.getParameterValue(CIFormConstruction.Construction_CostEstimateItemsDefaultForm.names.name);
+        final String names = _parameter.getParameterValue(
+                        CIFormConstruction.Construction_CostEstimateItemsDefaultForm.names.name);
         final String[] nameArr = validateNames(_parameter, names.split("\n"));
 
         String[] oids = new String[0];

@@ -15,15 +15,23 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 
+
 -->
 <datamodel-type xmlns="http://www.efaps.org/xsd"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
-    <uuid>a0089ff5-8b37-41c7-886a-afd6d11c7354</uuid>
+    <uuid>8b206f6c-8b21-4e3d-9e90-86d38c96a0dc</uuid>
     <file-application>eFapsApp-Construction</file-application>
     <definition>
         <version-expression>(version==latest)</version-expression>
-        <name>Construction_PositionGroupRoot</name>
+        <name>Construction_PositionGroupItem</name>
         <parent>Construction_PositionGroupNode</parent>
+        <attribute>
+            <name>PositionLink</name>
+            <type>Link</type>
+            <typelink>Sales_PositionSumAbstract</typelink>
+            <sqltable>Sales_PositionGroupSQLTable</sqltable>
+            <sqlcolumn>POSID</sqlcolumn>
+        </attribute>
     </definition>
 </datamodel-type>

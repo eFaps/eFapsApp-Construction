@@ -77,6 +77,7 @@ import org.efaps.esjp.common.uitable.CommonDelete;
 import org.efaps.esjp.common.uitable.MultiPrint;
 import org.efaps.esjp.common.util.InterfaceUtils;
 import org.efaps.esjp.construction.util.Construction;
+import org.efaps.esjp.db.InstanceUtils;
 import org.efaps.esjp.erp.AbstractWarning;
 import org.efaps.esjp.erp.Currency;
 import org.efaps.esjp.erp.IWarning;
@@ -86,6 +87,8 @@ import org.efaps.esjp.erp.WarningUtil;
 import org.efaps.esjp.products.Product;
 import org.efaps.esjp.projects.document.Naming;
 import org.efaps.esjp.sales.Calculator;
+import org.efaps.esjp.sales.PriceUtil;
+import org.efaps.esjp.sales.PriceUtil_Base.ProductPrice;
 import org.efaps.esjp.sales.document.AbstractDocumentSum;
 import org.efaps.esjp.sales.tax.TaxCat;
 import org.efaps.esjp.sales.tax.TaxesAttribute;
@@ -228,15 +231,15 @@ public abstract class CostEstimate_Base
             final Instance inst = Instance.get(oidMap.get(rowKeys[i]));
 
             final Update update = new Update(inst);
-            update.add(CISales.PositionGroupAbstract.Name, prodDescs[i]);
-            update.add(CISales.PositionGroupAbstract.Code, codes[i]);
-            update.add(CISales.PositionGroupAbstract.Order, i);
+            update.add(CIConstruction.PositionGroupAbstract.Name, prodDescs[i]);
+            update.add(CIConstruction.PositionGroupAbstract.Code, codes[i]);
+            update.add(CIConstruction.PositionGroupAbstract.Order, i);
             update.execute();
 
-            if (inst.getType().isKindOf(CISales.PositionGroupItem.getType())) {
+            if (inst.getType().isKindOf(CIConstruction.PositionGroupItem.getType())) {
                 final PrintQuery print = new PrintQuery(inst);
                 final SelectBuilder sel = new SelectBuilder()
-                                .linkto(CISales.PositionGroupAbstract.AbstractPositionAbstractLink).oid();
+                                .linkto(CIConstruction.PositionGroupAbstract.AbstractPositionAbstractLink).oid();
                 print.addSelect(sel);
                 print.executeWithoutAccessCheck();
                 final Instance posInst = Instance.get(print.<String>getSelect(sel));
@@ -343,16 +346,16 @@ public abstract class CostEstimate_Base
         final Instance projInst = Instance
                         .get(_parameter.getParameterValue(CIFormConstruction.Construction_CostEstimateBaseForm.project.name));
         if (projInst.isValid()) {
-            final QueryBuilder queryRoot = new QueryBuilder(CISales.PositionGroupRoot);
-            queryRoot.addWhereAttrEqValue(CISales.PositionGroupRoot.DocumentAbstractLink, _createdDoc.getInstance());
+            final QueryBuilder queryRoot = new QueryBuilder(CIConstruction.PositionGroupRoot);
+            queryRoot.addWhereAttrEqValue(CIConstruction.PositionGroupRoot.DocumentAbstractLink, _createdDoc.getInstance());
             final InstanceQuery instanceQuery = queryRoot.getQuery();
             if (instanceQuery.execute().isEmpty()) {
-                final Insert insert = new Insert(CISales.PositionGroupRoot);
-                insert.add(CISales.PositionGroupAbstract.DocumentAbstractLink, _createdDoc.getInstance());
-                insert.add(CISales.PositionGroupAbstract.Name,
+                final Insert insert = new Insert(CIConstruction.PositionGroupRoot);
+                insert.add(CIConstruction.PositionGroupAbstract.DocumentAbstractLink, _createdDoc.getInstance());
+                insert.add(CIConstruction.PositionGroupAbstract.Name,
                                DBProperties.getProperty(CostEstimate.class.getName() + ".GoupRootDescription4Default"));
-                insert.add(CISales.PositionGroupAbstract.Level, 1);
-                insert.add(CISales.PositionGroupAbstract.Order, 1);
+                insert.add(CIConstruction.PositionGroupAbstract.Level, 1);
+                insert.add(CIConstruction.PositionGroupAbstract.Order, 1);
                 insert.execute();
             }
 
@@ -431,7 +434,7 @@ public abstract class CostEstimate_Base
         final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getTypeName4SysConf(_parameter));
         while (multi.next()) {
             final Instance childInst = multi.getCurrentInstance();
-            if (childInst.getType().isKindOf(CISales.PositionGroupItem.getType())) {
+            if (childInst.getType().isKindOf(CIConstruction.PositionGroupItem.getType())) {
                 final BigDecimal rateNetPrice = multi.<BigDecimal>getSelect(selRateNetPrice);
                 final BigDecimal netPrice = multi.<BigDecimal>getSelect(selNetPrice);
                 ret[0] = ret[0].add(rateNetPrice == null ? BigDecimal.ZERO : rateNetPrice);
@@ -1289,28 +1292,28 @@ public abstract class CostEstimate_Base
                     connectRevision(_parameter, newInst);
                     setStati(_parameter, newInst);
                     // update the group positions
-                    final QueryBuilder queryBldr = new QueryBuilder(CISales.PositionGroupAbstract);
-                    queryBldr.addWhereAttrEqValue(CISales.PositionGroupAbstract.DocumentAbstractLink, qInst);
+                    final QueryBuilder queryBldr = new QueryBuilder(CIConstruction.PositionGroupAbstract);
+                    queryBldr.addWhereAttrEqValue(CIConstruction.PositionGroupAbstract.DocumentAbstractLink, qInst);
                     final MultiPrintQuery multi = queryBldr.getPrint();
-                    multi.addAttribute(CISales.PositionGroupItem.ParentGroupLink,
-                                    CISales.PositionGroupAbstract.AbstractPositionAbstractLink);
+                    multi.addAttribute(CIConstruction.PositionGroupItem.ParentGroupLink,
+                                    CIConstruction.PositionGroupAbstract.AbstractPositionAbstractLink);
                     multi.execute();
                     final Map<Long, Long> current2new = new HashMap<>();
                     final Map<Instance, Long> new2parent = new HashMap<>();
                     while (multi.next()) {
                         final Instance origInst = multi.getCurrentInstance();
 
-                        final Long curParentId = multi.<Long>getAttribute(CISales.PositionGroupItem.ParentGroupLink);
+                        final Long curParentId = multi.<Long>getAttribute(CIConstruction.PositionGroupItem.ParentGroupLink);
                         final Insert insert = new Insert(origInst.getType());
                         final Set<String> added = new HashSet<>();
-                        insert.add(CISales.PositionGroupItem.DocumentAbstractLink, newInst);
-                        added.add(origInst.getType().getAttribute(CISales.PositionGroupItem.DocumentAbstractLink.name)
+                        insert.add(CIConstruction.PositionGroupItem.DocumentAbstractLink, newInst);
+                        added.add(origInst.getType().getAttribute(CIConstruction.PositionGroupItem.DocumentAbstractLink.name)
                                         .getSqlColNames().toString());
 
-                        if (multi.getAttribute(CISales.PositionGroupItem.AbstractPositionAbstractLink) != null) {
+                        if (multi.getAttribute(CIConstruction.PositionGroupItem.AbstractPositionAbstractLink) != null) {
                             final PrintQuery print = new PrintQuery(origInst);
                             final SelectBuilder posSel = new SelectBuilder()
-                                            .linkto(CISales.PositionGroupItem.AbstractPositionAbstractLink).instance();
+                                            .linkto(CIConstruction.PositionGroupItem.AbstractPositionAbstractLink).instance();
                             print.addSelect(posSel);
                             print.execute();
                             final Instance posOrigInst = print.<Instance>getSelect(posSel);
@@ -1318,9 +1321,9 @@ public abstract class CostEstimate_Base
                             if (posNewInst == null) {
                                 break;
                             }
-                            insert.add(CISales.PositionGroupItem.PositionAbstractLink, posNewInst);
+                            insert.add(CIConstruction.PositionGroupItem.PositionLink, posNewInst);
                             added.add(origInst.getType()
-                                            .getAttribute(CISales.PositionGroupItem.PositionAbstractLink.name)
+                                            .getAttribute(CIConstruction.PositionGroupItem.PositionLink.name)
                                             .getSqlColNames().toString());
                         }
 
@@ -1333,7 +1336,7 @@ public abstract class CostEstimate_Base
                     for (final Entry<Instance, Long> entry : new2parent.entrySet()) {
                         if (entry.getValue() != null) {
                             final Update update = new Update(entry.getKey());
-                            update.add(CISales.PositionGroupItem.ParentGroupLink, current2new.get(entry.getValue()));
+                            update.add(CIConstruction.PositionGroupItem.ParentGroupLink, current2new.get(entry.getValue()));
                             update.execute();
                         }
                     }
@@ -1592,10 +1595,10 @@ public abstract class CostEstimate_Base
                         && _parameter.getInstance().getType().isKindOf(CIConstruction.CostEstimateAbstract)) {
             ret = _parameter.getInstance().getType().getName();
         } else if (_parameter.getInstance()  != null && _parameter.getInstance().isValid()
-                        && _parameter.getInstance().getType().isKindOf(CISales.PositionGroupAbstract)) {
+                        && _parameter.getInstance().getType().isKindOf(CIConstruction.PositionGroupAbstract)) {
             final CachedPrintQuery print = CachedPrintQuery.get4Request(_parameter.getInstance());
             final SelectBuilder sel = SelectBuilder.get()
-                           .linkto(CISales.PositionGroupAbstract.AbstractPositionAbstractLink)
+                           .linkto(CIConstruction.PositionGroupAbstract.AbstractPositionAbstractLink)
                            .linkto(CISales.PositionAbstract.DocumentAbstractLink).type().name();
             print.addSelect(sel);
             print.executeWithoutAccessCheck();
@@ -1697,7 +1700,7 @@ public abstract class CostEstimate_Base
         }
         final Parameter parameter = ParameterUtil.clone(_parameter);
         ParameterUtil.setParameterValues(parameter, "product", oids);
-        final List<Calculator> ret = super.analyseTable(parameter, -2);
+        final List<Calculator> ret = super.analyseTable(parameter, -1);
 
         Instance costEstimateInst = _parameter.getInstance();
         if (costEstimateInst != null && costEstimateInst.isValid()
@@ -1715,7 +1718,7 @@ public abstract class CostEstimate_Base
             final Map<String, String> oidMap = (Map<String, String>) _parameter.get(ParameterValues.OIDMAP4UI);
             for (final String oid : oidMap.values()) {
                 final Instance inst = Instance.get(oid);
-                if (inst.getType().isCIType(CISales.PositionGroupItem)) {
+                if (inst.getType().isCIType(CIConstruction.PositionGroupItem)) {
                     tempList.add(inst);
                 }
             }
@@ -2355,7 +2358,7 @@ public abstract class CostEstimate_Base
         final Return ret = new Return();
         final PrintQuery print = new PrintQuery(_parameter.getInstance());
         final SelectBuilder selPos = SelectBuilder.get()
-                        .linkto(CISales.PositionGroupAbstract.AbstractPositionAbstractLink);
+                        .linkto(CIConstruction.PositionGroupAbstract.AbstractPositionAbstractLink);
         final SelectBuilder selESPosID = new SelectBuilder(selPos)
             .attribute(CIConstruction.CostEstimatePositionAbstract.EntrySheetPositionLink);
         final SelectBuilder selProdInst = new SelectBuilder(selPos)
@@ -2385,6 +2388,48 @@ public abstract class CostEstimate_Base
             ret = super.getJavaScript4SelectDoc(_parameter);
         }
         return ret;
+    }
+
+    @Override
+    public Calculator getCalculator(final Parameter _parameter,
+                                    final Calculator _oldCalc,
+                                    final String _oid,
+                                    final String _quantity,
+                                    final String _unitPrice,
+                                    final String _discount,
+                                    final boolean _priceFromDB,
+                                    final int _idx)
+        throws EFapsException
+    {
+        return new Calculator(_parameter, _oldCalc, _oid, _quantity, _unitPrice, _discount, _priceFromDB, this) {
+
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            protected ProductPrice evalPriceFromDB(final Parameter _parameter)
+                throws EFapsException
+            {
+                ProductPrice ret;
+                final var prodInst = getProductInstance();
+                if (InstanceUtils.isKindOf(prodInst, CIConstruction.EntryPartList)) {
+                    final var print = new PrintQuery(prodInst);
+                    final SelectBuilder selTotal = SelectBuilder.get().clazz(CIConstruction.EntryPartList_Class)
+                                    .attribute(CIConstruction.EntryPartList_Class.Total);
+                    print.addSelect(selTotal);
+                    print.execute();
+                    final BigDecimal total = print.getSelect(selTotal);
+                    final var productPrice = new PriceUtil().new ProductPrice();
+                    productPrice.setBasePrice(total);
+                    productPrice.setCurrentPrice(total);
+                    productPrice.setOrigPrice(total);
+                    ret = productPrice;
+                } else {
+                    ret = super.evalPriceFromDB(_parameter);
+                }
+                return ret;
+            }
+
+        };
     }
 
     /**

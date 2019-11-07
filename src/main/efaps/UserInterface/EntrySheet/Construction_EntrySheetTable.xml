@@ -15,7 +15,7 @@
 
     <uuid>ecfa203a-0c3b-4a3d-af95-d7137a8d40a4</uuid>
     <file-application>eFapsApp-Construction</file-application>
-    
+
 
     <definition>
         <version-expression>(version==latest)</version-expression>
@@ -49,7 +49,7 @@
         <field name="projectDesc">
             <property name="SelectAlternateOID">linkfrom[Construction_ProjectService2EntrySheet#ToLink].linkto[FromLink].oid</property>
             <property name="Select">linkfrom[Construction_ProjectService2EntrySheet#ToLink].linkto[FromLink].attribute[Description]</property>
-            <property name="Label">Sales_ProductRequest.projectDesc.Label</property>
+            <property name="Label">Construction_EntrySheetTable.projectDesc.Label</property>
         </field>
         <field name="date">
             <property name="FilterType">FREETEXT</property>

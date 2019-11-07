@@ -1,10 +1,17 @@
 /*
- * Copyright 2007 - 2015 Jan Moxter
+ * Copyright 2003 - 2019 The eFaps Team
  *
- * All Rights Reserved.
- * This program contains proprietary and trade secret information of
- * Jan Moxter Copyright notice is precautionary only and does not
- * evidence any actual or intended publication of such program.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
  */
 
@@ -12,6 +19,7 @@ package org.efaps.esjp.construction.reports;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -47,11 +55,6 @@ import net.sf.dynamicreports.report.builder.group.ColumnGroupBuilder;
 import net.sf.dynamicreports.report.datasource.DRDataSource;
 import net.sf.jasperreports.engine.JRDataSource;
 
-/**
- * TODO comment!
- *
- * @author Jan Moxter
- */
 @EFapsUUID("22e4c775-b165-489e-a608-fb49127d96d1")
 @EFapsApplication("eFapsApp-Construction")
 public abstract class EntrySheetGeneralCostReport_Base
@@ -103,7 +106,6 @@ public abstract class EntrySheetGeneralCostReport_Base
         extends AbstractDynamicReport
     {
 
-        @SuppressWarnings("unchecked")
         @Override
         protected JRDataSource createDataSource(final Parameter _parameter)
             throws EFapsException
@@ -124,15 +126,18 @@ public abstract class EntrySheetGeneralCostReport_Base
             queryBldr.addWhereAttrEqValue(CIConstruction.EntrySheetPosition.EntrySheetLink, instance);
 
             final MultiPrintQuery multi = queryBldr.getPrint();
-            multi.addAttribute(CIConstruction.EntrySheetPosition.RateNetUnitPrice, CIConstruction.EntrySheetPosition.ProductDesc,
+            multi.addAttribute(CIConstruction.EntrySheetPosition.RateNetUnitPrice,
+                            CIConstruction.EntrySheetPosition.ProductDesc,
                             CIConstruction.EntrySheetPosition.Participation, CIConstruction.EntrySheetPosition.UoM,
                             CIConstruction.EntrySheetPosition.Time, CIConstruction.EntrySheetPosition.Quantity,
                             CIConstruction.EntrySheetPosition.RateNetPrice);
 
-            final SelectBuilder selProdInst = SelectBuilder.get().linkto(CIConstruction.EntrySheetPosition.Product).instance();
+            final SelectBuilder selProdInst = SelectBuilder.get().linkto(CIConstruction.EntrySheetPosition.Product)
+                            .instance();
             final SelectBuilder selProdName = SelectBuilder.get().linkto(CIConstruction.EntrySheetPosition.Product)
                             .attribute(CIProducts.ProductAbstract.Name);
-            final SelectBuilder selProdClass = new SelectBuilder().linkto(CIConstruction.EntrySheetPosition.Product).clazz()
+            final SelectBuilder selProdClass = new SelectBuilder().linkto(CIConstruction.EntrySheetPosition.Product)
+                            .clazz()
                             .type();
             multi.addSelect(selProdInst, selProdName, selProdClass);
             multi.execute();
@@ -153,8 +158,10 @@ public abstract class EntrySheetGeneralCostReport_Base
                     gc.setQuantity(multi.<BigDecimal>getAttribute(CIConstruction.EntrySheetPosition.Quantity));
                     gc.setTime(multi.<BigDecimal>getAttribute(CIConstruction.EntrySheetPosition.Time));
                     gc.setDescription(multi.<String>getAttribute(CIConstruction.EntrySheetPosition.ProductDesc));
-                    gc.setNetUnitPrice(multi.<BigDecimal>getAttribute(CIConstruction.EntrySheetPosition.RateNetUnitPrice));
-                    gc.setParticipation(multi.<BigDecimal>getAttribute(CIConstruction.EntrySheetPosition.Participation));
+                    gc.setNetUnitPrice(
+                                    multi.<BigDecimal>getAttribute(CIConstruction.EntrySheetPosition.RateNetUnitPrice));
+                    gc.setParticipation(
+                                    multi.<BigDecimal>getAttribute(CIConstruction.EntrySheetPosition.Participation));
                     gc.setTotalPrice(multi.<BigDecimal>getAttribute(CIConstruction.EntrySheetPosition.RateNetPrice));
                     gc.setUom(Dimension.getUoM(multi.<Long>getAttribute(CIConstruction.EntrySheetPosition.UoM)));
                     final List<Classification> clazzes = multi.<List<Classification>>getSelect(selProdClass);
@@ -168,16 +175,16 @@ public abstract class EntrySheetGeneralCostReport_Base
 
             final List<Comparator<GeneralCost>> comparators = new ArrayList<Comparator<GeneralCost>>();
             comparators.add((_prod0,
-             _prod1) -> _prod0.getCostType().toString().compareTo(_prod1.getCostType().toString()));
+                             _prod1) -> _prod0.getCostType().toString().compareTo(_prod1.getCostType().toString()));
 
             comparators.add((_prod0,
-             _prod1) -> {
+                             _prod1) -> {
                 final String prod0Str = _prod0.getClassifcation() == null ? "" : _prod0.getClassifcation();
-                return prod0Str.compareTo(_prod1.getClassifcation());
+                return prod0Str.compareTo(_prod1.getClassifcation() == null ? "" : _prod1.getClassifcation());
             });
 
             comparators.add((_prod0,
-             _prod1) -> _prod0.getName().compareTo(_prod1.getName()));
+                             _prod1) -> _prod0.getName().compareTo(_prod1.getName()));
 
             Collections.sort(vals, ComparatorUtils.chainedComparator(comparators));
 
@@ -192,7 +199,7 @@ public abstract class EntrySheetGeneralCostReport_Base
 
         @Override
         protected void addColumnDefinition(final Parameter _parameter,
-                                          final JasperReportBuilder _builder)
+                                           final JasperReportBuilder _builder)
             throws EFapsException
         {
             final TextColumnBuilder<String> costTypeColumn = DynamicReports.col.column(DBProperties
@@ -254,6 +261,7 @@ public abstract class EntrySheetGeneralCostReport_Base
 
     public static class GeneralCost
     {
+
         private boolean multiple;
 
         private CostType costType;
@@ -296,7 +304,7 @@ public abstract class EntrySheetGeneralCostReport_Base
          */
         public void addTime(final BigDecimal _time)
         {
-           time = time.add(_time);
+            time = time.add(_time);
         }
 
         /**
@@ -308,12 +316,12 @@ public abstract class EntrySheetGeneralCostReport_Base
         }
 
         /**
-         * @param _describtion description to add
+         * @param _description description to add
          */
-        public void addDescription(final String _describtion)
+        public void addDescription(final String _description)
         {
-            if (!getDescription().contains(_describtion)) {
-                setDescription(getDescription() + ", " + _describtion);
+            if (!getDescription().contains(_description)) {
+                setDescription(getDescription() + ", " + _description);
             }
         }
 
@@ -435,7 +443,7 @@ public abstract class EntrySheetGeneralCostReport_Base
         {
             BigDecimal ret;
             if (isMultiple()) {
-                ret = getTotalPrice().divide(getTime().multiply(getQuantity()), BigDecimal.ROUND_HALF_UP);
+                ret = getTotalPrice().divide(getTime().multiply(getQuantity()), RoundingMode.HALF_UP);
             } else {
                 ret = netUnitPrice;
             }
@@ -541,7 +549,6 @@ public abstract class EntrySheetGeneralCostReport_Base
             description = _description;
         }
 
-
         /**
          * Getter method for the instance variable {@link #multiple}.
          *
@@ -551,7 +558,6 @@ public abstract class EntrySheetGeneralCostReport_Base
         {
             return multiple;
         }
-
 
         /**
          * Setter method for instance variable {@link #multiple}.

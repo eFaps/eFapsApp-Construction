@@ -465,8 +465,10 @@ public abstract class CostEstimate_Base
         final Map<String, Map<String, String>> orderMap = new TreeMap<>();
         if (!input.isEmpty()) {
             final Instance inst;
-            if (_parameter.getInstance().getType().isKindOf(CIConstruction.CostEstimateAbstract.getType())) {
+            if (InstanceUtils.isKindOf(_parameter.getInstance(), CIConstruction.CostEstimateAbstract)) {
                 inst = _parameter.getInstance();
+            } else if (InstanceUtils.isKindOf(_parameter.getCallInstance(), CIConstruction.CostEstimateAbstract)) {
+                inst = _parameter.getCallInstance();
             } else {
                 inst = (Instance) Context.getThreadContext().getSessionAttribute(CostEstimate.COESTINSTKEY);
             }

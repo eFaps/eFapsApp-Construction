@@ -41,7 +41,7 @@
         <property name="Target">modal</property>
         <property name="TargetCreateType">Construction_PositionGroupItem</property>
         <property name="TargetConnectAttribute">Construction_PositionGroupItem/ParentGroupLink</property>
-        <property name="TargetMode">create</property>
+        <property name="TargetMode">edit</property>
         <property name="WindowHeight">460</property>
         <property name="WindowWidth">800</property>
         <property name="Submit">true</property>

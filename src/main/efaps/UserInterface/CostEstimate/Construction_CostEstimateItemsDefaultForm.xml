@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
 
-  Copyright 2010 - 2013 moxter.net
+ Copyright 2003 - 2019 The eFaps Team
 
-  All Rights Reserved.
-  This program contains proprietary and trade secret information of
-  Jan Moxter Copyright notice is precautionary only and does not
-  evidence any actual or intended publication of such program.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
 
-  Author:          Jan Moxter
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 
 -->
 <ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -19,7 +24,7 @@
         <version-expression>(version==latest)</version-expression>
         <name>Construction_CostEstimateItemsDefaultForm</name>
         <field name="jsLinkField">
-            <property name="ModeCreate">HIDDEN</property>
+            <property name="ModeEdit">HIDDEN</property>
             <property name="UIType">SNIPPLET</property>
             <trigger program="org.efaps.esjp.common.uiform.Field" method="getJSLinkField"
                 name="Construction_CostEstimateItemsDefaultForm.jsLinkField.UI_FIELD_VALUE"
@@ -28,7 +33,7 @@
             </trigger>
         </field>
         <field name="parentOID">
-            <property name="ModeCreate">HIDDEN</property>
+            <property name="ModeEdit">HIDDEN</property>
             <property name="ModeView">NONE</property>
             <property name="ModeEdit">NONE</property>
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
@@ -38,17 +43,17 @@
                 program="org.efaps.esjp.common.uiform.Field" />
         </field>
         <field name="templInst">
-            <property name="ModeCreate">HIDDEN</property>
+            <property name="ModeEdit">HIDDEN</property>
             <property name="ModeView">NONE</property>
             <property name="ModeEdit">NONE</property>
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
         </field>
         <field name="templGroup" character="Group">
-            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
             <property name="GroupCount">2</property>
         </field>
         <field name="templName">
-            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
             <property name="ModeView">NONE</property>
             <property name="ModeEdit">NONE</property>
             <property name="UIType">SNIPPLET</property>
@@ -61,7 +66,7 @@
             </trigger>
         </field>
         <field name="templInstPicker" character="Picker">
-            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">EDITABLE</property>
             <property name="ModeView">NONE</property>
             <property name="ModeEdit">NONE</property>
             <property name="Label">Sales_PaymentCashForm.docPicker.Label</property>
@@ -70,12 +75,11 @@
             <picker name="Construction_CostEstimateItemsTemplatePartListPicker"/>
         </field>
         <field name="infoHeading" character="Heading">
-            <property name="ModeCreate">READONLY</property>
+            <property name="ModeEdit">READONLY</property>
             <property name="Level">4</property>
             <property name="Label">Construction_CostEstimateItemsDefaultForm.infoHeading.Heading</property>
         </field>
         <field name="entrySheets">
-            <property name="ModeCreate">EDITABLE</property>
             <property name="ModeEdit">EDITABLE</property>
             <property name="Label">Construction_CostEstimateItemsDefaultForm.entrySheets.Label</property>
             <property name="UIType">DROPDOWN</property>
@@ -91,7 +95,6 @@
             </trigger>
         </field>
         <field name="names">
-            <property name="ModeCreate">EDITABLE</property>
             <property name="ModeEdit">EDITABLE</property>
             <property name="Label">Construction_CostEstimateItemsDefaultForm.names.Label</property>
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>

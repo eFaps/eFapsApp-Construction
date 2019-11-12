@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
-<!-- 2016-04-06T19:40:27 -->
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Construction_CostEstimateBasePosition" language="groovy" pageWidth="610" pageHeight="842" columnWidth="610" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ae2a1ab9-046a-4c11-bf87-ba2f2ca66784">
-    <property name="org.efaps.admin.program.jasper.EFapsApplication" value="eFapsApp-Construction"/>
+	<property name="org.efaps.admin.program.jasper.EFapsApplication" value="eFapsApp-Construction"/>
+	<property name="org.efaps.eql.Version" value="2"/>
 	<property name="net.sf.jasperreports.style.evaluation.time.enabled" value="true"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="9999 SD"/>
 	<style name="Style1">
@@ -64,15 +64,15 @@
 		<defaultValueExpression><![CDATA[211099.39854]]></defaultValueExpression>
 	</parameter>
 	<queryString language="eFaps">
-		<![CDATA[query type Sales_PositionGroupAbstract where DocumentAbstractLink == $P!{INSTANCE} 
+		<![CDATA[print query type Construction_PositionGroupAbstract where DocumentAbstractLink == $P!{INSTANCE}
  select attribute[Code] as code,
- linkto[AbstractPositionAbstractLink].attribute[Quantity] as quantity,
- linkto[AbstractPositionAbstractLink].linkto[UoM].attribute[Name] as uoM,
+ linkto[AbstractPositionLink].attribute[Quantity] as quantity,
+ linkto[AbstractPositionLink].linkto[UoM].attribute[Name] as uoM,
  attribute[Name] as description,
  attribute[Order] as orderPos,
  attribute[Level] as level,
- linkto[AbstractPositionAbstractLink].attribute[RateDiscountNetUnitPrice] as discountNetUnitPrice,
- linkto[AbstractPositionAbstractLink].attribute[RateNetPrice] as netPrice,
+ linkto[AbstractPositionLink].attribute[RateDiscountNetUnitPrice] as discountNetUnitPrice,
+ linkto[AbstractPositionLink].attribute[RateNetPrice] as netPrice,
  attribute[RateSumsTotal] as sumsTotal]]>
 	</queryString>
 	<field name="code" class="java.lang.String"/>

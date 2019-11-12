@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.0.4.final using JasperReports Library version 6.0.4  -->
-<!-- 2015-04-21T10:06:07 -->
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Construction_CostEstimateRealization" language="groovy" pageWidth="630" pageHeight="842" columnWidth="610" leftMargin="10" rightMargin="10" topMargin="20" bottomMargin="20" uuid="e3d1cbe6-eec2-4647-b5ad-9fa5b4542693">
-    <property name="org.efaps.admin.program.jasper.EFapsApplication" value="eFapsApp-Construction"/>
+	<property name="org.efaps.admin.program.jasper.EFapsApplication" value="eFapsApp-Construction"/>
+	<property name="org.efaps.eql.Version" value="2"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="eFaps"/>
 	<import value="org.efaps.number2words.Converter"/>
 	<parameter name="CompanyName" class="java.lang.String">
@@ -30,7 +30,7 @@
 		<defaultValueExpression><![CDATA[211099.683]]></defaultValueExpression>
 	</parameter>
 	<queryString language="eFaps">
-		<![CDATA[print $P!{INSTANCE} select linkto[Contact].attribute[Name] as contactName,
+		<![CDATA[print object $P!{INSTANCE} select linkto[Contact].attribute[Name] as contactName,
 linkfrom[Projects_Project2DocumentAbstract#ToAbstract].linkto[FromAbstract].attribute[Name] as project,
 attribute[Date] as date,
 attribute[RateDiscountTotal] as discountTotal,
@@ -45,7 +45,7 @@ attribute[Name] as name]]>
 	<field name="name" class="java.lang.String"/>
 	<field name="contactName" class="java.lang.String"/>
 	<field name="project" class="java.lang.String"/>
-	<field name="date" class="org.joda.time.DateTime"/>
+	<field name="date" class="java.time.LocalDate"/>
 	<field name="discountTotal" class="java.math.BigDecimal"/>
 	<field name="crossTotal" class="java.math.BigDecimal"/>
 	<field name="netTotal" class="java.math.BigDecimal"/>
@@ -110,7 +110,7 @@ attribute[Name] as name]]>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box leftPadding="5"/>
-				<textFieldExpression><![CDATA[$F{date}.toDate()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[java.util.Date.from($F{date}.atStartOfDay(java.time.ZoneId.systemDefault()).toInstant())]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="509" y="0" width="68" height="12" uuid="c7e6edfb-f071-43db-9add-767ac06e669d">

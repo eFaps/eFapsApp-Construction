@@ -23,7 +23,7 @@
             <role>Construction_Admin</role>
         </access>
         <target>
-            <execute method="revise" program="net.moxter.eFapsApp.construction.VerificationList">
+            <execute method="revise" program="org.efaps.esjp.construction.VerificationList">
                 <property name="ReviseRelations">Construction_ProjectService2VerificationList;Construction_VerificationListPosition</property>
                 <property name="ReviseRelationsAttribute">ToLink;VerificationListLink</property>
                 <property name="Status">Canceled</property>
@@ -34,7 +34,7 @@
                 name="Construction_VerificationListMyDesk_Menu_Action_Revise.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK">
                 <property name="SystemConfig">Construction-Configuration</property>
-                <property name="Attribute">net.moxter.eFapsApp.construction.VerificationListManual</property>
+                <property name="Attribute">org.efaps.esjp.construction.VerificationListManual</property>
             </trigger>
         </target>
         <property name="AskUser">true</property>

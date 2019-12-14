@@ -18,7 +18,7 @@
         <name>Construction_EntrySheetTree_PartListSummaryReport_Menu_DownloadExcel</name>
         <icon>Document_Excel</icon>
         <target>
-            <execute method="exportReport" program="net.moxter.eFapsApp.construction.reports.EntryPartListSummaryReport">
+            <execute method="exportReport" program="org.efaps.esjp.construction.reports.EntryPartListSummaryReport">
                 <property name="Mime">xls</property>
             </execute>
         </target>

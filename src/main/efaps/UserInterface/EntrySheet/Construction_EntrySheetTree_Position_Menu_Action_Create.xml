@@ -24,7 +24,7 @@
         <!-- target definitions -->
         <target>
             <form>Construction_EntryPartListForm</form>
-            <execute method="create" program="net.moxter.eFapsApp.construction.EntryPartList"/>
+            <execute method="create" program="org.efaps.esjp.construction.EntryPartList"/>
             <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
                 method="check4Status"
                 name="Construction_EntrySheetTree_Position_Menu_Action_Create.UI_ACCESSCHECK"

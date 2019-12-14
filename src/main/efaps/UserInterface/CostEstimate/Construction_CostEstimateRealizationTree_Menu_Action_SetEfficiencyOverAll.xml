@@ -20,7 +20,7 @@
         </access>
         <target>
             <form>Construction_EntryPartListSetEfficiencyOverAllForm</form>
-            <execute method="setEfficiencyOverAll" program="net.moxter.eFapsApp.construction.CostEstimate" />
+            <execute method="setEfficiencyOverAll" program="org.efaps.esjp.construction.CostEstimate" />
             <trigger event="UI_ACCESSCHECK" method="check4Status"
                 name="Construction_CostEstimateRealizationTree_Menu_Action_SetEfficiencyOverAll"
                 program="org.efaps.esjp.admin.access.AccessCheck4UI">

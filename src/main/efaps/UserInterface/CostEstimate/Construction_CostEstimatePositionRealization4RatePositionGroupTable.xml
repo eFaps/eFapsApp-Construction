@@ -20,7 +20,7 @@
             <property name="Columns">12</property>
             <property name="ModeEdit">EDITABLE</property>
             <property name="Attribute">Code</property>
-            <property name="Label">Sales_PositionGroupAbstract/Code.Label</property>
+            <property name="Label">Construction_PositionGroupAbstract/Code.Label</property>
         </field>
         <field name="product">
             <property name="HRef">TREE</property>
@@ -30,7 +30,7 @@
             <property name="Label">Sales_QuotationPosition/Product.Label</property>
             <property name="ModeCreate">EDITABLE</property>
             <property name="ModeEdit">EDITABLE</property>
-             <trigger program="net.moxter.eFapsApp.construction.CostEstimate"
+             <trigger program="org.efaps.esjp.construction.CostEstimate"
                 method="getAternateInstance"
                 name="Construction_CostEstimatePositionRealization4RatePositionGroupTable.product.UI_FIELD_ALTINST"
                 event="UI_FIELD_ALTINST"></trigger>

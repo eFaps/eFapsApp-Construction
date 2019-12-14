@@ -31,7 +31,7 @@
                 name="Construction_VerificationListTree_Menu_Action_SetClosed.UI_ACCESSCHECK"
                 program="org.efaps.esjp.admin.access.AccessCheck4UI">
                 <property name="SystemConfig">Construction-Configuration</property>
-                <property name="Attribute">net.moxter.eFapsApp.construction.VerificationListManual</property>
+                <property name="Attribute">org.efaps.esjp.construction.VerificationListManual</property>
             </trigger>
             <trigger event="UI_ACCESSCHECK" index="2" method="check4Status"
                 name="Construction_VerificationListTree_Menu_Action_SetClosed.2.UI_ACCESSCHECK"

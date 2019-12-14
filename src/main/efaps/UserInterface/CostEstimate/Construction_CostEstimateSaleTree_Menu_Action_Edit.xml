@@ -27,7 +27,7 @@
         <target>
             <form>Construction_CostEstimateSaleForm</form>
             <execute method="edit"
-                program="net.moxter.eFapsApp.construction.CostEstimate" />
+                program="org.efaps.esjp.construction.CostEstimate" />
         </target>
         <!-- properties -->
         <property name="Target">modal</property>

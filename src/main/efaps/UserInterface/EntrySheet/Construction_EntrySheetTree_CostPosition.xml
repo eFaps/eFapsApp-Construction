@@ -32,7 +32,7 @@
         <target>
             <menu>Construction_EntrySheetTree_CostPosition_Menu</menu>
             <table>Construction_EntrySheetCostPositionTable</table>
-            <evaluate program="net.moxter.eFapsApp.construction.EntrySheet"
+            <evaluate program="org.efaps.esjp.construction.EntrySheet"
                 method="positionMultiPrint">
                 <property name="Type">Construction_EntrySheetPosition</property>
                 <property name="LinkFrom">EntrySheetLink</property>

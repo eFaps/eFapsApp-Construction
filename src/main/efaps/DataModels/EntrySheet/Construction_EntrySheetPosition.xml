@@ -12,7 +12,7 @@
 <datamodel-type xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>1f811f3f-f3d5-4672-9e9b-4205f882f7d9</uuid>
     <file-application>eFapsApp-Construction</file-application>
-    
+
     <definition>
         <version-expression>(version==latest)</version-expression>
         <name>Construction_EntrySheetPosition</name>
@@ -29,7 +29,7 @@
             <type>Decimal</type>
             <sqltable>Construction_EntrySheetPositionSQLTable</sqltable>
             <sqlcolumn>PARTICIPATION</sqlcolumn>
-            <trigger program="net.moxter.eFapsApp.construction.EntrySheet"
+            <trigger program="org.efaps.esjp.construction.EntrySheet"
                 method="setScale4ReadValue"
                 name="Construction_EntrySheetPosition.Participation.READ_VALUE"
                 event="READ_VALUE">
@@ -41,7 +41,7 @@
             <type>Decimal</type>
             <sqltable>Construction_EntrySheetPositionSQLTable</sqltable>
             <sqlcolumn>TIME</sqlcolumn>
-            <trigger program="net.moxter.eFapsApp.construction.EntrySheet"
+            <trigger program="org.efaps.esjp.construction.EntrySheet"
                 method="setScale4ReadValue"
                 name="Construction_EntrySheetPosition.Time.READ_VALUE"
                 event="READ_VALUE">

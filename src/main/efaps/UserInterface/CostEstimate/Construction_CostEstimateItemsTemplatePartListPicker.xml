@@ -29,7 +29,7 @@
             <trigger event="UI_PICKER"
                 method="templatePicker"
                 name="Construction_CostEstimateItemsTemplatePartListPicker.UI_PICKER"
-                program="net.moxter.eFapsApp.construction.CostEstimatePosGroup" />
+                program="org.efaps.esjp.construction.CostEstimatePosGroup" />
         </target>
         <property name="Target">modal</property>
         <property name="TargetMode">view</property>

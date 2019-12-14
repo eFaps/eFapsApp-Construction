@@ -26,7 +26,7 @@
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
             <trigger event="UI_FIELD_VALUE" method="activatePositionsCalculator"
                 name="Construction_EntryPartListForm.activatePositionsCalculator.UI_FIELD_VALUE"
-                program="net.moxter.eFapsApp.construction.EntryBOM" />
+                program="org.efaps.esjp.construction.EntryBOM" />
         </field>
          <field character="Group" name="nameGroup">
             <property name="GroupCount">2</property>
@@ -49,7 +49,7 @@
             <property name="UIProvider">org.efaps.admin.datamodel.ui.DecimalUI</property>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4Base"
                 name="Construction_EntryPartListForm.base.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.EntryBOM" />
+                program="org.efaps.esjp.construction.EntryBOM" />
         </field>
         <field name="description">
             <property name="Attribute">Description</property>
@@ -86,7 +86,7 @@
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4EfficiencyOverAll"
                 name="Construction_EntryPartListForm.efficiencyOverAll.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.EntryBOM" />
+                program="org.efaps.esjp.construction.EntryBOM" />
         </field>
         <field name="total">
             <property name="ModeCreate">READONLY</property>
@@ -121,7 +121,7 @@
             <property name="Label">Construction_EntryPartListForm.efficiencyPersonal.Label</property>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4EfficiencyPersonal"
                 name="Construction_EntryPartListForm.efficiencyPersonal.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.EntryBOM" />
+                program="org.efaps.esjp.construction.EntryBOM" />
         </field>
         <field name="efficiencyTools">
             <property name="ModeCreate">EDITABLE</property>
@@ -131,7 +131,7 @@
             <property name="Label">Construction_EntryPartListForm.efficiencyTools.Label</property>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4EfficiencyTools"
                 name="Construction_EntryPartListForm.efficiencyTools.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.EntryBOM" />
+                program="org.efaps.esjp.construction.EntryBOM" />
         </field>
         <field character="Heading" name="materialHeader">
             <property name="Level">2</property>
@@ -142,7 +142,7 @@
             <property name="ModeCreate">EDITABLE</property>
             <property name="ModeEdit">EDITABLE</property>
             <table>Construction_EntryBOMMaterialTable</table>
-            <evaluate method="bomMultiPrint" program="net.moxter.eFapsApp.construction.EntryPartList">
+            <evaluate method="bomMultiPrint" program="org.efaps.esjp.construction.EntryPartList">
                 <property name="Type">Construction_EntryBOM</property>
                 <property name="LinkFrom">FromLink</property>
             </evaluate>
@@ -176,7 +176,7 @@
             <property name="ModeCreate">EDITABLE</property>
             <property name="ModeEdit">EDITABLE</property>
             <table>Construction_EntryBOMPersonalTable</table>
-            <evaluate method="bomMultiPrint" program="net.moxter.eFapsApp.construction.EntryPartList">
+            <evaluate method="bomMultiPrint" program="org.efaps.esjp.construction.EntryPartList">
                 <property name="Type">Construction_EntryBOM</property>
                 <property name="LinkFrom">FromLink</property>
             </evaluate>
@@ -220,7 +220,7 @@
             <property name="Columns">5</property>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4Quantity"
                 name="Construction_EntryPartListForm.manualPercent.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.EntryBOM" />
+                program="org.efaps.esjp.construction.EntryBOM" />
         </field>
         <field name="manualPercentSum">
             <property name="ModeCreate">READONLY</property>
@@ -234,7 +234,7 @@
             <property name="ModeCreate">EDITABLE</property>
             <property name="ModeEdit">EDITABLE</property>
             <table>Construction_EntryBOMToolTable</table>
-            <evaluate method="bomMultiPrint" program="net.moxter.eFapsApp.construction.EntryPartList">
+            <evaluate method="bomMultiPrint" program="org.efaps.esjp.construction.EntryPartList">
                 <property name="Type">Construction_EntryBOM</property>
                 <property name="LinkFrom">FromLink</property>
             </evaluate>
@@ -268,7 +268,7 @@
             <property name="ModeCreate">EDITABLE</property>
             <property name="ModeEdit">EDITABLE</property>
             <table>Construction_EntryBOMContractTable</table>
-            <evaluate method="bomMultiPrint" program="net.moxter.eFapsApp.construction.EntryPartList">
+            <evaluate method="bomMultiPrint" program="org.efaps.esjp.construction.EntryPartList">
                 <property name="Type">Construction_EntryBOM</property>
                 <property name="LinkFrom">FromLink</property>
             </evaluate>
@@ -301,7 +301,7 @@
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
             <trigger event="UI_FIELD_VALUE" method="getJavaScriptUIValue"
                 name="Construction_EntryPartListForm.javaScript.UI_Field_Value"
-                program="net.moxter.eFapsApp.construction.EntryBOM" />
+                program="org.efaps.esjp.construction.EntryBOM" />
         </field>
     </definition>
 </ui-form>

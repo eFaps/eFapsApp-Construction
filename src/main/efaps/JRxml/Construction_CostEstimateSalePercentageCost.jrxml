@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.1.final using JasperReports Library version 6.0.0  -->
+<!-- 2015-03-11T16:58:40 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Construction_CostEstimateSalePercentageCost" pageWidth="610" pageHeight="842" columnWidth="610" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e938eb9d-07ac-4f4d-bd9a-856808bdb701">
+	<property name="org.efaps.admin.program.jasper.EFapsApplication" value="eFapsApp-Construction"/>
+	<property name="org.efaps.eql.Version" value="2"/>
+    <property name="net.sf.jasperreports.style.evaluation.time.enabled" value="true"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="eFaps"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<parameter name="INSTANCE" class="java.lang.Object">
+		<defaultValueExpression><![CDATA[211099.683]]></defaultValueExpression>
+	</parameter>
+	<queryString language="eFaps">
+		<![CDATA[print query type Construction_CostEstimatePercentageCost where CostEstimateLink == $P!{INSTANCE}
+select attribute[PositionNumber] as positionNumber,
+linkto[PercentageCostLink].attribute[Value] as description,
+attribute[Percentage] as percentage,
+attribute[RateAmount] as amount]]>
+	</queryString>
+	<field name="positionNumber" class="java.lang.Integer"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="percentage" class="java.math.BigDecimal"/>
+	<field name="amount" class="java.math.BigDecimal"/>
+	<sortField name="positionNumber"/>
+	<columnHeader>
+		<band height="15">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="64" height="15" backcolor="#CCCCCC" uuid="ee936ed4-65dd-47cb-b97e-04505eb5caf5"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Item]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="64" y="0" width="346" height="15" backcolor="#CCCCCC" uuid="cace295c-95f9-4ae1-a2c6-07f05681aaef"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="510" y="0" width="100" height="15" backcolor="#CCCCCC" uuid="b986b569-b5f8-443c-afa2-e9244be9d33c"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="410" y="0" width="100" height="15" backcolor="#CCCCCC" uuid="4c124554-bb22-4eb5-a59c-19507539150e"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Porcentaje]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="610" height="15" backcolor="#CCCCCC" uuid="ea4f401e-c1d1-44d3-bfe7-395cc875a89b">
+					<printWhenExpression><![CDATA[new Boolean( $V{PAGE_COUNT}.intValue() % 2 ==0 )]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isStretchWithOverflow="true">
+				<reportElement key="desc4level1" x="64" y="0" width="346" height="15" isPrintWhenDetailOverflows="true" uuid="bae8ae3a-a6fe-485a-8808-af0aa49b941e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="510" y="0" width="100" height="15" uuid="53af877c-8cb0-4420-9cd1-eb6cea167e0d"/>
+				<box rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="64" height="15" isPrintWhenDetailOverflows="true" uuid="0d9d7f15-6a06-43a9-953e-ba654380f60e"/>
+				<box leftPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{positionNumber}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="410" y="0" width="100" height="15" uuid="7852dfa1-27ce-448c-bfbd-5f9156b1341c"/>
+				<box rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{percentage}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

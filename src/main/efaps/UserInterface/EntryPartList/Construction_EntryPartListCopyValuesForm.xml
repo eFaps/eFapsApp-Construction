@@ -20,7 +20,7 @@
             <property name="ModeEdit">READONLY</property>
             <property name="TargetShowCheckBoxes">true</property>
             <table>Construction_EntryPartList4CopyValuesTable</table>
-            <evaluate method="multiPrint4copyValues" program="net.moxter.eFapsApp.construction.EntryPartList">
+            <evaluate method="multiPrint4copyValues" program="org.efaps.esjp.construction.EntryPartList">
                 <property name="Type">Construction_EntryPartList</property>
             </evaluate>
         </field>

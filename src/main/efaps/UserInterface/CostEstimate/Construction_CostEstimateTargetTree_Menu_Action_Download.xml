@@ -26,10 +26,10 @@
         <!-- target definitions -->
         <target>
             <execute method="downloadCostEstimate"
-                program="net.moxter.eFapsApp.construction.CostEstimate">
+                program="org.efaps.esjp.construction.CostEstimate">
                 <property name="JasperReport">Construction_CostEstimateBase</property>
                 <property name="Mime">pdf</property>
-                <property name="DataSourceClass">net.moxter.eFapsApp.construction.reports.CostEstimateDataSource</property>
+                <property name="DataSourceClass">org.efaps.esjp.construction.reports.CostEstimateDataSource</property>
             </execute>
         </target>
         <property name="Target">hidden</property>

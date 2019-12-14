@@ -24,7 +24,7 @@
             <execute method="setStatus" program="org.efaps.esjp.admin.datamodel.StatusValue">
                 <property name="Status">Closed</property>
             </execute>
-            <validate program="net.moxter.eFapsApp.construction.CostEstimate" method="validateRealization"/>
+            <validate program="org.efaps.esjp.construction.CostEstimate" method="validateRealization"/>
             <trigger event="UI_ACCESSCHECK" method="check4Status"
                 name="Construction_CostEstimateRealizationTree_Menu_Action_SetClosed.UI_ACCESSCHECK"
                 program="org.efaps.esjp.admin.access.AccessCheck4UI">

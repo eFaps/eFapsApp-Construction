@@ -25,7 +25,7 @@
         <!-- target definitions -->
         <target>
             <form>Construction_VerificationListForm</form>
-            <execute method="edit" program="net.moxter.eFapsApp.construction.VerificationList" >
+            <execute method="edit" program="org.efaps.esjp.construction.VerificationList" >
                 <property name="PositionType">Construction_VerificationListPosition</property>
             </execute>
             <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
@@ -33,7 +33,7 @@
                 name="Construction_VerificationListTree_Menu_Action_Edit.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK">
                 <property name="SystemConfig">Construction-Configuration</property>
-                <property name="Attribute">net.moxter.eFapsApp.construction.VerificationListManual</property>
+                <property name="Attribute">org.efaps.esjp.construction.VerificationListManual</property>
             </trigger>
             <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
                 method="check4Status"

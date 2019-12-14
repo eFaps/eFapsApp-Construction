@@ -1,16 +1,24 @@
 /*
- * Copyright 2007 - 2016 Jan Moxter
+ *  Copyright 2003 - 2019 The eFaps Team
  *
- * All Rights Reserved.
- * This program contains proprietary and trade secret information of
- * Jan Moxter Copyright notice is precautionary only and does not
- * evidence any actual or intended publication of such program.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
  */
 
 package org.efaps.esjp.construction;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -69,6 +77,7 @@ import org.efaps.esjp.common.uitable.CommonDelete;
 import org.efaps.esjp.common.uitable.MultiPrint;
 import org.efaps.esjp.common.util.InterfaceUtils;
 import org.efaps.esjp.construction.util.Construction;
+import org.efaps.esjp.db.InstanceUtils;
 import org.efaps.esjp.erp.AbstractWarning;
 import org.efaps.esjp.erp.Currency;
 import org.efaps.esjp.erp.IWarning;
@@ -78,6 +87,8 @@ import org.efaps.esjp.erp.WarningUtil;
 import org.efaps.esjp.products.Product;
 import org.efaps.esjp.projects.document.Naming;
 import org.efaps.esjp.sales.Calculator;
+import org.efaps.esjp.sales.PriceUtil;
+import org.efaps.esjp.sales.PriceUtil_Base.ProductPrice;
 import org.efaps.esjp.sales.document.AbstractDocumentSum;
 import org.efaps.esjp.sales.tax.TaxCat;
 import org.efaps.esjp.sales.tax.TaxesAttribute;
@@ -208,7 +219,7 @@ public abstract class CostEstimate_Base
         final Object[] rateObj = getRateObject(_parameter);
 
         final BigDecimal rate = ((BigDecimal) rateObj[0]).divide((BigDecimal) rateObj[1], 12,
-                        BigDecimal.ROUND_HALF_UP);
+                        RoundingMode.HALF_UP);
 
         final List<Calculator> calcList = analyseTable(_parameter, null);
         final Iterator<Calculator> iter = calcList.iterator();
@@ -220,15 +231,15 @@ public abstract class CostEstimate_Base
             final Instance inst = Instance.get(oidMap.get(rowKeys[i]));
 
             final Update update = new Update(inst);
-            update.add(CISales.PositionGroupAbstract.Name, prodDescs[i]);
-            update.add(CISales.PositionGroupAbstract.Code, codes[i]);
-            update.add(CISales.PositionGroupAbstract.Order, i);
+            update.add(CIConstruction.PositionGroupAbstract.Name, prodDescs[i]);
+            update.add(CIConstruction.PositionGroupAbstract.Code, codes[i]);
+            update.add(CIConstruction.PositionGroupAbstract.Order, i);
             update.execute();
 
-            if (inst.getType().isKindOf(CISales.PositionGroupItem.getType())) {
+            if (inst.getType().isKindOf(CIConstruction.PositionGroupItem.getType())) {
                 final PrintQuery print = new PrintQuery(inst);
                 final SelectBuilder sel = new SelectBuilder()
-                                .linkto(CISales.PositionGroupAbstract.AbstractPositionAbstractLink).oid();
+                                .linkto(CIConstruction.PositionGroupAbstract.AbstractPositionAbstractLink).oid();
                 print.addSelect(sel);
                 print.executeWithoutAccessCheck();
                 final Instance posInst = Instance.get(print.<String>getSelect(sel));
@@ -240,37 +251,37 @@ public abstract class CostEstimate_Base
                 posUpdate.add(CISales.PositionSumAbstract.Quantity, calc.getQuantity());
                 posUpdate.add(CISales.PositionSumAbstract.UoM, _parameter.getParameterValues("uoM")[i]);
                 posUpdate.add(CISales.PositionSumAbstract.CrossUnitPrice, calc.getCrossUnitPrice()
-                                .divide(rate, 12, BigDecimal.ROUND_HALF_UP)
-                                .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                .divide(rate, 12, RoundingMode.HALF_UP)
+                                .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 posUpdate.add(CISales.PositionSumAbstract.NetUnitPrice, calc.getNetUnitPrice()
-                                .divide(rate, 12, BigDecimal.ROUND_HALF_UP)
-                                .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                .divide(rate, 12, RoundingMode.HALF_UP)
+                                .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 posUpdate.add(CISales.PositionSumAbstract.CrossPrice, calc.getCrossPrice()
-                                .divide(rate, 12, BigDecimal.ROUND_HALF_UP)
-                                .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                .divide(rate, 12, RoundingMode.HALF_UP)
+                                .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 posUpdate.add(CISales.PositionSumAbstract.NetPrice, calc.getNetPrice()
-                                .divide(rate, 12, BigDecimal.ROUND_HALF_UP)
-                                .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                .divide(rate, 12, RoundingMode.HALF_UP)
+                                .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 posUpdate.add(CISales.PositionSumAbstract.Tax, calc.getTaxCatId());
                 posUpdate.add(CISales.PositionSumAbstract.Discount, calc.getDiscountStr());
                 posUpdate.add(CISales.PositionSumAbstract.DiscountNetUnitPrice, calc.getDiscountNetUnitPrice()
-                                .divide(rate, 12, BigDecimal.ROUND_HALF_UP)
-                                .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                .divide(rate, 12, RoundingMode.HALF_UP)
+                                .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 posUpdate.add(CISales.PositionSumAbstract.CurrencyId, baseCurrInst.getId());
                 posUpdate.add(CISales.PositionSumAbstract.Rate, rateObj);
                 posUpdate.add(CISales.PositionSumAbstract.RateCurrencyId, rateCurrId);
                 posUpdate.add(CISales.PositionSumAbstract.RateNetUnitPrice, calc.getNetUnitPrice()
-                                .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 posUpdate.add(CISales.PositionSumAbstract.RateCrossUnitPrice, calc.getCrossUnitPrice()
-                                .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 posUpdate.add(CISales.PositionSumAbstract.RateDiscountNetUnitPrice, calc.getDiscountNetUnitPrice()
-                                .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 posUpdate.add(CISales.PositionSumAbstract.RateNetPrice,
                                 calc.getNetPrice().setScale(unitFrmt.getMaximumFractionDigits(),
-                                                BigDecimal.ROUND_HALF_UP));
+                                                RoundingMode.HALF_UP));
                 posUpdate.add(CISales.PositionSumAbstract.RateCrossPrice,
                                 calc.getCrossPrice().setScale(unitFrmt.getMaximumFractionDigits(),
-                                                BigDecimal.ROUND_HALF_UP));
+                                                RoundingMode.HALF_UP));
                 posUpdate.execute();
             }
         }
@@ -335,16 +346,16 @@ public abstract class CostEstimate_Base
         final Instance projInst = Instance
                         .get(_parameter.getParameterValue(CIFormConstruction.Construction_CostEstimateBaseForm.project.name));
         if (projInst.isValid()) {
-            final QueryBuilder queryRoot = new QueryBuilder(CISales.PositionGroupRoot);
-            queryRoot.addWhereAttrEqValue(CISales.PositionGroupRoot.DocumentAbstractLink, _createdDoc.getInstance());
+            final QueryBuilder queryRoot = new QueryBuilder(CIConstruction.PositionGroupRoot);
+            queryRoot.addWhereAttrEqValue(CIConstruction.PositionGroupRoot.DocumentAbstractLink, _createdDoc.getInstance());
             final InstanceQuery instanceQuery = queryRoot.getQuery();
             if (instanceQuery.execute().isEmpty()) {
-                final Insert insert = new Insert(CISales.PositionGroupRoot);
-                insert.add(CISales.PositionGroupAbstract.DocumentAbstractLink, _createdDoc.getInstance());
-                insert.add(CISales.PositionGroupAbstract.Name,
+                final Insert insert = new Insert(CIConstruction.PositionGroupRoot);
+                insert.add(CIConstruction.PositionGroupAbstract.DocumentAbstractLink, _createdDoc.getInstance());
+                insert.add(CIConstruction.PositionGroupAbstract.Name,
                                DBProperties.getProperty(CostEstimate.class.getName() + ".GoupRootDescription4Default"));
-                insert.add(CISales.PositionGroupAbstract.Level, 1);
-                insert.add(CISales.PositionGroupAbstract.Order, 1);
+                insert.add(CIConstruction.PositionGroupAbstract.Level, 1);
+                insert.add(CIConstruction.PositionGroupAbstract.Order, 1);
                 insert.execute();
             }
 
@@ -380,8 +391,8 @@ public abstract class CostEstimate_Base
                                                 final Instance _costEstimateInst)
         throws EFapsException
     {
-        final QueryBuilder queryBldr = new QueryBuilder(CISales.PositionGroupRoot);
-        queryBldr.addWhereAttrEqValue(CISales.PositionGroupRoot.DocumentAbstractLink, _costEstimateInst);
+        final QueryBuilder queryBldr = new QueryBuilder(CIConstruction.PositionGroupRoot);
+        queryBldr.addWhereAttrEqValue(CIConstruction.PositionGroupRoot.DocumentAbstractLink, _costEstimateInst);
         final MultiPrintQuery multi = queryBldr.getPrint();
         multi.execute();
         final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getTypeName4SysConf(_parameter));
@@ -389,9 +400,9 @@ public abstract class CostEstimate_Base
             final BigDecimal[] totals = getTotals(_parameter, multi.getCurrentInstance());
             final Update update = new Update(multi.getCurrentInstance());
             update.add(CIConstruction.PositionGroupAbstract.SumsTotal,
-                            totals[1].setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                            totals[1].setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
             update.add(CIConstruction.PositionGroupAbstract.RateSumsTotal,
-                            totals[0].setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                            totals[0].setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
             update.executeWithoutTrigger();
         }
     }
@@ -409,21 +420,21 @@ public abstract class CostEstimate_Base
     {
         final BigDecimal[] ret = new BigDecimal[]{ BigDecimal.ZERO, BigDecimal.ZERO};
         final SelectBuilder selNetPrice = new SelectBuilder()
-                        .linkto(CISales.PositionGroupAbstract.AbstractPositionAbstractLink)
+                        .linkto(CIConstruction.PositionGroupAbstract.AbstractPositionLink)
                         .attribute(CISales.PositionSumAbstract.NetPrice);
         final SelectBuilder selRateNetPrice = new SelectBuilder()
-            .linkto(CISales.PositionGroupAbstract.AbstractPositionAbstractLink)
+            .linkto(CIConstruction.PositionGroupAbstract.AbstractPositionLink)
             .attribute(CISales.PositionSumAbstract.RateNetPrice);
 
-        final QueryBuilder queryBldr = new QueryBuilder(CISales.PositionGroupNode);
-        queryBldr.addWhereAttrEqValue(CISales.PositionGroupNode.ParentGroupLink, _groupInstance);
+        final QueryBuilder queryBldr = new QueryBuilder(CIConstruction.PositionGroupNode);
+        queryBldr.addWhereAttrEqValue(CIConstruction.PositionGroupNode.ParentGroupLink, _groupInstance);
         final MultiPrintQuery multi = queryBldr.getPrint();
         multi.addSelect(selNetPrice, selRateNetPrice);
         multi.execute();
         final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getTypeName4SysConf(_parameter));
         while (multi.next()) {
             final Instance childInst = multi.getCurrentInstance();
-            if (childInst.getType().isKindOf(CISales.PositionGroupItem.getType())) {
+            if (childInst.getType().isKindOf(CIConstruction.PositionGroupItem.getType())) {
                 final BigDecimal rateNetPrice = multi.<BigDecimal>getSelect(selRateNetPrice);
                 final BigDecimal netPrice = multi.<BigDecimal>getSelect(selNetPrice);
                 ret[0] = ret[0].add(rateNetPrice == null ? BigDecimal.ZERO : rateNetPrice);
@@ -434,9 +445,9 @@ public abstract class CostEstimate_Base
                 ret[1] = ret[1].add(totals[1]);
                 final Update update = new Update(childInst);
                 update.add(CIConstruction.PositionGroupAbstract.SumsTotal,
-                                totals[1].setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                totals[1].setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 update.add(CIConstruction.PositionGroupAbstract.RateSumsTotal,
-                                totals[0].setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                totals[0].setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 update.executeWithoutTrigger();
             }
         }
@@ -454,8 +465,10 @@ public abstract class CostEstimate_Base
         final Map<String, Map<String, String>> orderMap = new TreeMap<>();
         if (!input.isEmpty()) {
             final Instance inst;
-            if (_parameter.getInstance().getType().isKindOf(CIConstruction.CostEstimateAbstract.getType())) {
+            if (InstanceUtils.isKindOf(_parameter.getInstance(), CIConstruction.CostEstimateAbstract)) {
                 inst = _parameter.getInstance();
+            } else if (InstanceUtils.isKindOf(_parameter.getCallInstance(), CIConstruction.CostEstimateAbstract)) {
+                inst = _parameter.getCallInstance();
             } else {
                 inst = (Instance) Context.getThreadContext().getSessionAttribute(CostEstimate.COESTINSTKEY);
             }
@@ -751,8 +764,8 @@ public abstract class CostEstimate_Base
                     update = true;
                 }
                 if (update) {
-                    price = price.multiply(BigDecimal.ONE.add(percent.setScale(12, BigDecimal.ROUND_HALF_UP)
-                                    .divide(new BigDecimal(100), BigDecimal.ROUND_HALF_UP)));
+                    price = price.multiply(BigDecimal.ONE.add(percent.setScale(12, RoundingMode.HALF_UP)
+                                    .divide(new BigDecimal(100), RoundingMode.HALF_UP)));
                     updateProductPrice(_parameter, prodInst, price);
                 }
             }
@@ -970,7 +983,7 @@ public abstract class CostEstimate_Base
 
             if (updatePos) {
                 final BigDecimal rate = ((BigDecimal) rateObj[0]).divide((BigDecimal) rateObj[1], 12,
-                                BigDecimal.ROUND_HALF_UP);
+                                RoundingMode.HALF_UP);
                 updateCostEstimatePosition(_parameter, instQuotPos, calc, rate);
                 updateTotals4CostEstimateGroups(_parameter, costEstInst);
             }
@@ -1038,20 +1051,20 @@ public abstract class CostEstimate_Base
         posUpdate.add(CISales.PositionSumAbstract.Discount, _calc.getDiscount());
         posUpdate.add(CISales.PositionSumAbstract.RateDiscountNetUnitPrice, _calc.getDiscountNetUnitPrice());
         posUpdate.add(CISales.PositionSumAbstract.DiscountNetUnitPrice, _calc.getDiscountNetUnitPrice()
-                        .divide(_rate, BigDecimal.ROUND_HALF_UP)
-                        .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                        .divide(_rate, RoundingMode.HALF_UP)
+                        .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
         posUpdate.add(CISales.PositionSumAbstract.CrossUnitPrice, _calc.getCrossUnitPrice()
-                        .divide(_rate, BigDecimal.ROUND_HALF_UP)
-                        .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                        .divide(_rate, RoundingMode.HALF_UP)
+                        .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
         posUpdate.add(CISales.PositionSumAbstract.NetUnitPrice, _calc.getNetUnitPrice()
-                        .divide(_rate, BigDecimal.ROUND_HALF_UP)
-                        .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                        .divide(_rate, RoundingMode.HALF_UP)
+                        .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
         posUpdate.add(CISales.PositionSumAbstract.CrossPrice, _calc.getCrossPrice()
-                        .divide(_rate, BigDecimal.ROUND_HALF_UP)
-                        .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                        .divide(_rate, RoundingMode.HALF_UP)
+                        .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
         posUpdate.add(CISales.PositionSumAbstract.NetPrice, _calc.getNetPrice()
-                        .divide(_rate, BigDecimal.ROUND_HALF_UP)
-                        .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                        .divide(_rate, RoundingMode.HALF_UP)
+                        .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
         posUpdate.execute();
     }
 
@@ -1079,7 +1092,7 @@ public abstract class CostEstimate_Base
         calcs.addAll(getCalculators4PercentageCostAmmounts(_parameter, _ceInst, _verifyPercentageCost ? subNetTotal
                         : null));
         final BigDecimal rate = ((BigDecimal) rateObj[0]).divide((BigDecimal) rateObj[1], 12,
-                        BigDecimal.ROUND_HALF_UP);
+                        RoundingMode.HALF_UP);
 
         updateCostEstimateAmounts(_parameter, _ceInst, calcs, rate, rateCurrInst);
     }
@@ -1103,18 +1116,18 @@ public abstract class CostEstimate_Base
 
         final Update update = new Update(_ceInst);
         update.add(CISales.DocumentSumAbstract.CrossTotal, getCrossTotal(_parameter, _calcList)
-                        .divide(_rate, 12, BigDecimal.ROUND_HALF_UP).setScale(frmt.getMaximumFractionDigits(),
-                                        BigDecimal.ROUND_HALF_UP));
+                        .divide(_rate, 12, RoundingMode.HALF_UP).setScale(frmt.getMaximumFractionDigits(),
+                                        RoundingMode.HALF_UP));
         update.add(CISales.DocumentSumAbstract.NetTotal, getNetTotal(_parameter, _calcList)
-                        .divide(_rate, 12, BigDecimal.ROUND_HALF_UP).setScale(frmt.getMaximumFractionDigits(),
-                                        BigDecimal.ROUND_HALF_UP));
+                        .divide(_rate, 12, RoundingMode.HALF_UP).setScale(frmt.getMaximumFractionDigits(),
+                                        RoundingMode.HALF_UP));
         update.add(CISales.DocumentSumAbstract.RateNetTotal, getNetTotal(_parameter, _calcList)
-                        .setScale(frmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP).setScale(
+                        .setScale(frmt.getMaximumFractionDigits(), RoundingMode.HALF_UP).setScale(
                                         frmt.getMaximumFractionDigits(),
-                                        BigDecimal.ROUND_HALF_UP));
+                                        RoundingMode.HALF_UP));
         update.add(CISales.DocumentSumAbstract.RateCrossTotal, getCrossTotal(_parameter, _calcList)
-                        .setScale(frmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP).setScale(
-                                        frmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                        .setScale(frmt.getMaximumFractionDigits(), RoundingMode.HALF_UP).setScale(
+                                        frmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
         update.add(CISales.DocumentSumAbstract.DiscountTotal, BigDecimal.ZERO);
         update.add(CISales.DocumentSumAbstract.RateDiscountTotal, BigDecimal.ZERO);
         update.add(CISales.DocumentSumAbstract.RateTaxes, getRateTaxes(_parameter, _calcList, _rateCurrInst));
@@ -1281,28 +1294,28 @@ public abstract class CostEstimate_Base
                     connectRevision(_parameter, newInst);
                     setStati(_parameter, newInst);
                     // update the group positions
-                    final QueryBuilder queryBldr = new QueryBuilder(CISales.PositionGroupAbstract);
-                    queryBldr.addWhereAttrEqValue(CISales.PositionGroupAbstract.DocumentAbstractLink, qInst);
+                    final QueryBuilder queryBldr = new QueryBuilder(CIConstruction.PositionGroupAbstract);
+                    queryBldr.addWhereAttrEqValue(CIConstruction.PositionGroupAbstract.DocumentAbstractLink, qInst);
                     final MultiPrintQuery multi = queryBldr.getPrint();
-                    multi.addAttribute(CISales.PositionGroupItem.ParentGroupLink,
-                                    CISales.PositionGroupAbstract.AbstractPositionAbstractLink);
+                    multi.addAttribute(CIConstruction.PositionGroupItem.ParentGroupLink,
+                                    CIConstruction.PositionGroupAbstract.AbstractPositionAbstractLink);
                     multi.execute();
                     final Map<Long, Long> current2new = new HashMap<>();
                     final Map<Instance, Long> new2parent = new HashMap<>();
                     while (multi.next()) {
                         final Instance origInst = multi.getCurrentInstance();
 
-                        final Long curParentId = multi.<Long>getAttribute(CISales.PositionGroupItem.ParentGroupLink);
+                        final Long curParentId = multi.<Long>getAttribute(CIConstruction.PositionGroupItem.ParentGroupLink);
                         final Insert insert = new Insert(origInst.getType());
                         final Set<String> added = new HashSet<>();
-                        insert.add(CISales.PositionGroupItem.DocumentAbstractLink, newInst);
-                        added.add(origInst.getType().getAttribute(CISales.PositionGroupItem.DocumentAbstractLink.name)
+                        insert.add(CIConstruction.PositionGroupItem.DocumentAbstractLink, newInst);
+                        added.add(origInst.getType().getAttribute(CIConstruction.PositionGroupItem.DocumentAbstractLink.name)
                                         .getSqlColNames().toString());
 
-                        if (multi.getAttribute(CISales.PositionGroupItem.AbstractPositionAbstractLink) != null) {
+                        if (multi.getAttribute(CIConstruction.PositionGroupItem.AbstractPositionAbstractLink) != null) {
                             final PrintQuery print = new PrintQuery(origInst);
                             final SelectBuilder posSel = new SelectBuilder()
-                                            .linkto(CISales.PositionGroupItem.AbstractPositionAbstractLink).instance();
+                                            .linkto(CIConstruction.PositionGroupItem.AbstractPositionAbstractLink).instance();
                             print.addSelect(posSel);
                             print.execute();
                             final Instance posOrigInst = print.<Instance>getSelect(posSel);
@@ -1310,9 +1323,9 @@ public abstract class CostEstimate_Base
                             if (posNewInst == null) {
                                 break;
                             }
-                            insert.add(CISales.PositionGroupItem.PositionAbstractLink, posNewInst);
+                            insert.add(CIConstruction.PositionGroupItem.PositionLink, posNewInst);
                             added.add(origInst.getType()
-                                            .getAttribute(CISales.PositionGroupItem.PositionAbstractLink.name)
+                                            .getAttribute(CIConstruction.PositionGroupItem.PositionLink.name)
                                             .getSqlColNames().toString());
                         }
 
@@ -1325,7 +1338,7 @@ public abstract class CostEstimate_Base
                     for (final Entry<Instance, Long> entry : new2parent.entrySet()) {
                         if (entry.getValue() != null) {
                             final Update update = new Update(entry.getKey());
-                            update.add(CISales.PositionGroupItem.ParentGroupLink, current2new.get(entry.getValue()));
+                            update.add(CIConstruction.PositionGroupItem.ParentGroupLink, current2new.get(entry.getValue()));
                             update.execute();
                         }
                     }
@@ -1584,10 +1597,10 @@ public abstract class CostEstimate_Base
                         && _parameter.getInstance().getType().isKindOf(CIConstruction.CostEstimateAbstract)) {
             ret = _parameter.getInstance().getType().getName();
         } else if (_parameter.getInstance()  != null && _parameter.getInstance().isValid()
-                        && _parameter.getInstance().getType().isKindOf(CISales.PositionGroupAbstract)) {
+                        && _parameter.getInstance().getType().isKindOf(CIConstruction.PositionGroupAbstract)) {
             final CachedPrintQuery print = CachedPrintQuery.get4Request(_parameter.getInstance());
             final SelectBuilder sel = SelectBuilder.get()
-                           .linkto(CISales.PositionGroupAbstract.AbstractPositionAbstractLink)
+                           .linkto(CIConstruction.PositionGroupAbstract.AbstractPositionAbstractLink)
                            .linkto(CISales.PositionAbstract.DocumentAbstractLink).type().name();
             print.addSelect(sel);
             print.executeWithoutAccessCheck();
@@ -1689,14 +1702,14 @@ public abstract class CostEstimate_Base
         }
         final Parameter parameter = ParameterUtil.clone(_parameter);
         ParameterUtil.setParameterValues(parameter, "product", oids);
-        final List<Calculator> ret = super.analyseTable(parameter, -2);
+        final List<Calculator> ret = super.analyseTable(parameter, -1);
 
         Instance costEstimateInst = _parameter.getInstance();
         if (costEstimateInst != null && costEstimateInst.isValid()
-                        && costEstimateInst.getType().isCIType(CISales.PositionGroupItem)) {
+                        && costEstimateInst.getType().isCIType(CIConstruction.PositionGroupItem)) {
             final PrintQuery print = new PrintQuery(costEstimateInst);
             final SelectBuilder selCostEstimateInst = SelectBuilder.get()
-                            .linkto(CISales.PositionGroupItem.DocumentAbstractLink).instance();
+                            .linkto(CIConstruction.PositionGroupItem.DocumentAbstractLink).instance();
             print.addSelect(selCostEstimateInst);
             print.execute();
             costEstimateInst = print.getSelect(selCostEstimateInst);
@@ -1707,7 +1720,7 @@ public abstract class CostEstimate_Base
             final Map<String, String> oidMap = (Map<String, String>) _parameter.get(ParameterValues.OIDMAP4UI);
             for (final String oid : oidMap.values()) {
                 final Instance inst = Instance.get(oid);
-                if (inst.getType().isCIType(CISales.PositionGroupItem)) {
+                if (inst.getType().isCIType(CIConstruction.PositionGroupItem)) {
                     tempList.add(inst);
                 }
             }
@@ -1715,7 +1728,7 @@ public abstract class CostEstimate_Base
             final Set<String> keySel = new TreeSet<>();
             final MultiPrintQuery multi = new MultiPrintQuery(tempList);
             final SelectBuilder selPosInst = SelectBuilder.get()
-                            .linkto(CISales.PositionGroupItem.PositionAbstractLink).instance();
+                            .linkto(CIConstruction.PositionGroupItem.PositionLink).instance();
             multi.addSelect(selPosInst);
             multi.executeWithoutAccessCheck();
             while (multi.next()) {
@@ -1771,7 +1784,8 @@ public abstract class CostEstimate_Base
                 _queryBldr.addWhereAttrInQuery(CIConstruction.EntrySheet.ID, attrQuery);
                 _queryBldr.addWhereAttrNotInQuery(CIConstruction.EntrySheet.ID, attrQuery2);
 
-                _queryBldr.addWhereAttrEqValue(CIConstruction.EntrySheet.Status, Status.find(CIConstruction.EntrySheetStatus.Open));
+                _queryBldr.addWhereAttrEqValue(CIConstruction.EntrySheet.Status,
+                                Status.find(CIConstruction.EntrySheetStatus.Open));
             }
         } .getCheckBoxList(_parameter);
 
@@ -1853,7 +1867,7 @@ public abstract class CostEstimate_Base
                 print.executeWithoutAccessCheck();
                 final Object[] rateObj = print.getAttribute(CIConstruction.CostEstimateSale.Rate);
                 final BigDecimal rate = ((BigDecimal) rateObj[0]).divide((BigDecimal) rateObj[1], 12,
-                                BigDecimal.ROUND_HALF_UP);
+                                RoundingMode.HALF_UP);
                 for (int i = 0; i < rowKeys.length; i++) {
                     if (!percentages[i].isEmpty() && !amounts[i].isEmpty()) {
                         final Instance inst = Instance.get(oidMap.get(rowKeys[i]));
@@ -1866,9 +1880,9 @@ public abstract class CostEstimate_Base
                         }
                         final BigDecimal rateAmount = (BigDecimal) totalFrmt.parse(amounts[i]);
 
-                        final BigDecimal amount = rateAmount.divide(rate, 12, BigDecimal.ROUND_HALF_UP)
+                        final BigDecimal amount = rateAmount.divide(rate, 12, RoundingMode.HALF_UP)
                                         .setScale(totalFrmt.getMaximumFractionDigits(),
-                                                        BigDecimal.ROUND_HALF_UP);
+                                                        RoundingMode.HALF_UP);
 
                         update.add(CIConstruction.CostEstimatePercentageCost.PercentageCostLink, costLinks[i]);
                         update.add(CIConstruction.CostEstimatePercentageCost.Amount, amount);
@@ -1939,7 +1953,7 @@ public abstract class CostEstimate_Base
         final BigDecimal subTotal = getNetTotal(_parameter, posCalcs);
 
         final BigDecimal amount = percentage.setScale(12)
-                        .divide(new BigDecimal(100), BigDecimal.ROUND_HALF_UP).multiply(subTotal);
+                        .divide(new BigDecimal(100), RoundingMode.HALF_UP).multiply(subTotal);
         amountCalcs.get(selected).setNetUnitPrice(amount);
         final String netTotalStr = getNetTotalFmtStr(_parameter, allCalcs);
         final String crossTotalStr = getCrossTotalFmtStr(_parameter, allCalcs);
@@ -1985,8 +1999,8 @@ public abstract class CostEstimate_Base
         final BigDecimal subTotal = getNetTotal(_parameter, posCalcs);
 
         final BigDecimal percentage = amountCalcs.get(selected).getNetUnitPrice()
-                        .setScale(12, BigDecimal.ROUND_HALF_UP)
-                        .divide(subTotal, BigDecimal.ROUND_HALF_UP)
+                        .setScale(12, RoundingMode.HALF_UP)
+                        .divide(subTotal, RoundingMode.HALF_UP)
                         .multiply(new BigDecimal(100));
         final String netTotalStr = getNetTotalFmtStr(_parameter, allCalcs);
         final String crossTotalStr = getCrossTotalFmtStr(_parameter, allCalcs);
@@ -2066,21 +2080,21 @@ public abstract class CostEstimate_Base
                                 .<BigDecimal>getAttribute(CIConstruction.CostEstimatePercentageCost.Percentage);
                 if (_netSubTotal != null) {
                     BigDecimal amountTmp = percentage.setScale(12)
-                                    .divide(new BigDecimal(100), BigDecimal.ROUND_HALF_UP).multiply(_netSubTotal);
+                                    .divide(new BigDecimal(100), RoundingMode.HALF_UP).multiply(_netSubTotal);
                     final DecimalFormat frmt = NumberFormatter.get().getFrmt4Total(getTypeName4SysConf(_parameter));
-                    amountTmp = amountTmp.setScale(frmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP);
+                    amountTmp = amountTmp.setScale(frmt.getMaximumFractionDigits(), RoundingMode.HALF_UP);
                     if (amountTmp.compareTo(rateAmount) != 0) {
                         final PrintQuery print = new PrintQuery(_parameter.getInstance());
                         print.addAttribute(CIConstruction.CostEstimateSale.Rate);
                         print.executeWithoutAccessCheck();
                         final Object[] rateObj = print.getAttribute(CIConstruction.CostEstimateSale.Rate);
                         final BigDecimal rate = ((BigDecimal) rateObj[0]).divide((BigDecimal) rateObj[1], 12,
-                                        BigDecimal.ROUND_HALF_UP);
+                                        RoundingMode.HALF_UP);
                         final DecimalFormat totalFrmt = NumberFormatter.get().getFrmt4Total(
                                         getTypeName4SysConf(_parameter));
-                        final BigDecimal amount = rateAmount.divide(rate, 12, BigDecimal.ROUND_HALF_UP)
+                        final BigDecimal amount = rateAmount.divide(rate, 12, RoundingMode.HALF_UP)
                                         .setScale(totalFrmt.getMaximumFractionDigits(),
-                                                        BigDecimal.ROUND_HALF_UP);
+                                                        RoundingMode.HALF_UP);
 
                         final Update update = new Update(multi.getCurrentInstance());
                         update.add(CIConstruction.CostEstimatePercentageCost.RateAmount, amountTmp);
@@ -2346,7 +2360,7 @@ public abstract class CostEstimate_Base
         final Return ret = new Return();
         final PrintQuery print = new PrintQuery(_parameter.getInstance());
         final SelectBuilder selPos = SelectBuilder.get()
-                        .linkto(CISales.PositionGroupAbstract.AbstractPositionAbstractLink);
+                        .linkto(CIConstruction.PositionGroupAbstract.AbstractPositionAbstractLink);
         final SelectBuilder selESPosID = new SelectBuilder(selPos)
             .attribute(CIConstruction.CostEstimatePositionAbstract.EntrySheetPositionLink);
         final SelectBuilder selProdInst = new SelectBuilder(selPos)
@@ -2376,6 +2390,48 @@ public abstract class CostEstimate_Base
             ret = super.getJavaScript4SelectDoc(_parameter);
         }
         return ret;
+    }
+
+    @Override
+    public Calculator getCalculator(final Parameter _parameter,
+                                    final Calculator _oldCalc,
+                                    final String _oid,
+                                    final String _quantity,
+                                    final String _unitPrice,
+                                    final String _discount,
+                                    final boolean _priceFromDB,
+                                    final int _idx)
+        throws EFapsException
+    {
+        return new Calculator(_parameter, _oldCalc, _oid, _quantity, _unitPrice, _discount, _priceFromDB, this) {
+
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            protected ProductPrice evalPriceFromDB(final Parameter _parameter)
+                throws EFapsException
+            {
+                ProductPrice ret;
+                final var prodInst = getProductInstance();
+                if (InstanceUtils.isKindOf(prodInst, CIConstruction.EntryPartList)) {
+                    final var print = new PrintQuery(prodInst);
+                    final SelectBuilder selTotal = SelectBuilder.get().clazz(CIConstruction.EntryPartList_Class)
+                                    .attribute(CIConstruction.EntryPartList_Class.Total);
+                    print.addSelect(selTotal);
+                    print.execute();
+                    final BigDecimal total = print.getSelect(selTotal);
+                    final var productPrice = new PriceUtil().new ProductPrice();
+                    productPrice.setBasePrice(total);
+                    productPrice.setCurrentPrice(total);
+                    productPrice.setOrigPrice(total);
+                    ret = productPrice;
+                } else {
+                    ret = super.evalPriceFromDB(_parameter);
+                }
+                return ret;
+            }
+
+        };
     }
 
     /**

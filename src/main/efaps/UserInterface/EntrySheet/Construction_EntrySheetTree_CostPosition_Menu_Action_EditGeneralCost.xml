@@ -25,7 +25,7 @@
         <target>
             <form>Construction_EntrySheetCostPositionForm</form>
             <execute method="editGeneralCost"
-                program="net.moxter.eFapsApp.construction.EntrySheet" />
+                program="org.efaps.esjp.construction.EntrySheet" />
             <trigger program="org.efaps.esjp.admin.access.AccessCheck4UI"
                 method="check4Status"
                 name="Construction_EntrySheetTree_Position_Menu_Action_EditGeneralCost.UI_ACCESSCHECK"

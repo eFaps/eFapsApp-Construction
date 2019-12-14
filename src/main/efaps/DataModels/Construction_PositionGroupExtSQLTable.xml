@@ -21,7 +21,7 @@
         <name>Construction_PositionGroupExtSQLTable</name>
         <parent>Sales_PositionGroupSQLTable</parent>
         <database>
-            <table-name>T_CON_SALESGROUPPOSEXT</table-name>
+            <table-name>T_CONSTRSALESGROUPPOSEXT</table-name>
             <parent-table>T_SALESGROUPPOS</parent-table>
             <column name="SUMSTOTAL" type="DECIMAL" length="20" scale="10" />
             <column name="RATESUMSTOTAL" type="DECIMAL" length="20" scale="10" />

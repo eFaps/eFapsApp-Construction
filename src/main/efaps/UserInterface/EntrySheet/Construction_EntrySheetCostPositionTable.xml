@@ -26,7 +26,7 @@
             <property name="ModeEdit">EDITABLE</property>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4Quantity"
                 name="Construction_EntrySheetPositionTable.product.UI_FIELD_AUTOCOMPLETE"
-                program="net.moxter.eFapsApp.construction.EntrySheet" />
+                program="org.efaps.esjp.construction.EntrySheet" />
         </field>
         <field name="product">
             <property name="SelectAlternateOID">linkto[Product].oid</property>
@@ -37,12 +37,12 @@
             <property name="HRef">TREE</property>
             <trigger event="UI_FIELD_AUTOCOMPLETE" method="autoComplete4Product"
                 name="Construction_EntrySheetPositionTable.product.UI_FIELD_AUTOCOMPLETE"
-                program="net.moxter.eFapsApp.construction.EntrySheet">
+                program="org.efaps.esjp.construction.EntrySheet">
                 <property name="Type">Construction_ProductGeneralCostPosition</property>
             </trigger>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4Product"
                 name="Construction_EntrySheetPositionTable.product.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.EntrySheet" />
+                program="org.efaps.esjp.construction.EntrySheet" />
         </field>
         <field name="productDesc">
             <property name="Columns">90</property>
@@ -77,7 +77,7 @@
             <property name="Align">right</property>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4Participation"
                 name="Construction_EntrySheetPositionTable.participation.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.EntrySheet" />
+                program="org.efaps.esjp.construction.EntrySheet" />
         </field>
         <field name="time">
             <property name="ModeCreate">EDITABLE</property>
@@ -87,7 +87,7 @@
             <property name="Align">right</property>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4Time"
                 name="Construction_EntrySheetPositionTable.participation.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.EntrySheet" />
+                program="org.efaps.esjp.construction.EntrySheet" />
         </field>
         <field name="netUnitPrice">
             <property name="ModeCreate">EDITABLE</property>
@@ -97,7 +97,7 @@
             <property name="Align">right</property>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4NetUnitPrice"
                 name="Construction_EntrySheetPositionTable.netUnitPrice.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.EntrySheet" />
+                program="org.efaps.esjp.construction.EntrySheet" />
         </field>
         <field name="netUnitPrice4Read">
             <property name="ModeCreate">READONLY</property>
@@ -106,7 +106,7 @@
             <property name="Align">right</property>
             <trigger event="UI_ACCESSCHECK" method="accessCheck4NetUnitPrice"
                 name="Construction_EntrySheetPositionTable.netUnitPrice.UI_ACCESSCHECK"
-                program="net.moxter.eFapsApp.construction.EntrySheet" />
+                program="org.efaps.esjp.construction.EntrySheet" />
         </field>
         <field name="netPrice">
             <property name="ModeCreate">READONLY</property>

@@ -26,7 +26,7 @@
         <name>Construction_CostEstimatePositionSQLTable</name>
         <parent>Sales_PositionAbstractSQLTable</parent>
         <database>
-            <table-name>T_Construction_CEPOS</table-name>
+            <table-name>T_CONSTRCEPOS</table-name>
             <parent-table>T_SALESPOS</parent-table>
             <column name="ENTRYSHEETID" type="INTEGER" />
         </database>

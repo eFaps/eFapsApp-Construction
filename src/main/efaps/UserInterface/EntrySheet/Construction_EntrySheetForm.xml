@@ -24,7 +24,7 @@
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
             <trigger event="UI_FIELD_VALUE" method="activatePositionsCalculator"
                 name="Construction_EntrySheetForm.activatePositionsCalculator.UI_FIELD_VALUE"
-                program="net.moxter.eFapsApp.construction.EntrySheet" />
+                program="org.efaps.esjp.construction.EntrySheet" />
         </field>
         <field name="date">
             <property name="Columns">12</property>
@@ -121,7 +121,7 @@
             </trigger>
              <trigger event="UI_FIELD_UPDATE" method="updateFields4Project"
                 name="Construction_EntrySheetForm.project.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.EntrySheet" />
+                program="org.efaps.esjp.construction.EntrySheet" />
         </field>
         <field character="Group" name="projectGroup">
             <property name="ModeView">READONLY</property>
@@ -174,10 +174,10 @@
             <property name="ModeView">NONE</property>
             <trigger event="UI_FIELD_VALUE" method="rateCurrencyFieldValueUI"
                 name="Construction_EntrySheetForm.currencyId.UI_FIELD_VALUE"
-                program="net.moxter.eFapsApp.construction.EntrySheet" />
+                program="org.efaps.esjp.construction.EntrySheet" />
             <trigger event="UI_FIELD_UPDATE" method="updateFields4RateCurrency"
                 name="Construction_EntrySheetForm.currencyId.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.EntrySheet" />
+                program="org.efaps.esjp.construction.EntrySheet" />
         </field>
         <field name="rateCurrencyData">
             <property name="ModePrint">NONE</property>
@@ -218,7 +218,7 @@
             <property name="ModeCreate">NONE</property>
             <property name="ModeEdit">NONE</property>
             <property name="ModeView">READONLY</property>
-            <trigger program="net.moxter.eFapsApp.construction.EntrySheet"
+            <trigger program="org.efaps.esjp.construction.EntrySheet"
                 method="accessCheck4Rate"
                 name="Construction_EntrySheetForm.rate4ReadHeading.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK"/>
@@ -228,7 +228,7 @@
             <property name="ModeCreate">NONE</property>
             <property name="ModeEdit">NONE</property>
             <property name="ModeView">READONLY</property>
-            <trigger program="net.moxter.eFapsApp.construction.EntrySheet"
+            <trigger program="org.efaps.esjp.construction.EntrySheet"
                 method="accessCheck4Rate"
                 name="Construction_EntrySheetForm.rateGroup.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK"/>
@@ -237,7 +237,7 @@
             <property name="Attribute">RateCurrencyId</property>
             <property name="ModeCreate">NONE</property>
             <property name="ModeEdit">NONE</property>
-            <trigger program="net.moxter.eFapsApp.construction.EntrySheet"
+            <trigger program="org.efaps.esjp.construction.EntrySheet"
                 method="accessCheck4Rate"
                 name="Construction_EntrySheetForm.rateCurrencyId4Read.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK"/>
@@ -251,7 +251,7 @@
         <field name="rate4view">
             <property name="Attribute">Rate</property>
             <property name="ModeEdit">NONE</property>
-            <trigger program="net.moxter.eFapsApp.construction.EntrySheet"
+            <trigger program="org.efaps.esjp.construction.EntrySheet"
                 method="accessCheck4Rate"
                 name="Construction_EntrySheetForm.rate4view.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK"/>
@@ -260,14 +260,14 @@
             <property name="Level">3</property>
             <property name="Label">Construction_EntrySheetForm.headingPositon.Heading</property>
             <property name="ModeEdit">NONE</property>
-            <trigger program="net.moxter.eFapsApp.construction.EntrySheet"
+            <trigger program="org.efaps.esjp.construction.EntrySheet"
                 method="accessCheck4Rate"
                 name="Construction_EntrySheetForm.rateHeadingPositon.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK"/>
         </field>
         <field name="ratePositionTable" character="Target">
             <property name="ModeEdit">NONE</property>
-            <trigger program="net.moxter.eFapsApp.construction.EntrySheet"
+            <trigger program="org.efaps.esjp.construction.EntrySheet"
                 method="accessCheck4Rate"
                 name="Construction_EntrySheetForm.ratePositionTable.UI_ACCESSCHECK"
                 event="UI_ACCESSCHECK"/>
@@ -301,7 +301,7 @@
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
             <trigger event="UI_FIELD_VALUE" method="getJavaScriptUIValue"
                 name="Construction_EntrySheetForm.javaScript.UI_Field_Value"
-                program="net.moxter.eFapsApp.construction.EntrySheet" />
+                program="org.efaps.esjp.construction.EntrySheet" />
         </field>
     </definition>
 </ui-form>

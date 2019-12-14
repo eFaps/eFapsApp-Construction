@@ -27,7 +27,7 @@
         <name>Construction_CostEstimatePercentageCostSQLTable</name>
         <typeid-column>TYPEID</typeid-column>
         <database>
-            <table-name>T_CON_CEPC</table-name>
+            <table-name>T_CONSTRCEPC</table-name>
             <column name="TYPEID" not-null="true" type="INTEGER" />
             <column name="DOCID" not-null="true" type="INTEGER" />
             <column name="POS" not-null="true" type="INTEGER" />
@@ -35,7 +35,7 @@
             <column length="14" name="AMOUNT" not-null="true" scale="4" type="DECIMAL" />
             <column length="14" name="RATEAMOUNT" not-null="true" scale="4" type="DECIMAL" />
             <column length="14" name="PERCENTAGE" not-null="true" scale="4" type="DECIMAL" />
-            <foreign key="DOCID" name="T_CON_CEPC_FK_DOCID" reference="T_ERPDOC(ID)" />
+            <foreign key="DOCID" name="T_CONSTRCEPC_FK_DOCID" reference="T_ERPDOC(ID)" />
         </database>
     </definition>
 </datamodel-sqltable>

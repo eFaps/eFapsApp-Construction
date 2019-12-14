@@ -23,8 +23,8 @@
         <name>Construction_Projects_ProjectTree_CostEstimateSummaryReport_Menu_DownloadExcel</name>
         <icon>Document_Excel</icon>
         <target>
-            <execute method="exportReport" program="net.moxter.eFapsApp.construction.reports.CostEstimateSummaryReport">
-                <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimateSummaryReport4Project.FilterKey</property>
+            <execute method="exportReport" program="org.efaps.esjp.construction.reports.CostEstimateSummaryReport">
+                <property name="FilterKey">org.efaps.esjp.construction.reports.CostEstimateSummaryReport4Project.FilterKey</property>
                 <property name="Mime">xls</property>
             </execute>
         </target>

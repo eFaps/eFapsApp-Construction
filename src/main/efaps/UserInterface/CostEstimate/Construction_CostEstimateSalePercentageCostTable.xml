@@ -40,7 +40,7 @@
             <trigger event="UI_FIELD_UPDATE"
                 method="updateFields4PercentageCostPercentage"
                 name="Construction_CostEstimateSalePercentageCostTable.netUnitPrice.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.CostEstimate" />
+                program="org.efaps.esjp.construction.CostEstimate" />
         </field>
         <field name="amount">
             <property name="ModeCreate">EDITABLE</property>
@@ -51,7 +51,7 @@
             <property name="Align">right</property>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4PercentageCostAmount"
                 name="Construction_CostEstimateSalePercentageCostTable.product.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.CostEstimate" />
+                program="org.efaps.esjp.construction.CostEstimate" />
         </field>
         <field name="amount4view">
             <property name="ModeEdit">NONE</property>

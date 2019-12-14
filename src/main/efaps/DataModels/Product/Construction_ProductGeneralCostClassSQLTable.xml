@@ -20,7 +20,7 @@
         <name>Construction_ProductGeneralCostClassSQLTable</name>
         <typeid-column>TYPEID</typeid-column>
         <database>
-            <table-name>T_CON_PRODGENECOSTCLASS</table-name>
+            <table-name>T_CONSTRPRODGENECOSTCLASS</table-name>
             <!-- columns -->
             <column name="PRODUCTID" not-null="true" type="INTEGER" />
             <column name="TYPEID" not-null="true" type="INTEGER" />

@@ -34,7 +34,7 @@
             </trigger>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4Product"
                 name="Construction_EntryBOMTable.product.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.EntryBOM" />
+                program="org.efaps.esjp.construction.EntryBOM" />
         </field>
         <field name="productDesc">
             <property name="Select">linkto[ToLink].attribute[Description]</property>
@@ -52,7 +52,7 @@
             <property name="Label">Construction_EntryBOM/Factor.Label</property>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4Factor"
                 name="Construction_EntryBOMTable.factor.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.EntryBOM" />
+                program="org.efaps.esjp.construction.EntryBOM" />
         </field>
         <field name="uoM">
             <property name="ModeCreate">EDITABLE</property>
@@ -63,7 +63,7 @@
             <property name="Label">Construction_EntryBOM/UoM.Label</property>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4Uom"
                 name="Construction_EntryBOMTable.uom.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.EntryBOM" />
+                program="org.efaps.esjp.construction.EntryBOM" />
         </field>
         <field name="uom4View">
             <property name="ModeCreate">NONE</property>
@@ -78,7 +78,7 @@
             <property name="ModeEdit">EDITABLE</property>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4Quantity"
                 name="Construction_EntryBOMTable.product.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.EntryBOM" />
+                program="org.efaps.esjp.construction.EntryBOM" />
         </field>
         <field name="unitPrice">
             <property name="ModeCreate">EDITABLE</property>
@@ -87,7 +87,7 @@
             <property name="Label">Construction_EntryBOM/UnitPrice.Label</property>
             <trigger event="UI_FIELD_UPDATE" method="updateFields4UnitPrice"
                 name="Construction_EntryBOMTable.discount.UI_FIELD_UPDATE"
-                program="net.moxter.eFapsApp.construction.EntryBOM" />
+                program="org.efaps.esjp.construction.EntryBOM" />
         </field>
         <field name="price">
             <property name="ModeCreate">READONLY</property>

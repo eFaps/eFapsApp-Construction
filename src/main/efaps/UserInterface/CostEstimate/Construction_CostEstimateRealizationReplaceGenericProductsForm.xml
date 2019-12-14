@@ -23,7 +23,7 @@
             <trigger event="UI_FIELD_VALUE"
                 method="genericProductsUIFieldValue"
                 name="Construction_CostEstimateRealizationReplaceGenericProductsForm.genericProducts.UI_FIELD_VALUE"
-                program="net.moxter.eFapsApp.construction.CostEstimate" />
+                program="org.efaps.esjp.construction.CostEstimate" />
         </field>
     </definition>
 </ui-form>

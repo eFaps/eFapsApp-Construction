@@ -20,7 +20,7 @@
         <target>
             <form>Construction_CostEstimateEntryPartListReportFilterForm</form>
             <execute method="setFilter" program="org.efaps.esjp.sales.report.DocumentSumReport">
-                <property name="FilterKey">net.moxter.eFapsApp.construction.reports.CostEstimateEntryPartListReport.FilterKey</property>
+                <property name="FilterKey">org.efaps.esjp.construction.reports.CostEstimateEntryPartListReport.FilterKey</property>
             </execute>
         </target>
         <property name="Target">modal</property>

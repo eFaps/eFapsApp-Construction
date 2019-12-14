@@ -26,7 +26,7 @@
         <!-- target definitions -->
         <target>
             <form>Construction_CostEstimateSaleEditPercentageCostForm</form>
-            <execute method="editPercentageCost" program="net.moxter.eFapsApp.construction.CostEstimate" />
+            <execute method="editPercentageCost" program="org.efaps.esjp.construction.CostEstimate" />
         </target>
         <!-- properties -->
         <property name="Target">modal</property>

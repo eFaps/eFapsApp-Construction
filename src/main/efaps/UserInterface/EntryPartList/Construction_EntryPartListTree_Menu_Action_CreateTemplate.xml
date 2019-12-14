@@ -22,8 +22,8 @@
         <!-- target definitions -->
         <target>
             <form>Construction_EntryPartListCreateTemplateForm</form>
-            <execute method="createTemplateFromEntry" program="net.moxter.eFapsApp.construction.EntryPartList" />
-            <validate method="validateCreateTemplate" program="net.moxter.eFapsApp.construction.EntryPartList" />
+            <execute method="createTemplateFromEntry" program="org.efaps.esjp.construction.EntryPartList" />
+            <validate method="validateCreateTemplate" program="org.efaps.esjp.construction.EntryPartList" />
         </target>
         <!-- properties -->
         <property name="Target">modal</property>

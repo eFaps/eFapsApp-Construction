@@ -22,7 +22,7 @@
         </access>
         <target>
             <form>Construction_CostEstimateRealizationReplaceGenericProductsForm</form>
-            <execute method="replaceGenericProducts" program="net.moxter.eFapsApp.construction.CostEstimate" />
+            <execute method="replaceGenericProducts" program="org.efaps.esjp.construction.CostEstimate" />
             <trigger event="UI_ACCESSCHECK" method="check4Status"
                 name="Construction_CostEstimateRealizationTree_Menu_Action_ReplaceGenericProducts.UI_ACCESSCHECK"
                 program="org.efaps.esjp.admin.access.AccessCheck4UI">

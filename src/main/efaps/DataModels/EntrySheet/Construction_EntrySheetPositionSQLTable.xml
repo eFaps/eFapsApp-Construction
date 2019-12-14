@@ -21,7 +21,7 @@
         <name>Construction_EntrySheetPositionSQLTable</name>
         <parent>Sales_PositionSumAbstractSQLTable</parent>
         <database>
-            <table-name>T_CON_ENTRYSHEETPOS</table-name>
+            <table-name>T_CONSTRENTRYSHEETPOS</table-name>
             <parent-table>T_SALESPOS</parent-table>
             <column name="PARTICIPATION"  type="DECIMAL"    length="10" scale="4"/>
             <column name="TIME"           type="DECIMAL"    length="10" scale="4"/>

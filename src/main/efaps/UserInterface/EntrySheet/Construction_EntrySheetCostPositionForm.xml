@@ -21,7 +21,7 @@
             <property name="ModeEdit">HIDDEN</property>
             <property name="ModeView">NONE</property>
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
-            <trigger program="net.moxter.eFapsApp.construction.EntrySheet"
+            <trigger program="org.efaps.esjp.construction.EntrySheet"
                 method="activatePositionsCalculator"
                 name="Construction_EntrySheetPositionForm.activatePositionsCalculator.UI_FIELD_VALUE"
                 event="UI_FIELD_VALUE" />
@@ -33,7 +33,7 @@
         <field name="positionTable" character="Target">
             <property name="ModeEdit">EDITABLE</property>
             <table>Construction_EntrySheetCostPositionTable</table>
-            <evaluate program="net.moxter.eFapsApp.construction.EntrySheet"
+            <evaluate program="org.efaps.esjp.construction.EntrySheet"
                 method="positionMultiPrint">
                 <property name="Type">Construction_EntrySheetPosition</property>
                 <property name="LinkFrom">EntrySheetLink</property>
@@ -58,7 +58,7 @@
             <property name="ModeView">NONE</property>
             <property name="ModeEdit">NONE</property>
             <property name="UIProvider">org.efaps.admin.datamodel.ui.StringUI</property>
-            <trigger program="net.moxter.eFapsApp.construction.EntrySheet"
+            <trigger program="org.efaps.esjp.construction.EntrySheet"
                 method="getJavaScriptUIValue"
                 name="Construction_EntrySheetCostPositionForm.javaScript.UI_Field_Value"
                 event="UI_FIELD_VALUE" />

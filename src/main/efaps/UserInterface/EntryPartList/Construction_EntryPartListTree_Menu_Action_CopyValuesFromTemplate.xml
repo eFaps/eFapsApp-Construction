@@ -20,7 +20,7 @@
         </access>
         <target>
             <form>Construction_EntryPartListCopyValuesFromTemplateForm</form>
-            <execute method="copyValues" program="net.moxter.eFapsApp.construction.EntryPartList" />
+            <execute method="copyValues" program="org.efaps.esjp.construction.EntryPartList" />
             <trigger event="UI_ACCESSCHECK" method="check4Status"
                 name="Construction_EntryPartListTree_Menu_Action_CopyFrom.UI_ACCESSCHECK"
                 program="org.efaps.esjp.admin.access.AccessCheck4UI">

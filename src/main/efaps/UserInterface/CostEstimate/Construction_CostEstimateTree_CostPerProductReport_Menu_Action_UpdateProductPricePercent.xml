@@ -24,7 +24,7 @@
         <target>
             <form>Construction_CostEstimateUpdateProductPricePercentForm</form>
             <execute method="updateProductPricePercent"
-                program="net.moxter.eFapsApp.construction.CostEstimate" />
+                program="org.efaps.esjp.construction.CostEstimate" />
         </target>
         <property name="TargetMode">create</property>
         <property name="Target">modal</property>

@@ -29,7 +29,7 @@
         <!-- target definitions -->
         <target>
             <form>Construction_CostEstimateCopyToForm</form>
-            <execute program="net.moxter.eFapsApp.construction.CostEstimate" method="revise">
+            <execute program="org.efaps.esjp.construction.CostEstimate" method="revise">
                 <property name="UseNumberGenerator4Name">true</property>
                 <property name="ReviseRelation01">Construction_ProjectService2CostEstimate</property>
                 <property name="ReviseRelation02">Construction_CostEstimatePositionAbstract</property>

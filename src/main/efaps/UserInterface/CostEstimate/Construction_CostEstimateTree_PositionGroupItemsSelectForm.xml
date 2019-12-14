@@ -35,7 +35,7 @@
             <property name="ModeEdit">READONLY</property>
             <table>Construction_CostEstimateTree_PositionGroupItemsSelectTable</table>
             <evaluate method="itemsMultiPrint"
-                program="net.moxter.eFapsApp.construction.CostEstimate">
+                program="org.efaps.esjp.construction.CostEstimate">
                 <property name="Type">Construction_EntrySheetPosition</property>
             </evaluate>
         </field>

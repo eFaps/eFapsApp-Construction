@@ -36,7 +36,9 @@ import org.efaps.db.Instance;
 import org.efaps.db.InstanceQuery;
 import org.efaps.db.MultiPrintQuery;
 import org.efaps.db.QueryBuilder;
+import org.efaps.eql.builder.Print;
 import org.efaps.esjp.ci.CIConstruction;
+import org.efaps.esjp.ci.CISales;
 import org.efaps.esjp.erp.NumberFormatter;
 import org.efaps.esjp.sales.Calculator;
 import org.efaps.esjp.sales.document.Quotation;
@@ -247,4 +249,12 @@ public abstract class CostEstimateStucturBrowser_Base
         }
         return new Return();
     }
+
+    @Override
+    protected void add2ChildrenQuery(final Print _print)
+    {
+        _print.attribute(CISales.PositionGroupAbstract.Order.name).as("ORDER");
+        _print.orderBy("ORDER");
+    }
+
 }

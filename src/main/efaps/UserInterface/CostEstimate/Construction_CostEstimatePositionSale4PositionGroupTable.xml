@@ -48,7 +48,7 @@
             <property name="ModeEdit">EDITABLE</property>
             <property name="Attribute">Name</property>
             <property name="Label">Sales_QuotationPosition/ProductDesc.Label</property>
-            <property name="Width">8</property>
+            <property name="Width">100</property>
         </field>
         <field name="uoM">
             <property name="ModeCreate">EDITABLE</property>

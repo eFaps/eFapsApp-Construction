@@ -36,6 +36,7 @@ import org.efaps.db.Instance;
 import org.efaps.db.InstanceQuery;
 import org.efaps.db.MultiPrintQuery;
 import org.efaps.db.QueryBuilder;
+import org.efaps.eql.EQL;
 import org.efaps.eql.builder.Print;
 import org.efaps.esjp.ci.CIConstruction;
 import org.efaps.esjp.ci.CISales;
@@ -251,10 +252,29 @@ public abstract class CostEstimateStucturBrowser_Base
     }
 
     @Override
-    protected void add2ChildrenQuery(final Print _print)
+    protected void add2ChildrenQuery(final Parameter _parameter, final Print _print)
     {
         _print.attribute(CISales.PositionGroupAbstract.Order.name).as("ORDER");
         _print.orderBy("ORDER");
+    }
+
+    @Override
+    protected Return evalMainQuery(final Parameter _parameter)
+        throws EFapsException
+    {
+        final Return ret = new Return();
+        final Map<Integer, String> types = analyseProperty(_parameter, "Type");
+
+        final Print print = EQL.builder()
+                        .print()
+                        .query(types.values().stream().toArray(String[]::new))
+                        .where()
+                            .attribute(CIConstruction.PositionGroupAbstract.DocumentAbstractLink)
+                            .eq(_parameter.getInstance())
+                        .select();
+
+        ret.put(ReturnValues.VALUES, print.build());
+        return ret;
     }
 
 }

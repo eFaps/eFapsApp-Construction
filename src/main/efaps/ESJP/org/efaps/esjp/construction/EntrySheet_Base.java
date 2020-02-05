@@ -1,15 +1,24 @@
 /*
- * Copyright 2007 - 2016 moxter.net
- * All Rights Reserved.
- * This program contains proprietary and trade secret information of
- * Jan Moxter Copyright notice is precautionary only and does not
- * evidence any actual or intended publication of such program.
+ *  Copyright 2003 - 2020 The eFaps Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
  */
 
 package org.efaps.esjp.construction;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.Format;
 import java.text.ParseException;
@@ -423,12 +432,12 @@ public abstract class EntrySheet_Base
             final Object[] rateObj = getRateObject(_parameter);
 
             final BigDecimal rate = ((BigDecimal) rateObj[0]).divide((BigDecimal) rateObj[1], 12,
-                            BigDecimal.ROUND_HALF_UP);
+                            RoundingMode.HALF_UP);
 
             final List<Calculator> calcList = analyseTable(_parameter, null);
             final Iterator<Calculator> iter = calcList.iterator();
 
-            final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getTypeName4SysConf(_parameter));
+            final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getType4SysConf(_parameter));
 
             for (int i = 0; i < rowKeys.length; i++) {
                 final Calculator calc = iter.next();
@@ -447,40 +456,40 @@ public abstract class EntrySheet_Base
                 posUpdate.add(CIConstruction.EntrySheetPosition.Quantity, calc.getQuantity());
                 posUpdate.add(CIConstruction.EntrySheetPosition.UoM, _parameter.getParameterValues("uoM")[i]);
                 posUpdate.add(CIConstruction.EntrySheetPosition.CrossUnitPrice, calc.getCrossUnitPrice()
-                                .divide(rate, 12, BigDecimal.ROUND_HALF_UP)
-                                .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                .divide(rate, 12, RoundingMode.HALF_UP)
+                                .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 posUpdate.add(CIConstruction.EntrySheetPosition.NetUnitPrice, calc.getNetUnitPrice()
-                                .divide(rate, 12, BigDecimal.ROUND_HALF_UP)
-                                .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                .divide(rate, 12, RoundingMode.HALF_UP)
+                                .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 posUpdate.add(CIConstruction.EntrySheetPosition.CrossPrice, calc.getCrossPrice()
-                                .divide(rate, 12, BigDecimal.ROUND_HALF_UP)
-                                .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                .divide(rate, 12, RoundingMode.HALF_UP)
+                                .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 posUpdate.add(CIConstruction.EntrySheetPosition.NetPrice, calc.getNetPrice()
-                                .divide(rate, 12, BigDecimal.ROUND_HALF_UP)
-                                .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                .divide(rate, 12, RoundingMode.HALF_UP)
+                                .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 posUpdate.add(CIConstruction.EntrySheetPosition.Tax, calc.getTaxCatId());
                 posUpdate.add(CIConstruction.EntrySheetPosition.Discount, calc.getDiscountStr());
                 posUpdate.add(CIConstruction.EntrySheetPosition.DiscountNetUnitPrice, calc.getDiscountNetUnitPrice()
-                                .divide(rate, 12, BigDecimal.ROUND_HALF_UP)
-                                .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                .divide(rate, 12, RoundingMode.HALF_UP)
+                                .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 posUpdate.add(CIConstruction.EntrySheetPosition.CurrencyId, baseCurrInst.getId());
                 posUpdate.add(CIConstruction.EntrySheetPosition.Rate, rateObj);
                 posUpdate.add(CIConstruction.EntrySheetPosition.RateCurrencyId, rateCurrInst.getId());
                 posUpdate.add(CIConstruction.EntrySheetPosition.RateNetUnitPrice, calc.getNetUnitPrice()
-                                .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 posUpdate.add(CIConstruction.EntrySheetPosition.RateCrossUnitPrice, calc.getCrossUnitPrice()
-                                .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 posUpdate.add(CIConstruction.EntrySheetPosition.RateDiscountNetUnitPrice, calc.getDiscountNetUnitPrice()
-                                .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                                .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
                 posUpdate.add(CIConstruction.EntrySheetPosition.RateNetPrice,
                                 calc.getNetPrice().setScale(unitFrmt.getMaximumFractionDigits(),
-                                                BigDecimal.ROUND_HALF_UP));
+                                                RoundingMode.HALF_UP));
                 posUpdate.add(CIConstruction.EntrySheetPosition.RateCrossPrice,
                                 calc.getCrossPrice().setScale(unitFrmt.getMaximumFractionDigits(),
-                                                BigDecimal.ROUND_HALF_UP));
+                                                RoundingMode.HALF_UP));
                 posUpdate.add(CIConstruction.EntrySheetPosition.RateCrossPrice,
                                 calc.getCrossPrice().setScale(unitFrmt.getMaximumFractionDigits(),
-                                                BigDecimal.ROUND_HALF_UP));
+                                                RoundingMode.HALF_UP));
                 posUpdate.add(CIConstruction.EntrySheetPosition.Participation,
                                 ((EntrySheetCalculator) calc).getParticipation4Update());
                 posUpdate.add(CIConstruction.EntrySheetPosition.Time, ((EntrySheetCalculator) calc).getTime4Update());
@@ -524,7 +533,7 @@ public abstract class EntrySheet_Base
         final String prodDesc = _parameter.getParameterValue(CIFormConstruction.Construction_EntrySheetPositionForm.productDesc.name);
         final Calculator calc = getCalculator(_parameter, null, prodOID, quantity, unitPrice, "", false, 0);
 
-        final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getTypeName4SysConf(_parameter));
+        final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getType4SysConf(_parameter));
         final PrintQuery print = new PrintQuery(_parameter.getInstance());
         final SelectBuilder selESInst = SelectBuilder.get().linkto(CIConstruction.EntrySheetPosition.EntrySheetLink).instance();
         print.addSelect(selESInst);
@@ -537,32 +546,32 @@ public abstract class EntrySheet_Base
         posUpdate.add(CIConstruction.EntrySheetPosition.ProductDesc, prodDesc);
         posUpdate.add(CIConstruction.EntrySheetPosition.Quantity, calc.getQuantity());
         posUpdate.add(CIConstruction.EntrySheetPosition.CrossUnitPrice, calc.getCrossUnitPrice()
-                        .divide(rate, 12, BigDecimal.ROUND_HALF_UP)
-                        .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                        .divide(rate, 12, RoundingMode.HALF_UP)
+                        .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
         posUpdate.add(CIConstruction.EntrySheetPosition.NetUnitPrice, calc.getNetUnitPrice()
-                        .divide(rate, 12, BigDecimal.ROUND_HALF_UP)
-                        .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                        .divide(rate, 12, RoundingMode.HALF_UP)
+                        .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
         posUpdate.add(CIConstruction.EntrySheetPosition.CrossPrice, calc.getCrossPrice()
-                        .divide(rate, 12, BigDecimal.ROUND_HALF_UP)
-                        .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                        .divide(rate, 12, RoundingMode.HALF_UP)
+                        .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
         posUpdate.add(CIConstruction.EntrySheetPosition.NetPrice, calc.getNetPrice()
-                        .divide(rate, 12, BigDecimal.ROUND_HALF_UP)
-                        .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                        .divide(rate, 12, RoundingMode.HALF_UP)
+                        .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
         posUpdate.add(CIConstruction.EntrySheetPosition.RateNetUnitPrice, calc.getNetUnitPrice()
-                        .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                        .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
         posUpdate.add(CIConstruction.EntrySheetPosition.RateCrossUnitPrice, calc.getCrossUnitPrice()
-                        .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                        .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
         posUpdate.add(CIConstruction.EntrySheetPosition.RateDiscountNetUnitPrice, calc.getDiscountNetUnitPrice()
-                        .setScale(unitFrmt.getMaximumFractionDigits(), BigDecimal.ROUND_HALF_UP));
+                        .setScale(unitFrmt.getMaximumFractionDigits(), RoundingMode.HALF_UP));
         posUpdate.add(CIConstruction.EntrySheetPosition.RateNetPrice,
                         calc.getNetPrice().setScale(unitFrmt.getMaximumFractionDigits(),
-                                        BigDecimal.ROUND_HALF_UP));
+                                        RoundingMode.HALF_UP));
         posUpdate.add(CIConstruction.EntrySheetPosition.RateCrossPrice,
                         calc.getCrossPrice().setScale(unitFrmt.getMaximumFractionDigits(),
-                                        BigDecimal.ROUND_HALF_UP));
+                                        RoundingMode.HALF_UP));
         posUpdate.add(CIConstruction.EntrySheetPosition.RateCrossPrice,
                         calc.getCrossPrice().setScale(unitFrmt.getMaximumFractionDigits(),
-                                        BigDecimal.ROUND_HALF_UP));
+                                        RoundingMode.HALF_UP));
         posUpdate.add(CIConstruction.EntrySheetPosition.Participation,
                         ((EntrySheetCalculator) calc).getParticipation4Update());
         posUpdate.add(CIConstruction.EntrySheetPosition.Time, ((EntrySheetCalculator) calc).getTime4Update());
@@ -597,16 +606,16 @@ public abstract class EntrySheet_Base
             final BigDecimal rate = new Currency().evalRate(print.<Object[]>getAttribute(CIConstruction.EntrySheet.Rate), false);
             final List<Calculator> calcList = getCalculators4Doc(_parameter, instance, null);
 
-            final DecimalFormat frmt = NumberFormatter.get().getFrmt4Total(getTypeName4SysConf(_parameter));
+            final DecimalFormat frmt = NumberFormatter.get().getFrmt4Total(getType4SysConf(_parameter));
             final int scale = frmt.getMaximumFractionDigits();
 
             final BigDecimal rateCrossTotal = getCrossTotal(_parameter, calcList)
-                            .setScale(scale, BigDecimal.ROUND_HALF_UP);
-            final BigDecimal rateNetTotal = getNetTotal(_parameter, calcList).setScale(scale, BigDecimal.ROUND_HALF_UP);
-            final BigDecimal netTotal = getNetTotal(_parameter, calcList).divide(rate, BigDecimal.ROUND_HALF_UP)
-                            .setScale(scale, BigDecimal.ROUND_HALF_UP);
-            final BigDecimal crossTotal = getCrossTotal(_parameter, calcList).divide(rate, BigDecimal.ROUND_HALF_UP)
-                            .setScale(scale, BigDecimal.ROUND_HALF_UP);
+                            .setScale(scale, RoundingMode.HALF_UP);
+            final BigDecimal rateNetTotal = getNetTotal(_parameter, calcList).setScale(scale, RoundingMode.HALF_UP);
+            final BigDecimal netTotal = getNetTotal(_parameter, calcList).divide(rate, RoundingMode.HALF_UP)
+                            .setScale(scale, RoundingMode.HALF_UP);
+            final BigDecimal crossTotal = getCrossTotal(_parameter, calcList).divide(rate, RoundingMode.HALF_UP)
+                            .setScale(scale, RoundingMode.HALF_UP);
 
             final Update update = new Update(instance);
             update.add(CISales.DocumentSumAbstract.NetTotal, netTotal);
@@ -1019,8 +1028,8 @@ public abstract class EntrySheet_Base
             throws EFapsException
         {
             BigDecimal ret = super.getNetPrice();
-            ret = getParticipation().setScale(8, BigDecimal.ROUND_HALF_UP)
-                            .divide(new BigDecimal(100), BigDecimal.ROUND_HALF_UP).multiply(getTime()).multiply(ret);
+            ret = getParticipation().setScale(8, RoundingMode.HALF_UP)
+                            .divide(new BigDecimal(100), RoundingMode.HALF_UP).multiply(getTime()).multiply(ret);
             return ret;
         }
 
@@ -1029,8 +1038,8 @@ public abstract class EntrySheet_Base
             throws EFapsException
         {
             BigDecimal ret = super.getCrossPrice();
-            ret = getParticipation().setScale(8, BigDecimal.ROUND_HALF_UP)
-                            .divide(new BigDecimal(100), BigDecimal.ROUND_HALF_UP).multiply(getTime()).multiply(ret);
+            ret = getParticipation().setScale(8, RoundingMode.HALF_UP)
+                            .divide(new BigDecimal(100), RoundingMode.HALF_UP).multiply(getTime()).multiply(ret);
             return ret;
         }
     }

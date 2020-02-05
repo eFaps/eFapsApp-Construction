@@ -1,16 +1,25 @@
 /*
- * Copyright 2007 - 2016 Jan Moxter
+ *  Copyright 2003 - 2020 The eFaps Team
  *
- * All Rights Reserved.
- * This program contains proprietary and trade secret information of
- * moxter.net. Copyright notice is precautionary only and does not
- * evidence any actual or intended publication of such program.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
  */
+
 
 package org.efaps.esjp.construction;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -431,7 +440,7 @@ public abstract class EntryBOM_Base
                                        final IPositionType _iPositionType)
         throws EFapsException
     {
-        return NumberFormatter.get().getFrmt4Total(getTypeName4SysConf(_parameter))
+        return NumberFormatter.get().getFrmt4Total(getType4SysConf(_parameter))
                         .format(getSubTotal(_parameter, _calcList, _iPositionType));
     }
 
@@ -490,7 +499,7 @@ public abstract class EntryBOM_Base
                         }
                     }
                 }
-                ret = ret.multiply(percent.setScale(8).divide(new BigDecimal(100), BigDecimal.ROUND_HALF_UP));
+                ret = ret.multiply(percent.setScale(8).divide(new BigDecimal(100), RoundingMode.HALF_UP));
             } catch (final ParseException e) {
                 e.printStackTrace();
             }
@@ -666,10 +675,10 @@ public abstract class EntryBOM_Base
     }
 
     @Override
-    public String getTypeName4SysConf(final Parameter _parameter)
+    public Type getType4SysConf(final Parameter _parameter)
         throws EFapsException
     {
-        return CIConstruction.EntryPartList.getType().getName();
+        return CIConstruction.EntryPartList.getType();
     }
 
     /**
@@ -921,7 +930,7 @@ public abstract class EntryBOM_Base
             final BigDecimal quanTmp;
             if (useEff) {
                 quanTmp = factor.setScale(4).multiply(new BigDecimal(8))
-                                .divide(getEfficiencyApplied(), BigDecimal.ROUND_HALF_UP);
+                                .divide(getEfficiencyApplied(), RoundingMode.HALF_UP);
             } else {
                 quanTmp = super.getQuantity();
             }

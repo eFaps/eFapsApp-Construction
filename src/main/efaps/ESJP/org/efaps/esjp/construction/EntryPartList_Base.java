@@ -1,10 +1,17 @@
 /*
- * Copyright 2007 - 2014 Jan Moxter
+ *  Copyright 2003 - 2020 The eFaps Team
  *
- * All Rights Reserved.
- * This program contains proprietary and trade secret information of
- * Jan Moxter Copyright notice is precautionary only and does not
- * evidence any actual or intended publication of such program.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
  */
 
@@ -12,6 +19,7 @@ package org.efaps.esjp.construction;
 
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -193,7 +201,7 @@ public abstract class EntryPartList_Base
 
         if (entrySheetInst != null && entrySheetInst.isValid()
                         && entrySheetInst.getType().isKindOf(CIConstruction.EntrySheet.getType())) {
-            final DecimalFormat frmt = NumberFormatter.get().getFrmt4Total(CIConstruction.EntryPartList.getType().getName());
+            final DecimalFormat frmt = NumberFormatter.get().getFrmt4Total(CIConstruction.EntryPartList.getType());
             final int scale = frmt.getMaximumFractionDigits();
 
             final PrintQuery print = new PrintQuery(entrySheetInst);
@@ -202,11 +210,11 @@ public abstract class EntryPartList_Base
             final Object[] rateObj = print.getAttribute(CIConstruction.EntrySheet.Rate);
             final Long currId = print.getAttribute(CIConstruction.EntrySheet.RateCurrencyId);
             final BigDecimal rate = ((BigDecimal) rateObj[0]).divide((BigDecimal) rateObj[1], 12,
-                            BigDecimal.ROUND_HALF_UP);
-            final BigDecimal crossTotal = rateCrosstotal.divide(rate, BigDecimal.ROUND_HALF_UP)
-                            .setScale(scale, BigDecimal.ROUND_HALF_UP);
-            final BigDecimal netTotal = rateNetTotal.divide(rate, BigDecimal.ROUND_HALF_UP)
-                            .setScale(scale, BigDecimal.ROUND_HALF_UP);
+                            RoundingMode.HALF_UP);
+            final BigDecimal crossTotal = rateCrosstotal.divide(rate, RoundingMode.HALF_UP)
+                            .setScale(scale, RoundingMode.HALF_UP);
+            final BigDecimal netTotal = rateNetTotal.divide(rate, RoundingMode.HALF_UP)
+                            .setScale(scale, RoundingMode.HALF_UP);
 
             // create the position for the related Document
             final Insert posInsert = new Insert(CIConstruction.EntrySheetPosition);
@@ -516,7 +524,7 @@ public abstract class EntryPartList_Base
         classUpdate.execute();
 
         final HashSet<Instance> entrySheetInsts = new HashSet<>();
-        final DecimalFormat frmt = NumberFormatter.get().getFrmt4Total(CIConstruction.EntryPartList.getType().getName());
+        final DecimalFormat frmt = NumberFormatter.get().getFrmt4Total(CIConstruction.EntryPartList.getType());
         final int scale = frmt.getMaximumFractionDigits();
 
         // Update the related EntrySheet
@@ -542,11 +550,11 @@ public abstract class EntryPartList_Base
                 currId = Currency.getBaseCurrency().getId();
             }
             final BigDecimal rate = ((BigDecimal) rateObj[0]).divide((BigDecimal) rateObj[1], 12,
-                            BigDecimal.ROUND_HALF_UP);
-            final BigDecimal crossTotal = rateCrosstotal.divide(rate, BigDecimal.ROUND_HALF_UP)
-                            .setScale(scale, BigDecimal.ROUND_HALF_UP);
-            final BigDecimal netTotal = rateNetTotal.divide(rate, BigDecimal.ROUND_HALF_UP)
-                            .setScale(scale, BigDecimal.ROUND_HALF_UP);
+                            RoundingMode.HALF_UP);
+            final BigDecimal crossTotal = rateCrosstotal.divide(rate, RoundingMode.HALF_UP)
+                            .setScale(scale, RoundingMode.HALF_UP);
+            final BigDecimal netTotal = rateNetTotal.divide(rate, RoundingMode.HALF_UP)
+                            .setScale(scale, RoundingMode.HALF_UP);
             final Instance posInst = multi.getCurrentInstance();
             final Update posUpdate = new Update(posInst);
             posUpdate.add(CIConstruction.EntrySheetPosition.UoM, dim.getBaseUoM().getId());

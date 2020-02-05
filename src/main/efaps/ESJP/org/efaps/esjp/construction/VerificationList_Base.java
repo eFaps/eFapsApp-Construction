@@ -1,10 +1,17 @@
 /*
- * Copyright 2007 - 2014 Jan Moxter
+ *  Copyright 2003 - 2020 The eFaps Team
  *
- * All Rights Reserved.
- * This program contains proprietary and trade secret information of
- * Jan Moxter Copyright notice is precautionary only and does not
- * evidence any actual or intended publication of such program.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
  */
 
@@ -12,6 +19,7 @@
 package org.efaps.esjp.construction;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -240,7 +248,7 @@ public abstract class VerificationList_Base
 
         final Object[] rateObj = rateInfo.getRateObject();
         final BigDecimal rate = ((BigDecimal) rateObj[0]).divide((BigDecimal) rateObj[1], 12,
-                        BigDecimal.ROUND_HALF_UP);
+                        RoundingMode.HALF_UP);
 
         final CreatedDoc createdDoc = new CreatedDoc();
         createdDoc.getValues().put(VerificationList_Base.projectKey, _projectInstance);
@@ -249,14 +257,14 @@ public abstract class VerificationList_Base
         insert.add(CIConstruction.VerificationList.Name, Naming.getName(_projectInstance, CIConstruction.VerificationList.getType(), true));
         insert.add(CIConstruction.VerificationList.Date, new DateTime());
 
-        final DecimalFormat frmt = NumberFormatter.get().getFrmt4Total(getTypeName4SysConf(_parameter));
+        final DecimalFormat frmt = NumberFormatter.get().getFrmt4Total(getType4SysConf(_parameter));
         final int scale = frmt.getMaximumFractionDigits();
         final BigDecimal rateCrossTotal = getCrossTotal(_parameter, calcs)
-                        .setScale(scale, BigDecimal.ROUND_HALF_UP);
+                        .setScale(scale, RoundingMode.HALF_UP);
         insert.add(CISales.DocumentSumAbstract.RateCrossTotal, rateCrossTotal);
         createdDoc.getValues().put(CISales.DocumentSumAbstract.RateCrossTotal.name, rateCrossTotal);
 
-        final BigDecimal rateNetTotal = getNetTotal(_parameter, calcs).setScale(scale, BigDecimal.ROUND_HALF_UP);
+        final BigDecimal rateNetTotal = getNetTotal(_parameter, calcs).setScale(scale, RoundingMode.HALF_UP);
         insert.add(CISales.DocumentSumAbstract.RateNetTotal, rateNetTotal);
         createdDoc.getValues().put(CISales.DocumentSumAbstract.RateNetTotal.name, rateNetTotal);
 
@@ -264,13 +272,13 @@ public abstract class VerificationList_Base
         insert.add(CISales.DocumentSumAbstract.RateTaxes, getRateTaxes(_parameter, calcs, rateCurrInst));
         insert.add(CISales.DocumentSumAbstract.Taxes, getTaxes(_parameter, calcs, rate, baseCurrInst));
 
-        final BigDecimal crossTotal = getCrossTotal(_parameter, calcs).divide(rate, BigDecimal.ROUND_HALF_UP)
-                        .setScale(scale, BigDecimal.ROUND_HALF_UP);
+        final BigDecimal crossTotal = getCrossTotal(_parameter, calcs).divide(rate, RoundingMode.HALF_UP)
+                        .setScale(scale, RoundingMode.HALF_UP);
         insert.add(CISales.DocumentSumAbstract.CrossTotal, crossTotal);
         createdDoc.getValues().put(CISales.DocumentSumAbstract.CrossTotal.name, crossTotal);
 
-        final BigDecimal netTotal = getNetTotal(_parameter, calcs).divide(rate, BigDecimal.ROUND_HALF_UP)
-                        .setScale(scale, BigDecimal.ROUND_HALF_UP);
+        final BigDecimal netTotal = getNetTotal(_parameter, calcs).divide(rate, RoundingMode.HALF_UP)
+                        .setScale(scale, RoundingMode.HALF_UP);
         insert.add(CISales.DocumentSumAbstract.NetTotal, netTotal);
         createdDoc.getValues().put(CISales.DocumentSumAbstract.CrossTotal.name, netTotal);
 
@@ -290,7 +298,7 @@ public abstract class VerificationList_Base
         createdDoc.setInstance(insert.getInstance());
         insertRelation(_parameter, createdDoc);
 
-        final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getTypeName4SysConf(_parameter));
+        final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getType4SysConf(_parameter));
         final int uScale = unitFrmt.getMaximumFractionDigits();
 
         idx = 0;
@@ -315,30 +323,30 @@ public abstract class VerificationList_Base
 
                 posIns.add(CISales.PositionSumAbstract.Quantity, calc.getQuantity());
                 posIns.add(CISales.PositionSumAbstract.CrossUnitPrice, calc.getCrossUnitPrice()
-                                .divide(rate, BigDecimal.ROUND_HALF_UP).setScale(uScale, BigDecimal.ROUND_HALF_UP));
+                                .divide(rate, RoundingMode.HALF_UP).setScale(uScale, RoundingMode.HALF_UP));
                 posIns.add(CISales.PositionSumAbstract.NetUnitPrice, calc.getNetUnitPrice()
-                                .divide(rate, BigDecimal.ROUND_HALF_UP).setScale(uScale, BigDecimal.ROUND_HALF_UP));
+                                .divide(rate, RoundingMode.HALF_UP).setScale(uScale, RoundingMode.HALF_UP));
                 posIns.add(CISales.PositionSumAbstract.CrossPrice, calc.getCrossPrice()
-                                .divide(rate, BigDecimal.ROUND_HALF_UP).setScale(scale, BigDecimal.ROUND_HALF_UP));
+                                .divide(rate, RoundingMode.HALF_UP).setScale(scale, RoundingMode.HALF_UP));
                 posIns.add(CISales.PositionSumAbstract.NetPrice, calc.getNetPrice()
-                                .divide(rate, BigDecimal.ROUND_HALF_UP).setScale(scale, BigDecimal.ROUND_HALF_UP));
+                                .divide(rate, RoundingMode.HALF_UP).setScale(scale, RoundingMode.HALF_UP));
                 posIns.add(CISales.PositionSumAbstract.Tax, calc.getTaxCatId());
                 posIns.add(CISales.PositionSumAbstract.Discount, calc.getDiscount());
                 posIns.add(CISales.PositionSumAbstract.DiscountNetUnitPrice, calc.getDiscountNetUnitPrice()
-                                .divide(rate, BigDecimal.ROUND_HALF_UP).setScale(uScale, BigDecimal.ROUND_HALF_UP));
+                                .divide(rate, RoundingMode.HALF_UP).setScale(uScale, RoundingMode.HALF_UP));
                 posIns.add(CISales.PositionSumAbstract.CurrencyId, baseCurrInst);
                 posIns.add(CISales.PositionSumAbstract.Rate, rateObj);
                 posIns.add(CISales.PositionSumAbstract.RateCurrencyId, rateCurrInst);
                 posIns.add(CISales.PositionSumAbstract.RateNetUnitPrice, calc.getNetUnitPrice()
-                                .setScale(uScale, BigDecimal.ROUND_HALF_UP));
+                                .setScale(uScale, RoundingMode.HALF_UP));
                 posIns.add(CISales.PositionSumAbstract.RateCrossUnitPrice, calc.getCrossUnitPrice()
-                                .setScale(uScale, BigDecimal.ROUND_HALF_UP));
+                                .setScale(uScale, RoundingMode.HALF_UP));
                 posIns.add(CISales.PositionSumAbstract.RateDiscountNetUnitPrice, calc.getDiscountNetUnitPrice()
-                                .setScale(uScale, BigDecimal.ROUND_HALF_UP));
+                                .setScale(uScale, RoundingMode.HALF_UP));
                 posIns.add(CISales.PositionSumAbstract.RateNetPrice,
-                                calc.getNetPrice().setScale(scale, BigDecimal.ROUND_HALF_UP));
+                                calc.getNetPrice().setScale(scale, RoundingMode.HALF_UP));
                 posIns.add(CISales.PositionSumAbstract.RateCrossPrice,
-                                calc.getCrossPrice().setScale(scale, BigDecimal.ROUND_HALF_UP));
+                                calc.getCrossPrice().setScale(scale, RoundingMode.HALF_UP));
                 add2PositionInsert(_parameter, calc, posIns, idx);
                 posIns.execute();
                 createdDoc.addPosition(posIns.getInstance());
@@ -452,8 +460,8 @@ public abstract class VerificationList_Base
         {
             BigDecimal ret = BigDecimal.ZERO;
             if (totalPrice.compareTo(BigDecimal.ZERO) != 0) {
-                ret = totalPrice.setScale(8, BigDecimal.ROUND_HALF_UP)
-                                .divide(getQuantity(), BigDecimal.ROUND_HALF_UP);
+                ret = totalPrice.setScale(8, RoundingMode.HALF_UP)
+                                .divide(getQuantity(), RoundingMode.HALF_UP);
             }
             return ret;
         }

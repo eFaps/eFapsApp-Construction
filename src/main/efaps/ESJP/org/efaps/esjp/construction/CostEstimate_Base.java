@@ -1,5 +1,5 @@
 /*
- *  Copyright 2003 - 2019 The eFaps Team
+ *  Copyright 2003 - 2020 The eFaps Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -225,7 +225,7 @@ public abstract class CostEstimate_Base
         final Iterator<Calculator> iter = calcList.iterator();
 
 
-        final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getTypeName4SysConf(_parameter));
+        final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getType4SysConf(_parameter));
         for (int i = 0; i < rowKeys.length; i++) {
             final Calculator calc = iter.next();
             final Instance inst = Instance.get(oidMap.get(rowKeys[i]));
@@ -395,7 +395,7 @@ public abstract class CostEstimate_Base
         queryBldr.addWhereAttrEqValue(CIConstruction.PositionGroupRoot.DocumentAbstractLink, _costEstimateInst);
         final MultiPrintQuery multi = queryBldr.getPrint();
         multi.execute();
-        final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getTypeName4SysConf(_parameter));
+        final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getType4SysConf(_parameter));
         while (multi.next()) {
             final BigDecimal[] totals = getTotals(_parameter, multi.getCurrentInstance());
             final Update update = new Update(multi.getCurrentInstance());
@@ -431,7 +431,7 @@ public abstract class CostEstimate_Base
         final MultiPrintQuery multi = queryBldr.getPrint();
         multi.addSelect(selNetPrice, selRateNetPrice);
         multi.execute();
-        final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getTypeName4SysConf(_parameter));
+        final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getType4SysConf(_parameter));
         while (multi.next()) {
             final Instance childInst = multi.getCurrentInstance();
             if (childInst.getType().isKindOf(CIConstruction.PositionGroupItem.getType())) {
@@ -1041,7 +1041,7 @@ public abstract class CostEstimate_Base
                                               final BigDecimal _rate)
         throws EFapsException
     {
-        final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getTypeName4SysConf(_parameter));
+        final DecimalFormat unitFrmt = NumberFormatter.get().getFrmt4UnitPrice(getType4SysConf(_parameter));
         final Update posUpdate = new Update(_instQuotPos);
         posUpdate.add(CISales.PositionSumAbstract.Quantity, _calc.getQuantity());
         posUpdate.add(CISales.PositionSumAbstract.RateCrossUnitPrice, _calc.getCrossUnitPrice());
@@ -1112,7 +1112,7 @@ public abstract class CostEstimate_Base
                                           final Instance _rateCurrInst)
         throws EFapsException
     {
-        final DecimalFormat frmt = NumberFormatter.get().getFrmt4Total(getTypeName4SysConf(_parameter));
+        final DecimalFormat frmt = NumberFormatter.get().getFrmt4Total(getType4SysConf(_parameter));
 
         final Update update = new Update(_ceInst);
         update.add(CISales.DocumentSumAbstract.CrossTotal, getCrossTotal(_parameter, _calcList)
@@ -1856,7 +1856,7 @@ public abstract class CostEstimate_Base
         final String[] costLinks = _parameter
                         .getParameterValues(CITableConstruction.Construction_CostEstimateSalePercentageCostTable.percentageCostLink.name);
 
-        final DecimalFormat totalFrmt = NumberFormatter.get().getFrmt4Total(getTypeName4SysConf(_parameter));
+        final DecimalFormat totalFrmt = NumberFormatter.get().getFrmt4Total(getType4SysConf(_parameter));
         final DecimalFormat frmt = NumberFormatter.get().getFormatter();
 
         final Set<Instance> costInsts = new HashSet<>();
@@ -2081,7 +2081,7 @@ public abstract class CostEstimate_Base
                 if (_netSubTotal != null) {
                     BigDecimal amountTmp = percentage.setScale(12)
                                     .divide(new BigDecimal(100), RoundingMode.HALF_UP).multiply(_netSubTotal);
-                    final DecimalFormat frmt = NumberFormatter.get().getFrmt4Total(getTypeName4SysConf(_parameter));
+                    final DecimalFormat frmt = NumberFormatter.get().getFrmt4Total(getType4SysConf(_parameter));
                     amountTmp = amountTmp.setScale(frmt.getMaximumFractionDigits(), RoundingMode.HALF_UP);
                     if (amountTmp.compareTo(rateAmount) != 0) {
                         final PrintQuery print = new PrintQuery(_parameter.getInstance());
@@ -2091,7 +2091,7 @@ public abstract class CostEstimate_Base
                         final BigDecimal rate = ((BigDecimal) rateObj[0]).divide((BigDecimal) rateObj[1], 12,
                                         RoundingMode.HALF_UP);
                         final DecimalFormat totalFrmt = NumberFormatter.get().getFrmt4Total(
-                                        getTypeName4SysConf(_parameter));
+                                        getType4SysConf(_parameter));
                         final BigDecimal amount = rateAmount.divide(rate, 12, RoundingMode.HALF_UP)
                                         .setScale(totalFrmt.getMaximumFractionDigits(),
                                                         RoundingMode.HALF_UP);

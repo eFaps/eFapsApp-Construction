@@ -84,7 +84,7 @@ attribute[RateAmount] as amount]]>
 					<pen lineWidth="0.0"/>
 				</graphicElement>
 			</rectangle>
-			<textField isStretchWithOverflow="true">
+			<textField textAdjust="StretchHeight">
 				<reportElement key="desc4level1" x="64" y="0" width="346" height="15" isPrintWhenDetailOverflows="true" uuid="bae8ae3a-a6fe-485a-8808-af0aa49b941e"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>

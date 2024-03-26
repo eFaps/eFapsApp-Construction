@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
-
-  Copyright 2010 - 2014 Jan Moxter
-
-  All Rights Reserved.
-? This program contains proprietary and trade secret information of
-? Jan Moxter Copyright notice is precautionary only and does not
-? evidence any actual or intended publication of such program.
 
 
-
--->
 <ui-menu xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>9c9ce2e5-556b-4cf3-8f39-45bbebf15d87</uuid>

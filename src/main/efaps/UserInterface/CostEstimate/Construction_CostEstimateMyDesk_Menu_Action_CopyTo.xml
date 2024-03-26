@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-
-  Copyright 2010 Jan Moxter
-
-  All Rights Reserved.
-  This program contains proprietary and trade secret information of
-  Jan Moxter Copyright notice is precautionary only and does not
-  evidence any actual or intended publication of such program.
 
 
-
--->
 
 <ui-command xmlns="http://www.efaps.org/xsd"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -26,7 +16,8 @@
             <role>Sales_Salesman</role>
             <role>Construction_Admin</role>
         </access>
-        <!-- target definitions -->
+        
+
         <target>
             <form>Construction_CostEstimateCopyToForm</form>
             <execute program="org.efaps.esjp.construction.CostEstimate" method="revise">
@@ -43,7 +34,8 @@
             </execute>
         </target>
 
-        <!-- properties -->
+        
+
         <property name="AskUser">false</property>
         <property name="TargetMode">create</property>
         <property name="Target">modal</property>

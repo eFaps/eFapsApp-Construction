@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
-
-  Copyright 2007 - 2014 Jan Moxter
-
-  All Rights Reserved.
-? This program contains proprietary and trade secret information of
-? Jan Moxter Copyright notice is precautionary only and does not
-? evidence any actual or intended publication of such program.
 
 
-
--->
 <ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>3f0b0415-95fa-440a-96b1-896dd5d87f30</uuid>
@@ -22,7 +12,8 @@
         <access>
             <role>Construction_Admin</role>
         </access>
-        <!-- target definitions -->
+        
+
         <target>
             <form>Construction_VerificationListForm</form>
             <execute method="edit" program="org.efaps.esjp.construction.VerificationList" >
@@ -43,7 +34,8 @@
                 <property name="Status">Open</property>
             </trigger>
         </target>
-        <!-- properties -->
+        
+
         <property name="Target">modal</property>
         <property name="TargetMode">edit</property>
         <property name="WindowHeight">750</property>

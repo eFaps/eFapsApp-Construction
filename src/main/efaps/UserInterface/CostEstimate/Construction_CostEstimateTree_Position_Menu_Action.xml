@@ -1,22 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
-
-  Copyright 2010 - 2011 Jan Moxter
-
-  All Rights Reserved.
-? This program contains proprietary and trade secret information of
-? Jan Moxter Copyright notice is precautionary only and does not
-? evidence any actual or intended publication of such program.
-
-
-
---><ui-menu xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ui-menu xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>e79006f6-5c94-422a-a92b-2b04fef5b90c</uuid>
     <file-application>eFapsApp-Construction</file-application>
     
     <definition>
         <version-expression>(version==latest)</version-expression>
         <name>Construction_CostEstimateTree_Position_Menu_Action</name>
-        <!-- childs -->
+        
+
         <childs>
             <child>Construction_CostEstimateTree_Position_Menu_Action_Delete</child>
         </childs>

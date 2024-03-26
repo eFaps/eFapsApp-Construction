@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
-
-  Copyright 2007 - 2014 Jan Moxter
-
-  All Rights Reserved.
-? This program contains proprietary and trade secret information of
-? Jan Moxter Copyright notice is precautionary only and does not
-? evidence any actual or intended publication of such program.
 
 
-
--->
 <ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>26569605-6d70-4a53-9b9c-2d8a9cfc0d41</uuid>
@@ -22,7 +12,8 @@
         <access>
             <role>Construction_Admin</role>
         </access>
-        <!-- target definitions -->
+        
+
         <target>
              <execute program="org.efaps.esjp.admin.datamodel.StatusValue" method="setStatus">
                 <property name="Status">Closed</property>

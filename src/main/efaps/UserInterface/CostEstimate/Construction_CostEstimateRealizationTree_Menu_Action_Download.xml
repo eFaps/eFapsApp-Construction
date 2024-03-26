@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
-
-  Copyright 2007 - 2014 Jan Moxter
-
-  All Rights Reserved.
-? This program contains proprietary and trade secret information of
-? Jan Moxter Copyright notice is precautionary only and does not
-? evidence any actual or intended publication of such program.
 
 
-
--->
 <ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>761b409c-16e0-471e-9900-4df69e7e3381</uuid>
@@ -22,7 +12,8 @@
         <access>
             <role>Construction_Admin</role>
         </access>
-        <!-- target definitions -->
+        
+
         <target>
             <execute method="downloadCostEstimate" program="org.efaps.esjp.construction.CostEstimate">
                 <property name="JasperReport">Construction_CostEstimateRealization</property>

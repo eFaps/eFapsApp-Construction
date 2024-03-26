@@ -1,15 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
-  Copyright 2007 - 2010 Jan Moxter
-
-  All Rights Reserved.
-  This program contains proprietary and trade secret information of
-  Jan Moxter Copyright notice is precautionary only and does not
-  evidence any actual or intended publication of such program.
-
-
-
--->
 <ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>51d0658e-7478-49a9-950b-fab18890c097</uuid>
@@ -22,13 +12,15 @@
             <role>Construction_Admin</role>
         </access>
 
-        <!-- target definitions -->
+        
+
         <target>
             <form>Construction_ProductGeneralCostForm</form>
             <execute program="org.efaps.esjp.common.uiform.Create" />
         </target>
 
-        <!-- properties -->
+        
+
         <property name="Target">modal</property>
         <property name="TargetCreateType">Construction_ProductGeneralCostPosition</property>
         <property name="TargetMode">create</property>

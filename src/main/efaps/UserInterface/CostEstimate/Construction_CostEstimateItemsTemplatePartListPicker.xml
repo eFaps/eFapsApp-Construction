@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
-  Copyright 2009 - 2015 moxter.net
 
-  All Rights Reserved.
-  This program contains proprietary and trade secret information of
-  moxter.net Copyright notice is precautionary only and does not
-  evidence any actual or intended publication of such program.
 
-  Author:          moxter.net
-
--->
 <ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>8f3a67c2-5317-447e-8094-96da456ed3a8</uuid>

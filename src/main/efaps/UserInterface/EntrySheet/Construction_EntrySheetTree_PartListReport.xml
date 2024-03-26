@@ -1,15 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
-  Copyright 2010 Jan Moxter
-
-  All Rights Reserved.
-  This program contains proprietary and trade secret information of
-  Jan Moxter Copyright notice is precautionary only and does not
-  evidence any actual or intended publication of such program.
-
-
-
--->
 <ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>2858f5de-eaf0-4ab9-bae8-baf87215c160</uuid>
@@ -25,7 +15,8 @@
             <menu>Construction_EntrySheetTree_PartListReport_Menu</menu>
             <form>Construction_EntrySheetPartListReportForm</form>
         </target>
-        <!-- properties -->
+        
+
         <property name="Target">content</property>
         <property name="TargetMode">view</property>
     </definition>

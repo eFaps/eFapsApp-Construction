@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.0.1.final using JasperReports Library version 6.0.0  -->
-<!-- 2015-03-11T16:58:40 -->
+
+
+
+
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Construction_CostEstimateSalePercentageCost" pageWidth="610" pageHeight="842" columnWidth="610" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e938eb9d-07ac-4f4d-bd9a-856808bdb701">
 	<property name="org.efaps.admin.program.jasper.EFapsApplication" value="eFapsApp-Construction"/>
 	<property name="org.efaps.eql.Version" value="2"/>

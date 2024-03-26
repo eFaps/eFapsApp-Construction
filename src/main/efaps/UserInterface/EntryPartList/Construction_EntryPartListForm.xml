@@ -1,15 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
-  Copyright 2010 Jan Moxter
-
-  All Rights Reserved.
-? This program contains proprietary and trade secret information of
-? Jan Moxter Copyright notice is precautionary only and does not
-? evidence any actual or intended publication of such program.
-
-
-
--->
 <ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>33d7bf4f-fb01-4532-bee5-01874715b1ca</uuid>
@@ -18,7 +8,8 @@
     <definition>
         <version-expression>(version==latest)</version-expression>
         <name>Construction_EntryPartListForm</name>
-        <!-- fields -->
+        
+
         <field name="activatePositionsCalculator">
             <property name="ModeCreate">HIDDEN</property>
             <property name="ModeView">NONE</property>
@@ -109,7 +100,8 @@
             <trigger event="UI_FIELD_VALUE" method="getUoMDropDownFieldValue"
                 name="Construction_EntryPartListForm.efficiencyUoM.UI_FIELD_VALUE"
                 program="org.efaps.esjp.common.uiform.Field" >
-                <!-- Construction_Dimension_Efficiency -->
+                
+
                 <property name="Dimension">84eb2a4d-81c3-46d2-b4c5-38e1f5c2e4a1</property>
             </trigger>
         </field>

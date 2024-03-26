@@ -1,23 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
-  Copyright 2015 Jan Moxter
-
-  All Rights Reserved.
-  This program contains proprietary and trade secret information of
-  Jan Moxter Copyright notice is precautionary only and does not
-  evidence any actual or intended publication of such program.
-
-  Author:          Jan Moxter
-  Revision:        $Rev: 1958 $
-  Last Changed:    $Date: 2013-03-21 14:03:46 -0500 (jue, 21 mar 2013) $
-  Last Changed By: $Author: Jan Moxter $
-
--->
 <ui-command xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>6442e966-cc3d-488f-b48e-5379ce2f29b6</uuid>
     <file-application>eFapsApp-Construction</file-application>
-    <file-revision>$Rev: 1958 $</file-revision>
+    
     <definition>
         <version-expression>(version==latest)</version-expression>
         <name>Construction_Projects_ProjectTree_CostEstimatePositionReport</name>

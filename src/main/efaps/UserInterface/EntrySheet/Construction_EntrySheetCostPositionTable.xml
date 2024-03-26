@@ -1,15 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
- Copyright 2007 - 2014 Jan Moxter
-
-  All Rights Reserved.
-  This program contains proprietary and trade secret information of
-  Jan Moxter Copyright notice is precautionary only and does not
-  evidence any actual or intended publication of such program.
-
-
-
--->
 <ui-table xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>e6a85cb9-b0b2-42c3-abc3-6e156866046c</uuid>
@@ -18,7 +8,8 @@
     <definition>
         <version-expression>(version==latest)</version-expression>
         <name>Construction_EntrySheetCostPositionTable</name>
-        <!-- fields -->
+        
+
         <field name="quantity">
             <property name="Attribute">Quantity</property>
             <property name="Label">Construction_EntrySheetPosition/Quantity.Label</property>

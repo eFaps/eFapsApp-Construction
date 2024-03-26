@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
 
-  Copyright 2007 - 2014 Jan Moxter
 
-  All Rights Reserved.
-  This program contains proprietary and trade secret information of
-  Jan Moxter Copyright notice is precautionary only and does not
-  evidence any actual or intended publication of such program.
-
--->
 <ui-form xmlns="http://www.efaps.org/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <uuid>c21fbf4d-4614-4757-b14c-9d7246ef315c</uuid>
@@ -16,7 +8,8 @@
     <definition>
         <version-expression>(version==latest)</version-expression>
         <name>Construction_EntrySheetForm</name>
-        <!-- fields -->
+        
+
         <field name="activatePositionsCalculator">
             <property name="ModeCreate">HIDDEN</property>
             <property name="ModeEdit">NONE</property>

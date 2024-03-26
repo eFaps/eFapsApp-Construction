@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-
-  Copyright 2010 Jan Moxter
-
-  All Rights Reserved.
-  This program contains proprietary and trade secret information of
-  Jan Moxter Copyright notice is precautionary only and does not
-  evidence any actual or intended publication of such program.
 
 
-
--->
 
 <ui-command xmlns="http://www.efaps.org/xsd"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -33,7 +23,8 @@
                 <property name="LinkFrom">FromLink</property>
             </evaluate>
         </target>
-        <!-- properties -->
+        
+
         <property name="Target">content</property>
         <property name="TargetShowCheckBoxes">true</property>
     </definition>

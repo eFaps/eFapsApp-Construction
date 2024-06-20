@@ -94,7 +94,7 @@ import org.efaps.esjp.ui.html.Table;
 import org.efaps.ui.wicket.util.EFapsKey;
 import org.efaps.util.EFapsException;
 import org.efaps.util.cache.InfinispanCache;
-import org.infinispan.AdvancedCache;
+import org.infinispan.Cache;
 import org.infinispan.configuration.cache.ConfigurationBuilder;
 import org.infinispan.manager.EmbeddedCacheManager;
 import org.slf4j.Logger;
@@ -191,7 +191,7 @@ public abstract class CostEstimate_Base
     {
         final Return ret = new Return();
         initCache();
-        InfinispanCache.get().getIgnReCache(CostEstimate.CALCCACHE).clear();
+        InfinispanCache.get().getCache(CostEstimate.CALCCACHE).clear();
 
         // update the main document
         editDoc(_parameter);
@@ -1735,8 +1735,7 @@ public abstract class CostEstimate_Base
                 keySel.add(posInst.getOid());
             }
             final String key = costEstimateInst.getOid() + "|" + StringUtils.join(keySel, "|");
-            final AdvancedCache<String, List<Calculator>> cache = InfinispanCache.get().getIgnReCache(
-                            CostEstimate.CALCCACHE);
+            final Cache<String, List<Calculator>> cache = InfinispanCache.get().getCache(CostEstimate.CALCCACHE);
             if (cache.containsKey(key)) {
                 ret.addAll(cache.get(key));
             } else {

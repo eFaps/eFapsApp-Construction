@@ -66,7 +66,6 @@ import org.efaps.esjp.projects.document.Naming;
 import org.efaps.esjp.sales.Calculator;
 import org.efaps.esjp.sales.ICalculatorConfig;
 import org.efaps.esjp.sales.document.AbstractDocumentSum;
-import org.efaps.ui.wicket.util.EFapsKey;
 import org.efaps.util.EFapsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -128,7 +127,7 @@ public abstract class EntrySheet_Base
                 final Map<String, String> map = new HashMap<String, String>();
                 final StringBuilder js = new StringBuilder();
                 js.append(getSetFieldValue(0, "rateCurrencyId", currencyId.toString()));
-                map.put(EFapsKey.FIELDUPDATE_JAVASCRIPT.getKey(), js.toString());
+                map.put("eFapsFieldUpdateJS", js.toString());
                 list.add(map);
             }
         }
@@ -416,7 +415,7 @@ public abstract class EntrySheet_Base
     {
         @SuppressWarnings("unchecked")
         final Map<String, String> oidMap = (Map<String, String>) _parameter.get(ParameterValues.OIDMAP4UI);
-        final String[] rowKeys = _parameter.getParameterValues(EFapsKey.TABLEROW_NAME.getKey());
+        final String[] rowKeys = _parameter.getParameterValues("eFapsTRID");
         final String[] prodDescs = _parameter
                         .getParameterValues(CITableConstruction.Construction_EntrySheetPositionTable.productDesc.name);
         final Set<Instance> posinsts = new HashSet<Instance>();

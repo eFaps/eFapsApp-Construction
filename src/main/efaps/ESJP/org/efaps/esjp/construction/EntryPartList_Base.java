@@ -64,7 +64,6 @@ import org.efaps.esjp.sales.Calculator;
 import org.efaps.esjp.sales.PriceUtil;
 import org.efaps.esjp.sales.PriceUtil_Base.ProductPrice;
 import org.efaps.esjp.sales.util.Sales;
-import org.efaps.ui.wicket.util.EFapsKey;
 import org.efaps.util.EFapsException;
 import org.joda.time.DateTime;
 
@@ -439,7 +438,7 @@ public abstract class EntryPartList_Base
 
         @SuppressWarnings("unchecked")
         final Map<String, String> uiId2OID = (Map<String, String>) _parameter.get(ParameterValues.OIDMAP4UI);
-        final String[] rowKeys = _parameter.getParameterValues(EFapsKey.TABLEROW_NAME.getKey());
+        final String[] rowKeys = _parameter.getParameterValues("eFapsTRID");
         final Set<Instance> bomInsts = new HashSet<>();
         // create the BOM relations
         final BigDecimal rateNetTotal = bom.getNetTotal(_parameter, calcList);

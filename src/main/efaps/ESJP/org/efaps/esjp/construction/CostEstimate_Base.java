@@ -91,7 +91,6 @@ import org.efaps.esjp.sales.document.AbstractDocumentSum;
 import org.efaps.esjp.sales.tax.TaxCat;
 import org.efaps.esjp.sales.tax.TaxesAttribute;
 import org.efaps.esjp.ui.html.Table;
-import org.efaps.ui.wicket.util.EFapsKey;
 import org.efaps.util.EFapsException;
 import org.efaps.util.cache.InfinispanCache;
 import org.infinispan.Cache;
@@ -198,7 +197,7 @@ public abstract class CostEstimate_Base
 
         @SuppressWarnings("unchecked")
         final Map<String, String> oidMap = (Map<String, String>) _parameter.get(ParameterValues.OIDMAP4UI);
-        final String[] rowKeys = _parameter.getParameterValues(EFapsKey.TABLEROW_NAME.getKey());
+        final String[] rowKeys = _parameter.getParameterValues("eFapsTRID");
         final String[] prodDescs = _parameter.getParameterValues(
                         CITableConstruction.Construction_CostEstimatePositionTable.productDesc.name);
         final String[] codes = _parameter.getParameterValues(
@@ -506,12 +505,12 @@ public abstract class CostEstimate_Base
                 final String choice = name + "- " + desc;
                 if (props.containsKey("ReturnPositionOid")
                                 && Boolean.parseBoolean((String) props.get("ReturnPositionOid"))) {
-                    map.put(EFapsKey.AUTOCOMPLETE_KEY.getKey(), multi.getCurrentInstance().getOid());
+                    map.put("eFapsAutoCompleteKEY", multi.getCurrentInstance().getOid());
                 } else {
-                    map.put(EFapsKey.AUTOCOMPLETE_KEY.getKey(), prodOid);
+                    map.put("eFapsAutoCompleteKEY", prodOid);
                 }
-                map.put(EFapsKey.AUTOCOMPLETE_VALUE.getKey(), name);
-                map.put(EFapsKey.AUTOCOMPLETE_CHOICE.getKey(), choice);
+                map.put("eFapsAutoCompleteVALUE", name);
+                map.put("eFapsAutoCompleteCHOICE", choice);
                 orderMap.put(choice, map);
             }
         }
@@ -581,9 +580,9 @@ public abstract class CostEstimate_Base
                 final String desc = multi.<String>getAttribute(CIProducts.ProductAbstract.Description);
                 final Map<String, String> map = new HashMap<>();
                 final String choice = name + "- " + desc;
-                map.put(EFapsKey.AUTOCOMPLETE_KEY.getKey(), multi.getCurrentInstance().getOid());
-                map.put(EFapsKey.AUTOCOMPLETE_VALUE.getKey(), name);
-                map.put(EFapsKey.AUTOCOMPLETE_CHOICE.getKey(), choice);
+                map.put("eFapsAutoCompleteKEY", multi.getCurrentInstance().getOid());
+                map.put("eFapsAutoCompleteVALUE", name);
+                map.put("eFapsAutoCompleteCHOICE", choice);
                 map.put("productDesc", desc);
                 orderMap.put(choice, map);
             }
@@ -1804,13 +1803,13 @@ public abstract class CostEstimate_Base
                 final Return retTmp2 = updateFields4RateCurrency(_parameter);
                 final List<Map<String, String>> list = (List<Map<String, String>>) retTmp2.get(ReturnValues.VALUES);
                 if (!list.isEmpty()) {
-                    js.append(list.get(0).get(EFapsKey.FIELDUPDATE_JAVASCRIPT.getKey()));
+                    js.append(list.get(0).get("eFapsFieldUpdateJS"));
                 }
             }
         }
         final List<Map<String, String>> list = new ArrayList<>();
         final Map<String, String> map = new HashMap<>();
-        map.put(EFapsKey.FIELDUPDATE_JAVASCRIPT.getKey(), js.toString());
+        map.put("eFapsFieldUpdateJS", js.toString());
         list.add(map);
         final Return retVal = new Return();
         retVal.put(ReturnValues.VALUES, list);
@@ -1845,7 +1844,7 @@ public abstract class CostEstimate_Base
     {
         @SuppressWarnings("unchecked")
         final Map<String, String> oidMap = (Map<String, String>) _parameter.get(ParameterValues.OIDMAP4UI);
-        final String[] rowKeys = _parameter.getParameterValues(EFapsKey.TABLEROW_NAME.getKey());
+        final String[] rowKeys = _parameter.getParameterValues("eFapsTRID");
         final String[] percentages = _parameter
                         .getParameterValues(CITableConstruction.Construction_CostEstimateSalePercentageCostTable.percentage.name);
         final String[] amounts = _parameter
@@ -1960,7 +1959,7 @@ public abstract class CostEstimate_Base
         map.put(CITableConstruction.Construction_CostEstimateSalePercentageCostTable.percentage.name, formatter.format(percentage));
         map.put(CITableConstruction.Construction_CostEstimateSalePercentageCostTable.amount.name, amountStr);
         map.put(CIFormConstruction.Construction_CostEstimateSaleEditPercentageCostForm.netTotal.name, netTotalStr);
-        map.put(EFapsKey.FIELDUPDATE_JAVASCRIPT.getKey(), taxes.toString());
+        map.put("eFapsFieldUpdateJS", taxes.toString());
         map.put(CIFormConstruction.Construction_CostEstimateSaleEditPercentageCostForm.crossTotal.name, crossTotalStr);
         list.add(map);
         retVal.put(ReturnValues.VALUES, list);
@@ -2007,7 +2006,7 @@ public abstract class CostEstimate_Base
         map.put(CITableConstruction.Construction_CostEstimateSalePercentageCostTable.percentage.name, formatter.format(percentage));
         map.put(CITableConstruction.Construction_CostEstimateSalePercentageCostTable.amount.name, amountStr);
         map.put(CIFormConstruction.Construction_CostEstimateSaleEditPercentageCostForm.netTotal.name, netTotalStr);
-        map.put(EFapsKey.FIELDUPDATE_JAVASCRIPT.getKey(), taxes.toString());
+        map.put("eFapsFieldUpdateJS", taxes.toString());
         map.put(CIFormConstruction.Construction_CostEstimateSaleEditPercentageCostForm.crossTotal.name, crossTotalStr);
         list.add(map);
         retVal.put(ReturnValues.VALUES, list);

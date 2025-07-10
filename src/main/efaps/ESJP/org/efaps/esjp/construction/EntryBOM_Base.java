@@ -55,7 +55,6 @@ import org.efaps.esjp.sales.Calculator;
 import org.efaps.esjp.sales.ICalculatorConfig;
 import org.efaps.esjp.sales.document.AbstractDocumentSum;
 import org.efaps.esjp.sales.document.AbstractDocument_Base;
-import org.efaps.ui.wicket.util.EFapsKey;
 import org.efaps.util.EFapsException;
 
 /**
@@ -206,7 +205,7 @@ public abstract class EntryBOM_Base
                     i = 0;
                 }
                 final Map<String, String> map = new HashMap<String, String>();
-                map.put(EFapsKey.FIELDUPDATE_USEIDX.getKey(), String.valueOf(i));
+                map.put("eFapsFieldUseIndex", String.valueOf(i));
                 map.put("quantity" + posType.getSuffix(), calc.getQuantityStr());
                 map.put("unitPrice" + posType.getSuffix(), calc.getNetUnitPriceFmtStr());
                 map.put("price" + posType.getSuffix(), calc.getNetPriceFmtStr());

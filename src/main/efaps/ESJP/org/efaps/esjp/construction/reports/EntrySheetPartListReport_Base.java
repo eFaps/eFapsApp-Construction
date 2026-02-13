@@ -47,6 +47,8 @@ import org.efaps.esjp.common.jasperreport.AbstractDynamicReport;
 import org.efaps.esjp.construction.EntryBOM;
 import org.efaps.esjp.construction.IPositionType;
 import org.efaps.esjp.construction.PositionType;
+import org.efaps.esjp.construction.reports.EntrySheetPartListReport_Base.Bom;
+import org.efaps.esjp.construction.reports.EntrySheetPartListReport_Base.PartList;
 import org.efaps.util.EFapsException;
 
 import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
@@ -121,7 +123,7 @@ public abstract class EntrySheetPartListReport_Base
         extends AbstractDynamicReport
     {
 
-        protected List<PartList> partLists = new ArrayList<PartList>();
+        protected List<PartList> partLists = new ArrayList<>();
 
         @Override
         public String getHtml(final Parameter _parameter,
@@ -230,7 +232,7 @@ public abstract class EntrySheetPartListReport_Base
                             CIConstruction.EntryBOM.Price, CIConstruction.EntryBOM.UnitPrice, CIConstruction.EntryBOM.UoM, CIConstruction.EntryBOM.Remark);
             bomMulti.execute();
 
-            final Map<Instance, PartList> map = new HashMap<Instance, PartList>();
+            final Map<Instance, PartList> map = new HashMap<>();
             while (bomMulti.next()) {
                 final Instance partListInst = bomMulti.<Instance>getSelect(selEplInst);
                 PartList partList;
@@ -279,8 +281,7 @@ public abstract class EntrySheetPartListReport_Base
                 bom.setPositionType(EntryBOM.getPositionType(_parameter, prodInst,
                                 bomMulti.<List<Classification>>getSelect(selProdClass)));
             }
-            Collections.sort(partLists, (_pl0,
-             _pl1) -> _pl0.getName().compareTo(_pl1.getName()));
+            Collections.sort(partLists, Comparator.comparing(PartList::getName));
             for (final PartList prtLst : partLists) {
                 ret.add(prtLst);
             }
@@ -340,7 +341,7 @@ public abstract class EntrySheetPartListReport_Base
                             .setStyle(DynamicReports.stl.style().setFontSize(12))
                             .setWidth(20);
             final TextFieldBuilder<String> partListName = DynamicReports.cmp.text(partlist.getName())
-                            .setWidth(20).setStretchWithOverflow(true)
+                            .setWidth(20)
                             .setStyle(DynamicReports.stl.style()
                                             .setHorizontalTextAlignment(HorizontalTextAlignment.RIGHT)
                                             .setFontSize(12).setBold(true).setPadding(Styles.padding().setRight(5)));
@@ -457,13 +458,12 @@ public abstract class EntrySheetPartListReport_Base
                 boms.add(manBom);
             }
 
-            final List<Comparator<Bom>> comparators = new ArrayList<Comparator<Bom>>();
+            final List<Comparator<Bom>> comparators = new ArrayList<>();
             comparators.add((_bom0,
              _bom1) -> Integer.valueOf(_bom0.getPositionType().getPosition()).compareTo(
-                            Integer.valueOf(_bom1.getPositionType().getPosition())));
+                            _bom1.getPositionType().getPosition()));
 
-            comparators.add((_bom0,
-             _bom1) -> _bom0.getName().compareTo(_bom1.getName()));
+            comparators.add(Comparator.comparing(Bom::getName));
 
             Collections.sort(boms, ComparatorUtils.chainedComparator(comparators));
 
@@ -488,7 +488,7 @@ public abstract class EntrySheetPartListReport_Base
         private BigDecimal efficencyTools;
         private BigDecimal efficencyOverAll;
         private Instance instance;
-        private final List<Bom> boms = new ArrayList<Bom>();
+        private final List<Bom> boms = new ArrayList<>();
 
         /**
          * @param _currentInstance
